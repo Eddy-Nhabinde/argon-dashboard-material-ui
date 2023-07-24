@@ -27,10 +27,10 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
+import TextField from '@mui/material/TextField';
 
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
-import ArgonInput from "components/ArgonInput";
 
 // Argon Dashboard 2 MUI example components
 import Breadcrumbs from "examples/Breadcrumbs";
@@ -92,8 +92,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
   }, [dispatch, fixedNavbar]);
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
-  const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
 
   // Render the notifications menu
@@ -157,35 +155,37 @@ function DashboardNavbar({ absolute, light, isMini }) {
             {miniSidenav ? "menu_open" : "menu"}
           </Icon>
         </ArgonBox>
-        {isMini ? null : (
-          <ArgonBox sx={(theme) => navbarRow(theme, { isMini })}>
-            <ArgonBox pr={1}>
-              <ArgonInput
-                placeholder="Type here..."
-                startAdornment={
+        
+        <ArgonBox sx={(theme) => navbarRow(theme, { isMini })}>
+          <ArgonBox pr={1}>
+            <TextField
+              style={{ width: '300px' }}
+              placeholder="Type here..."
+              InputProps={{
+                startAdornment:
                   <Icon fontSize="small" style={{ marginRight: "6px" }}>
                     search
                   </Icon>
-                }
-              />
-            </ArgonBox>
-            <ArgonBox color={light ? "white" : "inherit"}>
-              <IconButton
-                size="small"
-                color={light && transparentNavbar ? "white" : "dark"}
-                sx={navbarMobileMenu}
-                onClick={handleMiniSidenav}
-              >
-                <Icon>{miniSidenav ? "menu_open" : "menu"}</Icon>
-              </IconButton>
-
-              <IconButton sx={navbarIconButton} size="small">
-                <PerfilSection />
-              </IconButton>
-              {renderMenu()}
-            </ArgonBox>
+              }}
+            />
           </ArgonBox>
-        )}
+
+          <ArgonBox color={light ? "white" : "inherit"}>
+            <IconButton
+              size="small"
+              color={light && transparentNavbar ? "white" : "dark"}
+              sx={navbarMobileMenu}
+              onClick={handleMiniSidenav}
+            >
+              <Icon>{miniSidenav ? "menu_open" : "menu"}</Icon>
+            </IconButton>
+
+            <IconButton sx={navbarIconButton} size="small">
+              <PerfilSection />
+            </IconButton>
+            {renderMenu()}
+          </ArgonBox>
+        </ArgonBox>
       </Toolbar>
     </AppBar>
   );
