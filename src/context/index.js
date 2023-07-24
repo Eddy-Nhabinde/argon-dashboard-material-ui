@@ -69,8 +69,8 @@ function reducer(state, action) {
 function ArgonControllerProvider({ children }) {
   const initialState = {
     miniSidenav: false,
-    darkSidenav: false,
-    sidenavColor: null,
+    darkSidenav: true,
+    sidenavColor: "info",
     transparentNavbar: true,
     fixedNavbar: false,
     openConfigurator: false,

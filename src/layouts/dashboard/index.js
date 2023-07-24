@@ -34,9 +34,6 @@ import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
 // Argon Dashboard 2 MUI base styles
 import typography from "assets/theme/base/typography";
 
-// Dashboard layout components
-import Slider from "layouts/dashboard/components/Slider";
-
 // Data
 import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
 import salesTableData from "layouts/dashboard/data/salesTableData";
@@ -51,33 +48,33 @@ function Default() {
         <Grid container spacing={3} mb={3}>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="today's money"
-              count="$53,000"
-              icon={{ color: "info", component: <i className="ni ni-money-coins" /> }}
+              title="Consultas Realizadas"
+              count="53,000"
+              icon={{ color: "info", component: <i class="fa-solid fa-check"></i> }}
               percentage={{ color: "success", count: "+55%", text: "since yesterday" }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="today's users"
+              title="Consultas Canceladas"
               count="2,300"
-              icon={{ color: "error", component: <i className="ni ni-world" /> }}
+              icon={{ color: "error", component: <i class="fa-solid fa-xmark"></i> }}
               percentage={{ color: "success", count: "+3%", text: "since last week" }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="new clients"
+              title="Consultas Pendentes"
               count="+3,462"
-              icon={{ color: "success", component: <i className="ni ni-paper-diploma" /> }}
+              icon={{ color: "success", component: <i class="fa-solid fa-calendar-days"></i> }}
               percentage={{ color: "error", count: "-2%", text: "since last quarter" }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="sales"
-              count="$103,430"
-              icon={{ color: "warning", component: <i className="ni ni-cart" /> }}
+              title="Total"
+              count="103,430"
+              icon={{ color: "warning", component: <i class="fa-solid fa-chart-simple"></i> }}
               percentage={{ color: "success", count: "+5%", text: "than last month" }}
             />
           </Grid>
@@ -103,7 +100,23 @@ function Default() {
             />
           </Grid>
           <Grid item xs={12} lg={5}>
-            <Slider />
+            <GradientLineChart
+              title="Sales Overview"
+              description={
+                <ArgonBox display="flex" alignItems="center">
+                  <ArgonBox fontSize={size.lg} color="success" mb={0.3} mr={0.5} lineHeight={0}>
+                    <Icon sx={{ fontWeight: "bold" }}>arrow_upward</Icon>
+                  </ArgonBox>
+                  <ArgonTypography variant="button" color="text" fontWeight="medium">
+                    4% more{" "}
+                    <ArgonTypography variant="button" color="text" fontWeight="regular">
+                      in 2022
+                    </ArgonTypography>
+                  </ArgonTypography>
+                </ArgonBox>
+              }
+              chart={gradientLineChartData}
+            />
           </Grid>
         </Grid>
         <Grid container spacing={3}>
