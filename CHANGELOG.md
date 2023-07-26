@@ -197,7 +197,7 @@ npm WARN react-datetime@3.0.4 requires a peer of react@^16.5.0 but none is insta
 
 ### Original Release
 
-- Started project with Material-UI Create-React-App: https://github.com/mui-org/material-ui/tree/master/examples/create-react-app
+- Started project with Material-UI Create-React-App: https://github.com/mui-org/material-ui/tree/master/argonComponents/create-react-app
 - Added Material-UI as base framework
 - Added React Hooks
 - Added design from Argon Dashboard React by Creative Tim

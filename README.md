@@ -129,7 +129,7 @@ argon-dashboard-material-ui
     │   │   ├── ArgonProgress
     │   │   └── ArgonTypography
     │   ├── context
-    │   ├── examples
+    │   ├── argonComponents
     │   │   ├── Breadcrumbs
     │   │   ├── Calendar
     │   │   ├── Cards

@@ -31,9 +31,9 @@ import ArgonBox from "components/ArgonBox";
 import breakpoints from "assets/theme/base/breakpoints";
 
 // Argon Dashboard 2 MUI example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+import DashboardLayout from "argonComponents/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "argonComponents/Navbars/DashboardNavbar";
+import Footer from "argonComponents/Footer";
 
 function BaseLayout({ stickyNavbar, children }) {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");

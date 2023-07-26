@@ -23,12 +23,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 
-// Argon Dashboard 2 MUI components
-import ArgonBox from "components/ArgonBox";
-
 // Argon Dashboard 2 MUI example components
-import Sidenav from "examples/Sidenav";
-import Configurator from "examples/Configurator";
+import Sidenav from "argonComponents/Sidenav";
+import Configurator from "argonComponents/Configurator";
 
 // Argon Dashboard 2 MUI themes
 import theme from "assets/theme";

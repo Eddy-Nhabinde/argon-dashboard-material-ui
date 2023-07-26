@@ -20,11 +20,11 @@ import Card from "@mui/material/Card";
 import ArgonBox from "components/ArgonBox";
 import ArgonTypography from "components/ArgonTypography";
 
-// Argon Dashboard 2 MUI examples
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-import Table from "examples/Tables/Table";
+// Argon Dashboard 2 MUI argonComponents
+import DashboardLayout from "argonComponents/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "argonComponents/Navbars/DashboardNavbar";
+import Footer from "argonComponents/Footer";
+import Table from "argonComponents/Tables/Table";
 
 // Data
 import authorsTableData from "layouts/tables/data/authorsTableData";
