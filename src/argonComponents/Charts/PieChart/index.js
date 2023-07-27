@@ -5,10 +5,14 @@ import Card from "@mui/material/Card";
 import ArgonBox from "components/ArgonBox";
 import ArgonTypography from "components/ArgonTypography";
 import ReactEcharts from "echarts-for-react"
-
-import configs from "argonComponents/Charts/PieChart/configs";
+import { useMediaQuery } from "usehooks-ts";
 
 function PieChart({ title, description, height, chart }) {
+  const matches = useMediaQuery('(max-width: 1345px)')
+  let width = "470pox"
+
+  if (matches)
+    width = "730px"
 
   const renderChart = (
     <ArgonBox style={{ display: "flex", height: "415px", flexDirection: "column", justifyContent: "center" }} >
@@ -31,7 +35,7 @@ function PieChart({ title, description, height, chart }) {
           <ArgonBox height={height}  >
             <ReactEcharts
               option={chart}
-              style={{ width: "470px", height: "420px" }}
+              style={{ width: width, height: "420px" }}
             ></ReactEcharts>
           </ArgonBox>
         ), [chart, height])

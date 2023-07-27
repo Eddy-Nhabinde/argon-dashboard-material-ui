@@ -1,45 +1,16 @@
-/**
-=========================================================
-* Argon Dashboard 2 MUI - v3.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-material-ui
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-import { useEffect, useState } from "react";
-
-// react-router-dom components
+import { useEffect } from "react";
 import { useLocation, NavLink } from "react-router-dom";
-
-// prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
-
-// @mui material components
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
-
-// Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
 import ArgonTypography from "components/ArgonTypography";
-
-// Argon Dashboard 2 MUI example components
 import SidenavItem from "argonComponents/Sidenav/SidenavItem";
-import SidenavFooter from "argonComponents/Sidenav/SidenavFooter";
-
-// Custom styles for the Sidenav
 import SidenavRoot from "argonComponents/Sidenav/SidenavRoot";
-import sidenavLogoLabel from "argonComponents/Sidenav/styles/sidenav";
-
-// Argon Dashboard 2 MUI context
+import iconLogo from "../../assets/images/logoSiamaco.png";
+import completeLogo from "../../assets/images/completeLogo.png";
 import { useArgonController, setMiniSidenav } from "context";
 
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
@@ -81,7 +52,6 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
               name={name}
               icon={icon}
               active={key === itemName}
-              // noCollapse={noCollapse}
             />
           </Link>
         );
@@ -133,31 +103,14 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             <Icon sx={{ fontWeight: "bold" }}>close</Icon>
           </ArgonTypography>
         </ArgonBox>
-        <ArgonBox component={NavLink} to="/" display="flex" alignItems="center">
-          {brand && (
-            <ArgonBox component="img" src={brand} alt="Argon Logo" width="2rem" mr={0.25} />
-          )}
-          <ArgonBox
-            width={!brandName && "100%"}
-            sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}
-          >
-            <ArgonTypography
-              component="h6"
-              variant="button"
-              fontWeight="medium"
-              color={darkSidenav ? "white" : "dark"}
-            >
-              {brandName}
-            </ArgonTypography>
-          </ArgonBox>
+        <ArgonBox component={NavLink} to="/" display="flex" alignItems="center" >
+          <ArgonBox component="img" src={iconLogo} alt="Argon Logo" width="3rem" mr={0.25} style={!miniSidenav ? { marginLeft: "-15px" } : { marginLeft: "-10px" }} />
+          {!miniSidenav && <ArgonBox component="img" src={completeLogo} alt="Argon Logo" width="10rem" mr={0.25} style={{ margin: "10px 0 0 10px" }} />}
         </ArgonBox>
+
       </ArgonBox>
       <Divider light={darkSidenav} />
       <List>{renderRoutes}</List>
-
-      <ArgonBox pt={1} mt="auto" mb={2} mx={2}>
-        {/* <span>Developed by Eddy</span> */}
-      </ArgonBox>
     </SidenavRoot>
   );
 }
