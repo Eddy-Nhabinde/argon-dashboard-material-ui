@@ -54,7 +54,9 @@
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "2.1.1",
     "swiper": "9.3.2",
-    "web-vitals": "3.3.1"
+    "web-vitals": "3.3.1",
+    "echarts-for-react": "^3.0.2",
+    "echarts": "5.3.3"
   },
   "scripts": {
     "start": "react-scripts start",

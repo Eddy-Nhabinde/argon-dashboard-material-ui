@@ -1,43 +1,19 @@
-/**
-=========================================================
-* Argon Dashboard 2 MUI - v3.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-material-ui
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useMemo } from "react";
-
-// porp-types is a library for typechecking of props
 import PropTypes from "prop-types";
-
-// react-chartjs-2 components
 import { Pie } from "react-chartjs-2";
-
-// @mui material components
 import Card from "@mui/material/Card";
-
-// Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
 import ArgonTypography from "components/ArgonTypography";
+import ReactEcharts from "echarts-for-react"
 
-// PieChart configurations
 import configs from "argonComponents/Charts/PieChart/configs";
 
 function PieChart({ title, description, height, chart }) {
-  const { data, options } = configs(chart.labels || [], chart.datasets || {});
 
   const renderChart = (
-    <ArgonBox p={2}>
+    <ArgonBox style={{ display: "flex", height: "415px", flexDirection: "column", justifyContent: "center" }} >
       {title || description ? (
-        <ArgonBox px={description ? 1 : 0} pt={description ? 1 : 0}>
+        <ArgonBox px={1} pt={1}>
           {title && (
             <ArgonBox mb={1}>
               <ArgonTypography variant="h6">{title}</ArgonTypography>
@@ -50,14 +26,16 @@ function PieChart({ title, description, height, chart }) {
           </ArgonBox>
         </ArgonBox>
       ) : null}
-      {useMemo(
-        () => (
-          <ArgonBox height={height}>
-            <Pie data={data} options={options} />
+      {
+        useMemo(() => (
+          <ArgonBox height={height}  >
+            <ReactEcharts
+              option={chart}
+              style={{ width: "470px", height: "420px" }}
+            ></ReactEcharts>
           </ArgonBox>
-        ),
-        [chart, height]
-      )}
+        ), [chart, height])
+      }
     </ArgonBox>
   );
 

@@ -28,7 +28,6 @@ import ArgonTypography from "components/ArgonTypography";
 import typography from "assets/theme/base/typography";
 
 function Footer({ company, links }) {
-  const { href, name } = company;
   const { size } = typography;
 
   const renderLinks = () =>
@@ -50,6 +49,7 @@ function Footer({ company, links }) {
       justifyContent="space-between"
       alignItems="center"
       px={1.5}
+      marginTop="20px"
     >
       <ArgonBox
         display="flex"
@@ -60,38 +60,16 @@ function Footer({ company, links }) {
         fontSize={size.sm}
         px={1.5}
       >
-        &copy; {new Date().getFullYear()}, made with
+        &copy; {new Date().getFullYear()}, desenvolvido com
         <ArgonBox fontSize={size.md} color="text" mb={-0.5} mx={0.25}>
           <Icon color="inherit" fontSize="inherit">
             favorite
           </Icon>
         </ArgonBox>
-        by
-        <Link href={href} target="_blank">
-          <ArgonTypography variant="button" fontWeight="medium">
-            &nbsp;{name}&nbsp;
-          </ArgonTypography>
-        </Link>
-        for a better web.
-      </ArgonBox>
-      <ArgonBox
-        component="ul"
-        sx={({ breakpoints }) => ({
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "center",
-          listStyle: "none",
-          mt: 3,
-          mb: 0,
-          p: 0,
-
-          [breakpoints.up("lg")]: {
-            mt: 0,
-          },
-        })}
-      >
-        {renderLinks()}
+        pelo
+        <ArgonTypography variant="button" fontWeight="medium">
+          &nbsp; Edmilson Nhabinde &nbsp;
+        </ArgonTypography>
       </ArgonBox>
     </ArgonBox>
   );

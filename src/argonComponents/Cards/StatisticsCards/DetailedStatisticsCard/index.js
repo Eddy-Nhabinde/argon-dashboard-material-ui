@@ -38,7 +38,7 @@ function DetailedStaticsCard({ bgColor, title, count, percentage, icon, directio
         bgColor={bgColor === "white" && darkMode ? "transparent" : bgColor}
         variant={bgColor === "white" && darkMode ? "contained" : "gradient"}
       >
-        <ArgonBox p={2}>
+        <ArgonBox p={1.5}>
           <Grid container>
             {direction === "left" ? (
               <Grid item>
@@ -70,17 +70,19 @@ function DetailedStaticsCard({ bgColor, title, count, percentage, icon, directio
                 </ArgonBox>
               </Grid>
             ) : null}
-            <Grid item xs={8}>
+            <Grid item xs={8} >
               <ArgonBox ml={direction === "left" ? 2 : 0} lineHeight={1}>
                 <ArgonTypography
                   variant="button"
                   color={bgColor === "white" ? "text" : "white"}
                   textTransform="uppercase"
                   fontWeight="medium"
+                  fontSize="14px"
                 >
                   {title}
                 </ArgonTypography>
                 <ArgonTypography
+                  marginTop="15px"
                   variant="h5"
                   fontWeight="bold"
                   color={bgColor === "white" ? "dark" : "white"}
@@ -122,24 +124,6 @@ function DetailedStaticsCard({ bgColor, title, count, percentage, icon, directio
               </Grid>
             ) : null}
           </Grid>
-          <ArgonTypography
-            display="flex"
-            alignItems="center"
-            variant="button"
-            fontWeight="bold"
-            color={percentage.color}
-          >
-            {percentage.count}
-            <ArgonTypography
-              variant="body2"
-              fontWeight="regular"
-              color={bgColor === "white" ? "text" : "white"}
-              ml={0.5}
-              mt={-0.125}
-            >
-              {percentage.text}
-            </ArgonTypography>
-          </ArgonTypography>
         </ArgonBox>
       </ArgonBox>
     </Card>
