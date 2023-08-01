@@ -104,8 +104,8 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           </ArgonTypography>
         </ArgonBox>
         <ArgonBox component={NavLink} to="/" display="flex" alignItems="center" >
-          <ArgonBox component="img" src={iconLogo} alt="Argon Logo" width="3rem" mr={0.25} style={!miniSidenav ? { marginLeft: "-15px" } : { marginLeft: "-10px" }} />
-          {!miniSidenav && <ArgonBox component="img" src={completeLogo} alt="Argon Logo" width="10rem" mr={0.25} style={{ margin: "10px 0 0 10px" }} />}
+          <ArgonBox component="img" src={iconLogo} alt="Argon Logo" width="3rem" mr={0.25} style={{ marginLeft: "-10px" }} />
+          {!miniSidenav && <ArgonBox component="img" src={completeLogo} alt="Argon Logo" width="7.5rem" mr={0.25} style={{ margin: "10px 0 0 15px" }} />}
         </ArgonBox>
 
       </ArgonBox>

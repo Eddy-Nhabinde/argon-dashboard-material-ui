@@ -12,7 +12,6 @@ import Sidenav from "argonComponents/Sidenav";
 
 // Argon Dashboard 2 MUI themes
 import theme from "assets/theme";
-import themeDark from "assets/theme-dark";
 
 // Argon Dashboard 2 MUI routes
 import routes from "routes";
@@ -27,8 +26,7 @@ import "assets/css/nucleo-svg.css";
 
 export default function App() {
   const [controller, dispatch] = useArgonController();
-  const { miniSidenav, layout, sidenavColor, darkSidenav, darkMode } =
-    controller;
+  const { miniSidenav, layout, sidenavColor } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
 
@@ -56,20 +54,15 @@ export default function App() {
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
-      if (route.collapse) {
-        return getRoutes(route.collapse);
-      }
-
       if (route.route) {
         return <Route exact path={route.route} element={route.component} key={route.key} />;
       }
-
       return null;
     });
 
 
   return (
-    <ThemeProvider theme={darkMode ? themeDark : theme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       {layout === "dashboard" && (
         <>
@@ -84,6 +77,8 @@ export default function App() {
 
       <Routes>
         {getRoutes(routes)}
+        {/* <Route exact path="/" element={<Login />} />
+        <Route exact path="/criar_conta" element={<CreateUser />} /> */}
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </ThemeProvider>

@@ -1,0 +1,34 @@
+[
+    {
+        "key": "Nome",
+        "value": "nome"
+    },
+    {
+        "key": "Paciente",
+        "value": "paciente"
+    },
+    {
+        "key": "Contacto",
+        "value": "contacto"
+    },
+    {
+        "key": "Psicologo",
+        "value": "psiNome"
+    },
+    {
+        "key": "Data",
+        "value": "data"
+    },
+    {
+        "key": "Hora",
+        "value": "hora"
+    },
+    {
+        "key": "Especialidade",
+        "value": "especialidade"
+    },
+    {
+        "key": "Estado",
+        "value": "estado"
+    }
+]
