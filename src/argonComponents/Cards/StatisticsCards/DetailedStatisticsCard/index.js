@@ -28,7 +28,7 @@ import ArgonTypography from "components/ArgonTypography";
 // Argon Dashboard 2 MUI contexts
 import { useArgonController } from "context";
 
-function DetailedStaticsCard({ bgColor, title, count, percentage, icon, direction }) {
+function DetailedStaticsCard({ bgColor, title, count, icon, direction }) {
   const [controller] = useArgonController();
   const { darkMode } = controller;
 
