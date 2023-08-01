@@ -1,26 +1,11 @@
-import { useState, useEffect, useMemo } from "react";
-
-// react-router components
+import { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-
-// @mui material components
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-
-// Argon Dashboard 2 MUI example components
 import Sidenav from "argonComponents/Sidenav";
-
-// Argon Dashboard 2 MUI themes
 import theme from "assets/theme";
-
-// Argon Dashboard 2 MUI routes
 import routes from "routes";
-
-// Argon Dashboard 2 MUI contexts
 import { useArgonController, setMiniSidenav } from "context";
-
-
-// Icon Fonts
 import "assets/css/nucleo-icons.css";
 import "assets/css/nucleo-svg.css";
 

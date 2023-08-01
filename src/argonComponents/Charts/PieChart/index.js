@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import PropTypes from "prop-types";
 import { Pie } from "react-chartjs-2";
 import Card from "@mui/material/Card";
-import ArgonBox from "components/ArgonBox";
-import ArgonTypography from "components/ArgonTypography";
+import ArgonBox from "argonComponents/ArgonBox";
+import ArgonTypography from "argonComponents/ArgonTypography";
 import ReactEcharts from "echarts-for-react"
 import { useMediaQuery } from "usehooks-ts";
 

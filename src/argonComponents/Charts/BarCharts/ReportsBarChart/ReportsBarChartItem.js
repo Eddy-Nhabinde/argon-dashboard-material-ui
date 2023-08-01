@@ -23,9 +23,9 @@ import Icon from "@mui/material/Icon";
 import typography from "assets/theme/base/typography";
 
 // Argon Dashboard 2 MUI components
-import ArgonBox from "components/ArgonBox";
-import ArgonTypography from "components/ArgonTypography";
-import ArgonProgress from "components/ArgonProgress";
+import ArgonBox from "argonComponents/ArgonBox";
+import ArgonTypography from "argonComponents/ArgonTypography";
+import ArgonProgress from "argonComponents/ArgonProgress";
 
 function ReportsBarChartItem({ color, icon, label, progress }) {
   const { size } = typography;

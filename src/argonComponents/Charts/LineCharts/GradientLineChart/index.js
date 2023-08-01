@@ -25,8 +25,8 @@ import { Line } from "react-chartjs-2";
 import Card from "@mui/material/Card";
 
 // Argon Dashboard 2 MUI components
-import ArgonBox from "components/ArgonBox";
-import ArgonTypography from "components/ArgonTypography";
+import ArgonBox from "argonComponents/ArgonBox";
+import ArgonTypography from "argonComponents/ArgonTypography";
 
 // Argon Dashboard 2 MUI helper functions
 import gradientChartLine from "assets/theme/functions/gradientChartLine";

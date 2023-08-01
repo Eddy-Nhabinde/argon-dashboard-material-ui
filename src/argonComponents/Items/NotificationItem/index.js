@@ -23,8 +23,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Icon from "@mui/material/Icon";
 
 // Argon Dashboard 2 MUI components
-import ArgonBox from "components/ArgonBox";
-import ArgonTypography from "components/ArgonTypography";
+import ArgonBox from "argonComponents/ArgonBox";
+import ArgonTypography from "argonComponents/ArgonTypography";
 
 // custom styles for the NotificationItem
 import { menuItem, menuImage } from "argonComponents/Items/NotificationItem/styles";

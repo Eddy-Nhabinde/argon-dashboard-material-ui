@@ -23,10 +23,10 @@ import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
 
 // Argon Dashboard 2 MUI components
-import ArgonBox from "components/ArgonBox";
-import ArgonTypography from "components/ArgonTypography";
-import ArgonAvatar from "components/ArgonAvatar";
-import ArgonButton from "components/ArgonButton";
+import ArgonBox from "argonComponents/ArgonBox";
+import ArgonTypography from "argonComponents/ArgonTypography";
+import ArgonAvatar from "argonComponents/ArgonAvatar";
+import ArgonButton from "argonComponents/ArgonButton";
 
 function ProfilesList({ title, profiles }) {
   const renderProfiles = profiles.map(({ image, name, description, action }) => (

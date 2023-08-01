@@ -26,8 +26,8 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 
 // Argon Dashboard 2 MUI components
-import ArgonBox from "components/ArgonBox";
-import ArgonTypography from "components/ArgonTypography";
+import ArgonBox from "argonComponents/ArgonBox";
+import ArgonTypography from "argonComponents/ArgonTypography";
 
 // Argon Dashboard 2 MUI example components
 import BarReportsChartItem from "argonComponents/Charts/BarCharts/ReportsBarChart/ReportsBarChartItem";

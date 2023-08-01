@@ -20,8 +20,8 @@ import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
 
 // Argon Dashboard 2 MUI components
-import ArgonBox from "components/ArgonBox";
-import ArgonTypography from "components/ArgonTypography";
+import ArgonBox from "argonComponents/ArgonBox";
+import ArgonTypography from "argonComponents/ArgonTypography";
 
 // Timeline context
 import { TimelineProvider } from "argonComponents/Timeline/context";

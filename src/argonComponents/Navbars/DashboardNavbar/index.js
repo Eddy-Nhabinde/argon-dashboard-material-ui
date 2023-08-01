@@ -15,7 +15,7 @@ import Icon from "@mui/material/Icon";
 import TextField from '@mui/material/TextField';
 
 // Argon Dashboard 2 MUI components
-import ArgonBox from "components/ArgonBox";
+import ArgonBox from "argonComponents/ArgonBox";
 
 // Argon Dashboard 2 MUI example components
 import Breadcrumbs from "argonComponents/Breadcrumbs";

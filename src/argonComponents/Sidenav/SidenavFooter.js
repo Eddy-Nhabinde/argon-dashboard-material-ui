@@ -17,9 +17,9 @@ Coded by www.creative-tim.com
 import Link from "@mui/material/Link";
 
 // Argon Dashboard 2 MUI components
-import ArgonButton from "components/ArgonButton";
-import ArgonBox from "components/ArgonBox";
-import ArgonTypography from "components/ArgonTypography";
+import ArgonButton from "argonComponents/ArgonButton";
+import ArgonBox from "argonComponents/ArgonBox";
+import ArgonTypography from "argonComponents/ArgonTypography";
 
 // Argon Dashboard 2 MUI context
 import { useArgonController } from "context";
