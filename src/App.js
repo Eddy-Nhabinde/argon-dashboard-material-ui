@@ -8,7 +8,7 @@ import routes from "routes";
 import { useArgonController, setMiniSidenav } from "context";
 import "assets/css/nucleo-icons.css";
 import "assets/css/nucleo-svg.css";
-
+import "app.css"
 export default function App() {
   const [controller, dispatch] = useArgonController();
   const { miniSidenav, layout, sidenavColor } = controller;
@@ -64,7 +64,7 @@ export default function App() {
         {getRoutes(routes)}
         {/* <Route exact path="/" element={<Login />} />
         <Route exact path="/criar_conta" element={<CreateUser />} /> */}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        {/* <Route path="*" element={<Navigate to="/dashboard" />} /> */}
       </Routes>
     </ThemeProvider>
   );
