@@ -2,6 +2,7 @@ import Dashboard from "layouts/dashboard";
 import ArgonBox from "argonComponents/ArgonBox";
 import Schedule from "layouts/schedule";
 import Consultas from "layouts/consultas";
+import NovaConsulta from "layouts/novaConsulta";
 
 const routes = [
   {
@@ -24,18 +25,18 @@ const routes = [
   {
     type: "route",
     name: "Consultas",
-    key: "tables",
+    key: "consultas",
     route: "/consultas",
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="fa-solid fa-list-ul" />,
     component: <Consultas />,
   },
   {
-    name: "Nova Consulta",
     type: "route",
-    key: "novaConsulta",
-    access: 'paciente and admin',
+    name: "Nova Consulta",
+    key: "nova-consulta",
+    route: "/nova-consulta",
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="fa-regular fa-calendar-plus" />,
-    Component: <Dashboard />
+    component: <NovaConsulta />,
   },
   {
     name: "Psicologos",
