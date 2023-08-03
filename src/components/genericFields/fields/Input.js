@@ -16,10 +16,9 @@ function Input({ type, placeholder, onChange, label, value, min, max, zerar, var
         <TextField
             sx={style}
             type={type}
-            label={label}
             variant='outlined'
             placeholder={placeholder}
-            // style={{ width: '23vw' }}
+            // style={{ lineHeight: '23vw' }}
             // value={formData[campos.key]}
             // helperText={helper?.[campos.key]}
             // InputLabelProps={{ shrink: formData[campos.key] ? true : false }}

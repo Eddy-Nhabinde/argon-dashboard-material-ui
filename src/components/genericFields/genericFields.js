@@ -79,7 +79,7 @@ function GenericFields(props) {
             return (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
-                        label={label}
+                        // label={label}
                         value={value}
                         // onChange={(newValue) => onChange(newValue.$d, keyy)}
                         renderInput={(params) => <TextField {...params} />}
