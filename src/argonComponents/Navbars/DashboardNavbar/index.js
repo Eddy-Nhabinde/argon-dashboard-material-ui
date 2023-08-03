@@ -41,8 +41,9 @@ import {
 import team2 from "assets/images/team-2.jpg";
 import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
 import PerfilSection from "argonComponents/ProfileSection/Perfil";
+import GenericFields from "components/genericFields/genericFields";
 
-function DashboardNavbar({ absolute, light, isMini }) {
+function DashboardNavbar({ absolute, light, isMini, showTitle }) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useArgonController();
   const { miniSidenav, transparentNavbar, fixedNavbar } = controller;
@@ -134,12 +135,13 @@ function DashboardNavbar({ absolute, light, isMini }) {
             title={route[route.length - 1]}
             route={route}
             light={transparentNavbar ? light : false}
+            showTitle={showTitle}
           />
           <Icon fontSize="medium" sx={navbarDesktopMenu} onClick={handleMiniSidenav}>
             {miniSidenav ? "menu_open" : "menu"}
           </Icon>
         </ArgonBox>
-        
+
         <ArgonBox sx={(theme) => navbarRow(theme, { isMini })}>
           <ArgonBox pr={1}>
             <TextField

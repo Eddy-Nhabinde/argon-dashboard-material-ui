@@ -28,7 +28,7 @@ import Icon from "@mui/material/Icon";
 import ArgonBox from "argonComponents/ArgonBox";
 import ArgonTypography from "argonComponents/ArgonTypography";
 
-function Breadcrumbs({ icon, title, route, light }) {
+function Breadcrumbs({ icon, title, route, light, showTitle = true }) {
   const routes = route.slice(0, -1);
 
   return (
@@ -76,7 +76,7 @@ function Breadcrumbs({ icon, title, route, light }) {
           {title.replace("-", " ")}
         </ArgonTypography>
       </MuiBreadcrumbs>
-      <ArgonTypography
+      {showTitle && <ArgonTypography
         fontWeight="bold"
         textTransform="capitalize"
         variant="h6"
@@ -84,7 +84,7 @@ function Breadcrumbs({ icon, title, route, light }) {
         noWrap
       >
         {title.replace("-", " ")}
-      </ArgonTypography>
+      </ArgonTypography>}
     </ArgonBox>
   );
 }

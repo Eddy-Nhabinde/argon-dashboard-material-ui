@@ -1,0 +1,24 @@
+.container {
+    display: grid !important;
+    grid-template-columns: 30% 30% 30% !important;
+    justify-content: space-evenly;
+    margin-top: 0px;
+    position: relative;
+    background: #ffffff;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: 0.3s ease;
+    padding: 50px;
+}
+
+.formTitle h1 {
+    position: relative;
+    z-index: 1;
+    border-left: 4px solid #36558F;
+    margin: 30px 0 30px 0px;
+    padding: 5px 0 4px 73px;
+    color: #36558F;
+    font-size: 27px;
+    font-weight: 500;
+    text-transform: capitalize;
+}

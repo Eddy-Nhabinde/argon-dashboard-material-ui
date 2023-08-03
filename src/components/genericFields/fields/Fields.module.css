@@ -1,0 +1,161 @@
+.input2 {
+     position: relative;
+     width: 15%;
+     height: 60px;
+     border: 0;
+     color: #212121;
+     font-size: 24px;
+     font-weight: 400;
+     margin-right: -10px;
+}
+
+.inputs {
+     margin-bottom: 33px !important;
+     position: relative;
+     background: #ffffff;
+     border-radius: 1px !important;
+     padding: 60px 0 40px 0;
+     box-sizing: border-box;
+     transition: 0.3s ease;
+     border: 0;
+}
+
+
+@media screen and (min-width:1024px) {
+
+     /*CSS DO RADIO BUTTON*/
+     .radio {
+          display: flex;
+          justify-content: flex-start;
+     }
+
+     /*CSS DOS INPUTS E SELECT*/
+     .container {
+          text-transform: capitalize;
+          display: grid;
+          grid-template-columns: 32% 60%;
+          align-items: center;
+     }
+
+     .containerWithoutLabel {
+          text-transform: capitalize;
+          align-items: center;
+          display: grid;
+     }
+
+     .label {
+          margin-bottom: 0.5%;
+          font-size: 15px;
+     }
+
+     /*CSS DOS INPUTS*/
+     .input {
+          margin-bottom: 1%;
+          height: 70%;
+          width: 100%;
+     }
+
+     .input:valid {
+          background-color: rgb(179, 255, 0);
+     }
+
+     /*CSS DOS SELECTS*/
+     .component>p {
+          text-align: center;
+     }
+
+     .select {
+          margin-bottom: 1%;
+          width: 100%;
+     }
+}
+
+/*TABLET*/
+@media screen and (min-width:767px) and (max-width:1024px) {
+
+     /*CSS DO RADIO BUTTON*/
+     .radio {
+          display: flex;
+     }
+
+     /*CSS DOS INPUTS E SELECT*/
+     .container {
+          text-transform: capitalize;
+          display: grid;
+          grid-template-columns: 25% 75%;
+          align-items: center;
+     }
+
+     .containerWithoutLabel {
+          text-transform: capitalize;
+          align-items: center;
+     }
+
+     .label {
+          /* text-align:right; */
+          margin-bottom: 0.5%;
+     }
+
+     /*CSS DOS INPUTS*/
+     .input {
+          margin-bottom: 1%;
+          height: 45px;
+          width: 100%;
+     }
+
+     /*CSS DOS SELECTS*/
+     .component>p {
+          text-align: center;
+     }
+
+     .select {
+          margin-bottom: 1%;
+          height: 100%;
+          width: 100%;
+     }
+}
+
+/*MOBILE*/
+@media screen and (max-width:767px) {
+
+     /*CSS DO RADIO BUTTON*/
+     .radio {
+          display: flex;
+     }
+
+     /*CSS DOS INPUTS E SELECT*/
+     .container {
+          text-transform: capitalize;
+          display: grid;
+          grid-template-columns: 25% 75%;
+          align-items: center;
+     }
+
+     .containerWithoutLabel {
+          text-transform: capitalize;
+          align-items: center;
+     }
+
+     .label {
+          /* text-align:right; */
+          margin-bottom: 0.5%;
+     }
+
+     /*CSS DOS INPUTS*/
+     .input {
+          margin-bottom: 1%;
+          height: 44px;
+          width: 100%;
+     }
+
+     /*CSS DOS SELECTS*/
+     .component>p {
+          text-align: center;
+     }
+
+     .select {
+          margin-bottom: 1%;
+          height: 70%;
+          width: 100%;
+     }
+}

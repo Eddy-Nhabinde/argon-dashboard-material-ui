@@ -1,0 +1,56 @@
+[
+    {
+        "key": "nome",
+        "label": "Nome",
+        "variant":"standard",
+        "valueType": "text"
+    },
+    {
+        "key": "apelido",
+        "label": "Apelido",
+        "variant":"standard",
+        "valueType": "text"
+    },
+    {
+        "key": "email",
+        "label": "Email",
+        "variant":"standard",
+        "valueType": "text"
+    },
+    {
+        "key": "contacto1",
+        "label": "Contacto Principal",
+        "variant":"standard",
+        "valueType": "text"
+    },
+    {
+        "key": "contacto2",
+        "label": "Contacto Opcional",
+        "variant":"standard",
+        "valueType": "text"
+    },
+    {
+        "key": "data",
+        "label": "Data da Consulta",
+        "variant":"standard",
+        "valueType": "date"
+    },
+    {
+        "key": "problema",
+        "label": "Problema",
+        "variant":"standard",
+        "valueType": "select"
+    },
+    {
+        "key": "psicologo",
+        "label": "Psicologo",
+        "variant":"standard",
+        "valueType": "select"
+    },
+    {
+        "key": "hora",
+        "label": "Hora",
+        "variant":"standard",
+        "valueType": "select"
+    }
+]
