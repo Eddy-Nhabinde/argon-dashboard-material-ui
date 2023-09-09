@@ -8,7 +8,7 @@ const onSearch = (value) => {
     console.log('search:', value);
 };
 
-export default function Selects({ keyy, style, data, label, variant, formData, setFormData, day, designacao }) {
+export default function Selects({ size = "large", keyy, style, data, label, variant, formData, setFormData, day, designacao }) {
 
     return (
         <Select
@@ -17,25 +17,12 @@ export default function Selects({ keyy, style, data, label, variant, formData, s
             optionFilterProp="children"
             onChange={onChange}
             onSearch={onSearch}
-            style={{ height: "50px" }}
-            size='large'
+            style={style}
+            size={size}
             filterOption={(input, option) =>
                 (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
             }
-            options={[
-                {
-                    value: 'jack',
-                    label: 'Jack',
-                },
-                {
-                    value: 'lucy',
-                    label: 'Lucy',
-                },
-                {
-                    value: 'tom',
-                    label: 'Tom',
-                },
-            ]}
+            options={data}
         />
     )
 }

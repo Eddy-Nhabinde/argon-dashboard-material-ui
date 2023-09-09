@@ -1,0 +1,49 @@
+.container {
+    display: grid !important;
+    grid-template-columns: 30% 30% 30% !important;
+    justify-content: space-evenly;
+    margin-top: 0px;
+    position: relative;
+    background: #ffffff;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: 0.3s ease;
+    padding: 20px 50px 0 50px;
+}
+
+.DisponibilidadeContainer {
+    padding: 0px 70px 0px 70px;
+}
+
+.Disponibilidade {
+    display: grid;
+    grid-template-columns: 52% 53%;
+    padding: 0 10px 10px 15px;
+}
+
+.header span {
+    margin-left: 5px;
+    font-size: 19px;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.inputs {
+    display: grid;
+    grid-template-columns: 35% 63%;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.inputs div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.disable {
+    pointer-events: none;
+    opacity: 0.4;
+}

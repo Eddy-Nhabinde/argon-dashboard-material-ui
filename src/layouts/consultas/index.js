@@ -7,13 +7,13 @@ import Footer from "argonComponents/Footer";
 import Table from "argonComponents/Tables/Table";
 import authorsTableData from "layouts/consultas/data/authorsTableData";
 import TableTabs from "components/tabs/tabs";
+import Layout from "components/layout/mainLayout";
 
 function Consultas() {
   const { columns, rows } = authorsTableData;
 
   return (
-    <DashboardLayout>
-      <DashboardNavbar />
+    <Layout>
       <ArgonBox py={3}>
         <ArgonBox mb={3}>
           <Card>
@@ -36,8 +36,7 @@ function Consultas() {
           </Card>
         </ArgonBox>
       </ArgonBox>
-      <Footer />
-    </DashboardLayout>
+    </Layout>
   );
 }
 

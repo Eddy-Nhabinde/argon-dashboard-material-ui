@@ -3,6 +3,7 @@ import ArgonBox from "argonComponents/ArgonBox";
 import Schedule from "layouts/schedule";
 import Consultas from "layouts/consultas";
 import NovaConsulta from "layouts/novaConsulta";
+import Psicologos from "layouts/psicologos";
 
 const routes = [
   {
@@ -15,7 +16,7 @@ const routes = [
   },
   {
     type: "route",
-    name: "Schedule",
+    name: "Agenda",
     key: "agenda",
     route: "/agenda",
     access: 'psi and admin',
@@ -39,12 +40,12 @@ const routes = [
     component: <NovaConsulta />,
   },
   {
-    name: "Psicologos",
     type: "route",
+    name: "Psicologos",
     key: "psicologos",
-    access: 'admin',
+    route: '/psicologos',
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="fa-solid fa-stethoscope" />,
-    component: <Consultas />,
+    component: <Psicologos />,
   },
 
   // {

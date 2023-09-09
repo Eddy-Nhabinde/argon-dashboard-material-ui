@@ -11,7 +11,7 @@ import { DatePicker } from '@mui/x-date-pickers'
 
 
 function GenericFields(props) {
-    const { label, type, onChange, value, options, placeholder, styles, variant, setFormData, formData, designacao } = props
+    const { size,label, type, onChange, value, options, placeholder, styles, variant, setFormData, formData, designacao } = props
 
     switch (type) {
         case 'number':
@@ -63,6 +63,7 @@ function GenericFields(props) {
                     setFormData={setFormData}
                     formData={formData}
                     designacao={designacao}
+                    size={size}
                 />
             )
 

@@ -1,0 +1,38 @@
+[
+    {
+        "key": "nome",
+        "label": "Nome",
+        "valueType": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "apelido",
+        "label": "Apelido",
+        "valueType": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "email",
+        "label": "Email",
+        "valueType": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "contacto1",
+        "label": "Contacto Principal",
+        "valueType": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "contacto2",
+        "label": "Contacto Opcional",
+        "valueType": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "especialidade",
+        "label": "Especialidade",
+        "valueType": "select",
+        "variant": "standard"
+    }
+]

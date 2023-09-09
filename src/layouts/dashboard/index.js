@@ -9,12 +9,12 @@ import GradientLineChart from "argonComponents/Charts/LineCharts/GradientLineCha
 import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
 import PieChart from "argonComponents/Charts/PieChart";
 import pieChartData from "./data/pieChart";
+import Layout from "components/layout/mainLayout";
 
 function Dashboard() {
 
   return (
-    <DashboardLayout>
-      <DashboardNavbar />
+    <Layout>
       <ArgonBox py={2.5}>
         <Grid container spacing={2.125} mb={3}>
           <Grid item xs={12} md={6} lg={3}>
@@ -96,7 +96,7 @@ function Dashboard() {
         </Grid>
       </ArgonBox>
       <Footer />
-    </DashboardLayout>
+    </Layout>
   );
 }
 
