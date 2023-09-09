@@ -26,7 +26,7 @@ export default function FormGen({ fields, addPsy = false }) {
                 addPsy &&
                 <div className={styles.DisponibilidadeContainer} >
                     <div className={styles.header}>
-                        <span>Disponibilidade</span>
+                        <span>Disponibilidade do Psicólogo</span>
                     </div>
                     <div className={styles.Disponibilidade} >
                         {

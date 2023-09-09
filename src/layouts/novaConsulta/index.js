@@ -12,7 +12,6 @@ export default function NovaConsulta() {
                 <h1>Nova Consulta</h1>
             </div>
             <FormGen fields={appointmentFields} />
-            <FormButtons />
         </Layout>
     )
 }

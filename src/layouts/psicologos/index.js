@@ -8,7 +8,6 @@ import { UserAddOutlined, CloseOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import Psicologo from 'utils/variables/Psicologo'
 import FormGen from 'components/form/formGenerator';
-import FormButtons from 'components/formButtons/formButtons';
 
 export default function Psicologos() {
     const { columns, rows } = authorsTableData;
