@@ -10,6 +10,7 @@ import "assets/css/nucleo-icons.css";
 import "assets/css/nucleo-svg.css";
 import "app.css"
 import Login from "layouts/login";
+import LandingPage from "layouts/landingPage/landingPage";
 
 export default function App() {
   const [controller, dispatch] = useArgonController();
@@ -64,7 +65,7 @@ export default function App() {
 
       <Routes>
         {getRoutes(routes)}
-        <Route exact path="/" element={<Login />} />
+        <Route exact path="/" element={<LandingPage />} />
         {/*
         <Route exact path="/criar_conta" element={<CreateUser />} /> */}
         {/* <Route path="*" element={<Navigate to="/dashboard" />} /> */}
