@@ -4,7 +4,7 @@ import { Checkbox, FormControlLabel } from '@mui/material'
 import FormButtons from 'components/formButtons/formButtons'
 import { DisponibilidadeFunctions } from 'utils/disponibilidade/disponibilidadeUtils'
 
-export default function FormGen({ fields, addPsy = false }) {
+export default function FormGen({ fields, addPsy = false, onCancel, onConfirm }) {
     const { getTime, Time, days } = DisponibilidadeFunctions()
 
     return (
@@ -15,8 +15,9 @@ export default function FormGen({ fields, addPsy = false }) {
                         <GenericFields
                             placeholder={val.label}
                             label={val.label}
-                            type={val.valueType}
-                            variant="standard"
+                            type={val.type}
+                            variant={val.variant || "standard"}
+                            options={val?.options}
                         />
                     )
                 }
@@ -60,7 +61,7 @@ export default function FormGen({ fields, addPsy = false }) {
                     </div>
                 </div>
             }
-            <FormButtons />
+            <FormButtons onCancel={onCancel} onConfirm={onConfirm} />
         </div>
     )
 }

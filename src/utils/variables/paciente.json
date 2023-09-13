@@ -1,0 +1,106 @@
+[
+    {
+        "key": "nome",
+        "label": "Nome",
+        "valueType": "text",
+        "type": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "apelido",
+        "label": "Apelido",
+        "valueType": "text",
+        "type": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "email",
+        "label": "Email",
+        "valueType": "text",
+        "type": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "estadoCivil",
+        "label": "Estado Civil",
+        "valueType": "select",
+        "type": "select",
+        "options": [
+            {
+                "key": "solteiro",
+                "label": "Solteiro"
+            },
+            {
+                "key": "casado",
+                "label": "Casado"
+            },
+            {
+                "key": "viuvo",
+                "label": "Viuvo"
+            },
+            {
+                "key": "divorciado",
+                "label": "Divorciado"
+            }
+        ]
+    },
+    {
+        "key": "ocupacao",
+        "label": "Ocupação",
+        "valueType": "text",
+        "type": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "dataNasc",
+        "label": "Data de Nascimento",
+        "valueType": "date",
+        "type": "date",
+        "variant": "standard"
+    },
+    {
+        "key": "sexo",
+        "label": "Sexo",
+        "valueType": "select",
+        "type": "radio",
+        "variant": "solid",
+        "options": [
+            {
+                "value": "m",
+                "label": "Masculino"
+            },
+            {
+                "value": "f",
+                "label": "Femenino"
+            }
+        ]
+    },
+    {
+        "key": "contacto1",
+        "label": "Contacto Principal",
+        "valueType": "text",
+        "type": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "contacto2",
+        "label": "Contacto Opcional",
+        "valueType": "text",
+        "type": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "password",
+        "label": "Senha",
+        "valueType": "password",
+        "type": "text",
+        "variant": "standard"
+    },
+    {
+        "key": "ConfPass",
+        "label": "Confirme a senha",
+        "valueType": "password",
+        "type": "text",
+        "variant": "standard"
+    }
+]

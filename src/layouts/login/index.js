@@ -1,43 +1,63 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './style.css'
-import { useArgonController, setLayout } from "context";
 import PageLayout from 'argonComponents/LayoutContainers/PageLayout';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-    const [, dispatch] = useArgonController();
+    const navigate = useNavigate()
+    const [update, setUpdate] = useState(false)
+    const [forgot, setForgot] = useState(false)
 
-    // useEffect(() => {
-    //     setLayout(dispatch, "page");
-    // }, []);
+    function back() {
+        if (forgot)
+            setForgot(false)
+        else if (update)
+            setUpdate(false)
+        else
+            navigate(-1)
+    }
 
     return (
         <PageLayout>
             <div class="login">
                 <div class="form">
-                    <h2>Seja Ben-vindo</h2>
+                    <div class='head' >
+                        <h2>Insira as credenciais</h2>
+                        <KeyboardBackspaceIcon onClick={() => back()} class="icon" />
+                    </div>
                     <div class="form-field">
-                        <label for="login-mail"><i class="fa fa-user"></i></label>
-                        <input id="login-mail" type="text" name="mail" placeholder="E-Mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
+                        <label for="login-mail">
+                            {!update ? <i class="fa fa-user"></i>
+                                : <i class="fa fa-lock"></i>}
+                        </label>
+                        <input id="login-mail" type={update ? "password" : "text"} name={update ? "senha" : "mail"} placeholder={update ? "Senha" : "E-Mail"} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
                         <svg>
                             <use href="#svg-check" />
                         </svg>
                     </div>
-                    <div className='loading' ></div>
-                    <div class="form-field">
-                        <label for="login-password"><i class="fa fa-lock"></i></label>
-                        <input id="login-password" type="password" name="password" placeholder="Password" pattern=".{6,}" required />
-                        <svg>
-                            <use href="#svg-check" />
-                        </svg>
-                    </div>
-                    <div class="senha">
-                        <label for="login-password">Esqueceu senha?</label>
-                    </div>
+                    {
+                        !forgot &&
+                        <>
+                            <div className='loading' ></div>
+                            <div class="form-field">
+                                <label for="login-password"><i class="fa fa-lock"></i></label>
+                                <input id="login-password" type="password" name={update ? "CSenha" : "Senha"} placeholder={update ? "Confirme a senha" : "Senha"} pattern=".{6,}" required />
+                                <svg>
+                                    <use href="#svg-check" />
+                                </svg>
+                            </div>
+                            {!update && <div class="senha">
+                                <label for="login-password" onClick={() => setForgot(true)} >Esqueceu senha?</label>
+                                <label for="login-password">Não tem conta? <span onClick={() => navigate("/criar_conta")} >Registar-se</span></label>
+                            </div>}
+                        </>
+                    }
                     <button type="submit" class="button">
                         <div class="arrow-wrapper">
                             <span class="arrow"></span>
                         </div>
-                        <p class="button-text">Entrar</p>
+                        <p class="button-text" style={{ textTransform: "capitalize" }} >{forgot ? "Recuperar Senha" : update ? "Actualizar Senha" : "Entrar"}</p>
                     </button>
                 </div>
             </div>

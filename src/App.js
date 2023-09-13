@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Sidenav from "argonComponents/Sidenav";
@@ -11,6 +11,7 @@ import "assets/css/nucleo-svg.css";
 import "app.css"
 import Login from "layouts/login";
 import LandingPage from "layouts/landingPage/landingPage";
+import SignUp from "layouts/signUp";
 
 export default function App() {
   const [controller, dispatch] = useArgonController();
@@ -66,9 +67,8 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
         <Route exact path="/" element={<LandingPage />} />
-        {/*
-        <Route exact path="/criar_conta" element={<CreateUser />} /> */}
-        {/* <Route path="*" element={<Navigate to="/dashboard" />} /> */}
+        <Route exact path="/criar_conta" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </ThemeProvider>
   );

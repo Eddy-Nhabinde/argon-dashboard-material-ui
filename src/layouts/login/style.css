@@ -48,6 +48,20 @@ body {
   font-size: 19px;
 }
 
+.head {
+  display: flex;
+  justify-content: space-between;
+  background: #f5f5fa;
+  margin-bottom: 20px;
+  height: 100px;
+}
+
+.icon {
+  font-size: 40px;
+  margin: 35px 20px 0 0;
+  cursor: pointer;
+}
+
 .login .form .form-field {
   display: flex;
   align-items: center;
@@ -93,6 +107,7 @@ body {
 
 .login .form .form-field *::placeholder {
   color: #9596a2;
+  font-size: 15px;
 }
 
 .login .form .button {
@@ -120,8 +135,9 @@ body {
 }
 
 .senha {
-  margin-top: -20px;
   padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -129,6 +145,14 @@ body {
   font-size: 15px;
   margin-left: 40px;
   cursor: pointer;
+}
+
+.senha :first-child:hover {
+  color: #E56399;
+}
+
+.senha :last-child {
+  margin-top: 10px;
 }
 
 .login .form .button .arrow-wrapper .arrow {

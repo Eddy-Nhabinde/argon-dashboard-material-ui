@@ -12,6 +12,8 @@ const style = {
 }
 
 function Input({ type, placeholder, onChange, label, value, min, max, zerar, variant }) {
+    console.log(type)
+    
     return (
         <TextField
             sx={style}

@@ -1,13 +1,15 @@
 import PageLayout from "argonComponents/LayoutContainers/PageLayout";
 import im from '../../assets/images/consultaPsi.jpg'
 import './landingPage.css'
+import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
+    const navigate = useNavigate();
 
     return (
         <PageLayout>
             <div style={{ overflowX: "hidden !important" }} >
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="#" style={{ color: "#93a4c1" }} >Sismaco</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,13 +18,18 @@ export default function LandingPage() {
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                                    <a class="nav-link active" aria-current="page">Inicio</a>
+                                </li>
+                                <li class="nav-item" >
+                                    <a class="nav-link" href="/login">Contactos</a>
+                                </li>
+                                <li class="nav-item" onClick={() => navigate("/login")}>
+                                    <a class="nav-link" >Iniciar Sessão</a>
+                                </li>
+                                <li class="nav-item" onClick={() => navigate("/criar_conta")}>
+                                    <a class="nav-link" >Registar-se</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Contactos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="http://localhost:3000/" class="btn" style={{ background: "#93a4c1" }} >Marcar Consulta</a>
                                 </li>
                             </ul>
                         </div>
@@ -203,18 +210,18 @@ export default function LandingPage() {
                     <div id="ContServ" class="row g-5">
                         <div id="contact" class="col-lg-6 col-md-6">
                             <h4 class="text-white mb-4">Localizacão e Contactos</h4>
-                            <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Campus principal – Edifício da FACED, Gabinete 308, 2º Andar</p>
+                            <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Campus UEM – Edifício da FACED, Gabinete 308, 2º Andar</p>
                             <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+258 (21) 430239</p>
                             <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+258 (21) 304405</p>
                             <p class="mb-2"><i class="fa fa-envelope me-3"></i>ceap.uem@gmail.com</p>
                             <p class="mb-2"><i class="fa fa-envelope me-3"></i>cecoma@uem.ac.mz</p>
                             <div class="d-flex pt-2">
                                 <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://twitter.com/uemmoz"><i
-                                    class="fab fa-twitter"></i></a>
+                                    class="fab fa-twitter"></i>
+                                </a>
                                 <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://www.facebook.com/uemmoz?ref=tn_tnmn"><i
-                                    class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-outline-light rounded-circle me-2" href="http://www.youtube.com/user/uemmoz?feature=watch"><i
-                                    class="fab fa-youtube"></i></a>
+                                    class="fab fa-facebook-f"></i>
+                                </a>
                             </div>
                         </div>
                         <div id="servicos" class="col-lg-6 col-md-6">
