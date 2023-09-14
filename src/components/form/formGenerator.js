@@ -4,8 +4,23 @@ import { Checkbox, FormControlLabel } from '@mui/material'
 import FormButtons from 'components/formButtons/formButtons'
 import { DisponibilidadeFunctions } from 'utils/disponibilidade/disponibilidadeUtils'
 
-export default function FormGen({ fields, addPsy = false, onCancel, onConfirm }) {
+export default function FormGen({ setFormData, formData, fields, addPsy = false, onCancel, onConfirm }) {
     const { getTime, Time, days } = DisponibilidadeFunctions()
+
+    const onChangeInput = (key, value) => {
+        console.log(value, key)
+        setFormData(formData => ({ ...formData, [key]: value }))
+    }
+
+    function Changing(day, checked) {
+        if (checked) {
+            setFormData(formData => ({ ...formData, disponibilidade: { ...formData?.disponibilidade, [day]: {} } }))
+        } else {
+            let formDataCopy = { ...formData }
+            formDataCopy.disponibilidade[day] = undefined
+            setFormData(formDataCopy)
+        }
+    }
 
     return (
         <div>
@@ -16,8 +31,12 @@ export default function FormGen({ fields, addPsy = false, onCancel, onConfirm })
                             placeholder={val.label}
                             label={val.label}
                             type={val.type}
+                            keyy={val.key}
                             variant={val.variant || "standard"}
                             options={val?.options}
+                            onChange={onChangeInput}
+                            formData={formData}
+                            setFormData={setFormData}
                         />
                     )
                 }
@@ -34,8 +53,8 @@ export default function FormGen({ fields, addPsy = false, onCancel, onConfirm })
                             days.map((campo) => {
                                 return (
                                     <div className={styles.inputs} >
-                                        <FormControlLabel control={<Checkbox /*onChange={(e) => Changing(campo.value, e.target.checked)}*/ style={{ fontWeight: "400" }} />} label={campo.label} />
-                                        <div /*className={!formData?.disponibilidade?.[campo.value] && styles.disable}*/ style={{ height: '30px', width: '90%', marginTop: '4px' }} >
+                                        <FormControlLabel control={<Checkbox onChange={(e) => Changing(campo.value, e.target.checked)} style={{ fontWeight: "400" }} />} label={campo.label} />
+                                        <div className={!formData?.disponibilidade?.[campo.value] && styles.disable} style={{ height: '30px', width: '90%', marginTop: '4px' }} >
                                             {Time.map((val) => {
                                                 return (
                                                     <GenericFields
@@ -48,8 +67,8 @@ export default function FormGen({ fields, addPsy = false, onCancel, onConfirm })
                                                         designacao={val.label}
                                                         onChange={() => { alert(1) }}
                                                         options={getTime(val.label)}
-                                                    // formData={formData}
-                                                    // setFormData={setFormData}
+                                                        formData={formData}
+                                                        setFormData={setFormData}
                                                     />
                                                 )
                                             })}

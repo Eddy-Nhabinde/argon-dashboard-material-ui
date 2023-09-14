@@ -11,9 +11,8 @@ const style = {
     }
 }
 
-function Input({ type, placeholder, onChange, label, value, min, max, zerar, variant }) {
-    console.log(type)
-    
+function Input({ type, placeholder, keyy, onChange, label, value, min, max, zerar, variant }) {
+
     return (
         <TextField
             sx={style}
@@ -23,10 +22,9 @@ function Input({ type, placeholder, onChange, label, value, min, max, zerar, var
             // style={{ lineHeight: '23vw' }}
             // value={formData[campos.key]}
             // helperText={helper?.[campos.key]}
-            // InputLabelProps={{ shrink: formData[campos.key] ? true : false }}
             // disabled={Disable(campos.key)}
             className={styles.inputs}
-        // onChange={(event) => { inputEvent(event.target.value, campos.key) }}
+            onChange={(event) => { onChange(keyy, event.target.value) }}
         />
     )
 }

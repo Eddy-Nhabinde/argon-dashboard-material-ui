@@ -1,18 +1,12 @@
 import React from 'react';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
 import styles from './Fields.module.css'
 import { Radio } from 'antd';
 
-export default function RadioButtonsGroup({ label, options, variant }) {
-    // const { objectType } = useContext(ObjectType)
-    // const [type, setType] = objectType
+export default function RadioButtonsGroup({ label, options, variant, keyy, onChange, formData }) {
 
-    const handleChange = (event) => {
-        // setType(type => ({ ...type, objType: event.target.value }))
+    const handleChange = ({ target: { value } }) => {
+        onChange(keyy, value);
     };
-
 
     return (
         <div className={styles.container} style={{ marginBottom: '10px' }} >
@@ -23,9 +17,9 @@ export default function RadioButtonsGroup({ label, options, variant }) {
                     :
                     <Radio.Group
                         options={options}
-                        style={{marginLeft:"-30px"}}
+                        style={{ marginLeft: "-30px" }}
                         onChange={handleChange}
-                        // value={option.key}
+                        value={formData[keyy] || null}
                         optionType="button"
                         buttonStyle="solid"
                         size='middle'

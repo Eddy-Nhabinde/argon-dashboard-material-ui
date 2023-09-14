@@ -7,16 +7,18 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
-import { DatePicker } from '@mui/x-date-pickers'
+import { DatePicker } from 'antd';
+import MaskPassword from './fields/Password.js';
 
 
 function GenericFields(props) {
-    const { size, label, type, onChange, value, options, placeholder, styles, variant, setFormData, formData, designacao } = props
+    const { keyy, size, label, type, onChange, value, options, placeholder, styles, variant, setFormData, formData, designacao } = props
 
     switch (type) {
         case 'number':
             return (
                 <Input
+                    keyy={keyy}
                     type="number"
                     label={label}
                     defaultValue={1}
@@ -29,14 +31,11 @@ function GenericFields(props) {
 
         case 'password':
             return (
-                <Input
-                    type="password"
-                    label={label}
-                    defaultValue={1}
-                    min={1}
+                <MaskPassword
+                    keyy={keyy}
                     onChange={onChange}
-                    value={value}
                     variant={variant}
+                    formData={formData}
                     placeholder={placeholder}
                 />
             )
@@ -44,6 +43,7 @@ function GenericFields(props) {
         case 'text':
             return (
                 <Input
+                    keyy={keyy}
                     type="text"
                     label={label}
                     onChange={onChange}
@@ -59,12 +59,11 @@ function GenericFields(props) {
                     label={label}
                     style={styles}
                     data={options}
-                    valor={value}
-                    variant={variant}
-                    setFormData={setFormData}
                     formData={formData}
                     designacao={designacao}
                     size={size}
+                    onChange={onChange}
+                    keyy={keyy}
                 />
             )
 
@@ -75,19 +74,18 @@ function GenericFields(props) {
                     options={options}
                     onChange={onChange}
                     variant={variant}
+                    keyy={keyy}
+                    formData={formData}
                 />
             )
 
         case 'date':
             return (
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
-                        // label={label}
-                        value={value}
-                        // onChange={(newValue) => onChange(newValue.$d, keyy)}
-                        renderInput={(params) => <TextField {...params} />}
-                    />
-                </LocalizationProvider>
+                <DatePicker
+                    style={{ height: "40px" }}
+                    onChange={(e) => { onChange(keyy, e.$d) }}
+                    placeholder={placeholder}
+                />
             )
 
         case 'dateTime':

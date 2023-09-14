@@ -27,19 +27,19 @@
         "type": "select",
         "options": [
             {
-                "key": "solteiro",
+                "value": "solteiro",
                 "label": "Solteiro"
             },
             {
-                "key": "casado",
+                "value": "casado",
                 "label": "Casado"
             },
             {
-                "key": "viuvo",
+                "value": "viuvo",
                 "label": "Viuvo"
             },
             {
-                "key": "divorciado",
+                "value": "divorciado",
                 "label": "Divorciado"
             }
         ]
@@ -93,14 +93,14 @@
         "key": "password",
         "label": "Senha",
         "valueType": "password",
-        "type": "text",
+        "type": "password",
         "variant": "standard"
     },
     {
         "key": "ConfPass",
         "label": "Confirme a senha",
         "valueType": "password",
-        "type": "text",
+        "type": "password",
         "variant": "standard"
     }
 ]

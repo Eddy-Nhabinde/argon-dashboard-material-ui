@@ -3,23 +3,19 @@ import './style.css'
 import PageLayout from 'argonComponents/LayoutContainers/PageLayout';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useNavigate } from 'react-router-dom';
-import { AlertState } from 'store';
-import { useRecoilState } from 'recoil';
 
 export default function Login() {
     const navigate = useNavigate()
     const [update, setUpdate] = useState(false)
     const [forgot, setForgot] = useState(false)
-    const [alert, setAlert] = useRecoilState(AlertState)
 
     function back() {
-        setAlert({ msg: "info", type: "info" })
-        // if (forgot)
-        //     setForgot(false)
-        // else if (update)
-        //     setUpdate(false)
-        // else
-        //     navigate(-1)
+        if (forgot)
+            setForgot(false)
+        else if (update)
+            setUpdate(false)
+        else
+            navigate(-1)
     }
 
     return (

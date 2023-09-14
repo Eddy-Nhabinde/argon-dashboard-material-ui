@@ -12,7 +12,12 @@ import FormGen from 'components/form/formGenerator';
 export default function Psicologos() {
     const { columns, rows } = authorsTableData;
     const [add, setAdd] = useState(false)
+    const [formData, setFormData] = useState({})
 
+    const onCancel = () => { setAdd(!add) }
+
+    const onConfirm = () => { }
+    
     return (
         <Layout>
             <div className={styles.pageTitle}>
@@ -29,7 +34,7 @@ export default function Psicologos() {
             <ArgonBox>
                 {
                     add ?
-                        <FormGen addPsy={true} fields={Psicologo} />
+                        <FormGen onConfirm={onConfirm} onCancel={onCancel} setFormData={setFormData} formData={formData} addPsy={true} fields={Psicologo} />
                         :
                         <Table columns={columns} rows={rows} />
                 }
