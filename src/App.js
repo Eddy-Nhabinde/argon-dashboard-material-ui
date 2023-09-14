@@ -12,12 +12,15 @@ import "app.css"
 import Login from "layouts/login";
 import LandingPage from "layouts/landingPage/landingPage";
 import SignUp from "layouts/signUp";
+import Alert from "components/alert/alert";
+import { RecoilRoot } from "recoil";
 
 export default function App() {
   const [controller, dispatch] = useArgonController();
   const { miniSidenav, layout, sidenavColor } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
+  const { contextHolder } = Alert
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
@@ -51,25 +54,29 @@ export default function App() {
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {layout === "dashboard" && (
-        <>
-          <Sidenav
-            color={sidenavColor}
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-        </>
-      )}
+    <RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {layout === "dashboard" && (
+          <>
+            <Sidenav
+              color={sidenavColor}
+              routes={routes}
+              onMouseEnter={handleOnMouseEnter}
+              onMouseLeave={handleOnMouseLeave}
+            />
+          </>
+        )}
 
-      <Routes>
-        {getRoutes(routes)}
-        <Route exact path="/" element={<LandingPage />} />
-        <Route exact path="/criar_conta" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </ThemeProvider>
+        {contextHolder}
+        <Alert />
+        <Routes>
+          {getRoutes(routes)}
+          <Route exact path="/" element={<LandingPage />} />
+          <Route exact path="/criar_conta" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }

@@ -2,55 +2,64 @@
     {
         "key": "nome",
         "label": "Nome",
-        "variant":"standard",
+        "variant": "standard",
+        "type": "text",
         "valueType": "text"
     },
     {
         "key": "apelido",
         "label": "Apelido",
-        "variant":"standard",
+        "variant": "standard",
+        "type": "text",
         "valueType": "text"
     },
     {
         "key": "email",
         "label": "Email",
-        "variant":"standard",
+        "variant": "standard",
+        "type": "text",
         "valueType": "text"
     },
     {
         "key": "contacto1",
         "label": "Contacto Principal",
-        "variant":"standard",
+        "variant": "standard",
+        "type": "text",
         "valueType": "text"
     },
     {
         "key": "contacto2",
         "label": "Contacto Opcional",
-        "variant":"standard",
+        "variant": "standard",
+        "type": "text",
         "valueType": "text"
     },
     {
         "key": "data",
         "label": "Data da Consulta",
-        "variant":"standard",
+        "variant": "standard",
+        "type": "text",
         "valueType": "date"
     },
     {
         "key": "problema",
         "label": "Problema",
-        "variant":"standard",
+        "variant": "standard",
+        "type": "text",
         "valueType": "select"
     },
     {
         "key": "psicologo",
         "label": "Psicologo",
-        "variant":"standard",
+        "variant": "standard",
+        "type": "text",
         "valueType": "select"
     },
     {
         "key": "hora",
         "label": "Hora",
-        "variant":"standard",
+        "variant": "standard",
+        "type": "text",
         "valueType": "select"
     }
 ]
