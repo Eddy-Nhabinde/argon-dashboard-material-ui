@@ -20,6 +20,10 @@
      border: 0;
 }
 
+.password{
+     border: none !important;
+}
+
 
 @media screen and (min-width:1024px) {
 

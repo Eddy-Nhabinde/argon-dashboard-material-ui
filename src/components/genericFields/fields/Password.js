@@ -1,12 +1,19 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { Password } from 'primereact/password';
+import styles from './Fields.module.css'
 
-export default function MaskPassword({ onChange, keyy, formData }) {
+export default function MaskPassword({ onChange, keyy, formData, placeholder }) {
 
     return (
         <div className="card flex justify-content-center">
-            <Password style={{ borderRight: "none", borderColor: "#eee" }} value={formData[keyy]} onChange={(e) => onChange(keyy, e.target.value)} toggleMask />
+            <Password
+                className={styles.password}
+                value={formData[keyy]}
+                onChange={(e) => onChange(keyy, e.target.value)}
+                toggleMask
+                placeholder={placeholder}
+            />
         </div>
     )
 }

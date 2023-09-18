@@ -10,7 +10,7 @@ export default function Selects({ size = "large", keyy, style, data, label, onCh
             optionFilterProp="children"
             onChange={(value) => onChange(keyy, value)}
             style={{ ...style, cursor: "pointer" }}
-            value={formData[keyy]}
+            value={formData?.[keyy] || null}
             size={size}
             filterOption={(input, option) =>
                 (option?.label ?? '').toLowerCase().includes(input.toLowerCase())

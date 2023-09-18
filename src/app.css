@@ -9,3 +9,33 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
     background-color: darkgrey;
 }
+
+.p-inputtext {
+    border: none;
+    height: 38px;
+    font-size: 15px;
+    padding: 3px 0 3px 25px;
+    width: 85%;
+    border-radius: 8px;
+}
+
+.card {
+    border-radius: 8px;
+}
+
+.p-inputtext:focus {
+    border: none !important;
+    outline: none !important;
+}
+
+.p-inputtext::placeholder {
+    font-size: 15px;
+    color: lightgray;
+}
+
+.p-icon {
+    position: absolute;
+    right: 0;
+    margin: 13px 15px 0 0;
+
+}

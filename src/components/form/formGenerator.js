@@ -8,7 +8,6 @@ export default function FormGen({ setFormData, formData, fields, addPsy = false,
     const { getTime, Time, days } = DisponibilidadeFunctions()
 
     const onChangeInput = (key, value) => {
-        console.log(value, key)
         setFormData(formData => ({ ...formData, [key]: value }))
     }
 

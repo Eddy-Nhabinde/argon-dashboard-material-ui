@@ -24,11 +24,11 @@ export default function Psicologos() {
                 <h1>Psicólogos</h1>
 
                 {!add ?
-                    <Button onClick={() => setAdd(!add)} type="default" className={styles.button} shape="round" icon={<UserAddOutlined />} size="large">
+                    <Button  onClick={() => setAdd(!add)} type="default" className={styles.button} shape="round" icon={<UserAddOutlined  />} size="large">
                         Novo Psicólogo
                     </Button>
                     :
-                    <Button type="default" onClick={() => setAdd(!add)} className={styles.button} shape="circle" icon={<CloseOutlined />} size="large" />
+                    <Button style={{paddingTop: "0px"}} type="default" onClick={() => setAdd(!add)} className={styles.button} shape="circle" icon={<CloseOutlined />} size="large" />
                 }
             </div>
             <ArgonBox>
