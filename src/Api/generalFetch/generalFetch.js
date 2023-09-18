@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { OrganizeTable } from "../../utils/tableData/tableHeadersAndData"
-// import Swal from 'sweetalert2'
 import ReturnParams from "./returnParams"
+import { AlertState } from "store"
+import { useRecoilState } from "recoil"
 
 export function GeneralFetch() {
     const baseURL = 'http://127.0.0.1:8000/api/'
 
+    const [alert, setAlert] = useRecoilState(AlertState)
     const [load, setLoad] = useState(false)
     const [data, setData] = useState([])
 
@@ -18,12 +20,7 @@ export function GeneralFetch() {
             .then((response) => response.json())
             .then((data) => {
                 if (data.error || data.warning || data.success) {
-                    // Swal.fire({
-                    //     icon: Object.keys(data)[0],
-                    //     title: data[Object.keys(data)[0]],
-                    //     showConfirmButton: true,
-                    //     timer: 2500
-                    // })
+                    setAlert(alert => ({ ...alert, type: Object.keys(data)[0], msg: data[Object.keys(data)[0]] }))
                 } else {
                     if (object && table) {
                         tableHeadersAndData(data, object)
@@ -40,9 +37,7 @@ export function GeneralFetch() {
                     }
                 }
                 setLoad(false)
-                return data || 1
             })
-        return response
     }
 
     return { FetchData, load, data }
