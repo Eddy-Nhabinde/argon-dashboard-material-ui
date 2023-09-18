@@ -5,9 +5,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-
-// import { Conta } from "../../../contexts/MyAccountContext";
-// import { GeneralFetch } from "../../../Api/generalFetch/generalFetch";
+import './css.css'
+import { GeneralFetch } from "Api/generalFetch/generalFetch";
 
 const useStyles = makeStyles(() => ({
     box: {
@@ -22,9 +21,7 @@ const useStyles = makeStyles(() => ({
 
 
 function PopoverPopupState({ classes }) {
-    // const { FetchData } = GeneralFetch()
-    // const { Account } = useContext(Conta)
-    // const [, setUpdate] = Account
+    const { FetchData } = GeneralFetch()
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -40,13 +37,13 @@ function PopoverPopupState({ classes }) {
         setAnchorEl(null);
     };
 
-    // function logout() {
-    //     (async () => {
-    //         await FetchData(null, 'logout', 'POST', false, 'user')
-    //     })()
-    //     localStorage.clear();
-    //     navigate('/')
-    // }
+    function logout() {
+        (async () => {
+            await FetchData(null, 'logout', 'POST', false, 'user')
+        })()
+        localStorage.clear();
+        navigate('/')
+    }
 
     function minhaConta() {
         // setUpdate(true)
@@ -71,10 +68,11 @@ function PopoverPopupState({ classes }) {
                     vertical: 'top',
                     horizontal: 'right',
                 }}
+                class="container"
             >
-                <div style={{ padding: '7px' }}>
+                <div style={{ padding: '7px', margin: "-8px", background: "#fff" }}>
                     <MenuItem onClick={() => { minhaConta() }} > <ManageAccountsIcon className={classes.icon} /> Minha Conta</MenuItem>
-                    <MenuItem style={{ color: 'red' }} onClick={() => { }} > <LogoutIcon className={classes.icon} /> Sair</MenuItem>
+                    <MenuItem style={{ color: 'red' }} onClick={() => { logout() }} > <LogoutIcon className={classes.icon} /> Sair</MenuItem>
                 </div>
             </Popover>
         </div>

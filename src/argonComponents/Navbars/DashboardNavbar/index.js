@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // react-router components
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
@@ -10,7 +10,6 @@ import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
 import TextField from '@mui/material/TextField';
 
@@ -19,7 +18,6 @@ import ArgonBox from "argonComponents/ArgonBox";
 
 // Argon Dashboard 2 MUI example components
 import Breadcrumbs from "argonComponents/Breadcrumbs";
-import NotificationItem from "argonComponents/Items/NotificationItem";
 // Custom styles for DashboardNavbar
 import {
   navbar,
@@ -37,17 +35,12 @@ import {
   setMiniSidenav,
 } from "context";
 
-// Images
-import team2 from "assets/images/team-2.jpg";
-import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
 import PerfilSection from "argonComponents/ProfileSection/Perfil";
-import GenericFields from "components/genericFields/genericFields";
 
 function DashboardNavbar({ absolute, light, isMini, showTitle }) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useArgonController();
   const { miniSidenav, transparentNavbar, fixedNavbar } = controller;
-  const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
 
   useEffect(() => {
@@ -77,46 +70,6 @@ function DashboardNavbar({ absolute, light, isMini, showTitle }) {
   }, [dispatch, fixedNavbar]);
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
-  const handleCloseMenu = () => setOpenMenu(false);
-
-  // Render the notifications menu
-  const renderMenu = () => (
-    <Menu
-      anchorEl={openMenu}
-      anchorReference={null}
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "left",
-      }}
-      open={Boolean(openMenu)}
-      onClose={handleCloseMenu}
-      sx={{ mt: 2 }}
-    >
-      <NotificationItem
-        image={<img src={team2} alt="person" />}
-        title={["New message", "from Laur"]}
-        date="13 minutes ago"
-        onClick={handleCloseMenu}
-      />
-      <NotificationItem
-        image={<img src={logoSpotify} alt="person" />}
-        title={["New album", "by Travis Scott"]}
-        date="1 day"
-        onClick={handleCloseMenu}
-      />
-      <NotificationItem
-        color="secondary"
-        image={
-          <Icon fontSize="small" sx={{ color: ({ palette: { white } }) => white.main }}>
-            payment
-          </Icon>
-        }
-        title={["", "Payment successfully completed"]}
-        date="2 days"
-        onClick={handleCloseMenu}
-      />
-    </Menu>
-  );
 
   return (
     <AppBar
@@ -169,7 +122,6 @@ function DashboardNavbar({ absolute, light, isMini, showTitle }) {
             <IconButton sx={navbarIconButton} size="small">
               <PerfilSection />
             </IconButton>
-            {renderMenu()}
           </ArgonBox>
         </ArgonBox>
       </Toolbar>
