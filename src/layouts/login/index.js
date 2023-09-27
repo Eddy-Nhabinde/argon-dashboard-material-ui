@@ -4,7 +4,6 @@ import PageLayout from 'argonComponents/LayoutContainers/PageLayout';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useNavigate } from 'react-router-dom';
 import { GeneralFetch } from 'Api/generalFetch/generalFetch';
-import { ProgressSpinner } from 'primereact/progressspinner';
 import { CircularProgress } from '@mui/material';
 
 export default function Login() {
@@ -15,12 +14,9 @@ export default function Login() {
     const [formData, setFormData] = useState({})
 
     function back() {
-        if (forgot)
-            setForgot(false)
-        else if (update)
-            setUpdate(false)
-        else
-            navigate(-1)
+        if (forgot) setForgot(false)
+        else if (update) setUpdate(false)
+        else navigate(-1)
     }
 
     function changing(name, value) {
@@ -102,17 +98,18 @@ export default function Login() {
                                     <svg>
                                         <use href="#svg-check" />
                                     </svg>
-                                </div>
+                                </div >
                                 {!update && <div class="senha">
                                     <label for="login-password" onClick={() => setForgot(true)} >Esqueceu senha?</label>
                                     <label for="login-password">Não tem conta? <span onClick={() => navigate("/criar_conta")} >Registar-se</span></label>
                                 </div>}
                             </>
                         }
-                        <button type="submit" class="button"
+                        <button type="submit" class="button" 
                             onClick={() =>
                                 btnEvent(forgot ? "passwordRequest" : update ? "passwordUpdate" : "login")
                             }
+                            disabled={load}
                         >
                             <div class="arrow-wrapper">
                                 <span class="arrow"></span>

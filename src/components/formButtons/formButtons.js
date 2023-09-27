@@ -1,12 +1,13 @@
 import styles from './formButton.module.css'
+import { CircularProgress } from '@mui/material';
 
-export default function FormButtons({ onCancel, onConfirm }) {
+export default function FormButtons({ load, onCancel, onConfirm }) {
     return (
         <div className={styles.buttonContainerRegister}>
-            <button onClick={onConfirm} className={styles.button} style={{ background: '#36558F' }}>
-                <span style={{ color: 'white' }} >Registar</span>
+            <button disabled={load} onClick={onConfirm} className={styles.button} style={{ background: '#36558F' }}>
+                {load ? <CircularProgress size="17px" style={{ color: "#fff" }} /> : <span style={{ color: 'white' }} >Registar</span>}
             </button>
-            <button onClick={onCancel} className={styles.button} style={{ background: '#FF6B6B' }} >
+            <button disabled={load}  onClick={onCancel} className={styles.button} style={{ background: '#FF6B6B' }} >
                 <span style={{ color: 'white' }} >Cancelar</span>
             </button>
         </div>
