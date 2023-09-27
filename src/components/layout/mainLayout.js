@@ -8,7 +8,7 @@ export default function Layout({ children }) {
     return (
         <DashboardLayout>
             <DashboardNavbar showTitle={false} />
-            <Card style={{ borderRadius: "6px", marginTop: "80px" }} >
+            <Card style={{ borderRadius: "6px", marginTop: "80px", padding:"10px" }} >
                 {children}
             </Card>
             <Footer />

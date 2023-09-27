@@ -42,7 +42,6 @@ function DashboardLayout({ bgColor, children, ...rest }) {
     <ArgonBox
       sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
         p: 3,
-
         [breakpoints.up("xl")]: {
           marginLeft: miniSidenav ? pxToRem(120) : pxToRem(274),
           transition: transitions.create(["margin-left", "margin-right"], {

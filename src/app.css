@@ -46,3 +46,6 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
 }
+.css-96uzu9{
+    width: 100% !important;
+}

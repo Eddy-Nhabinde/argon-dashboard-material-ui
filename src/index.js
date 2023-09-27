@@ -14,9 +14,7 @@ const root = createRoot(container);
 root.render(
   <BrowserRouter>
     <ArgonControllerProvider>
-      <PerfectScrollbar>
         <App />
-      </PerfectScrollbar>
     </ArgonControllerProvider>
   </BrowserRouter>
 );

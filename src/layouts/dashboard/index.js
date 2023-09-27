@@ -1,9 +1,6 @@
 import Grid from "@mui/material/Grid";
 import ArgonBox from "argonComponents/ArgonBox";
 import ArgonTypography from "argonComponents/ArgonTypography";
-import DashboardLayout from "argonComponents/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "argonComponents/Navbars/DashboardNavbar";
-import Footer from "argonComponents/Footer";
 import DetailedStatisticsCard from "argonComponents/Cards/StatisticsCards/DetailedStatisticsCard";
 import GradientLineChart from "argonComponents/Charts/LineCharts/GradientLineChart";
 import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
@@ -15,7 +12,6 @@ function Dashboard() {
 
   return (
     <Layout>
-      <ArgonBox py={2.5}>
         <Grid container spacing={2.125} mb={3}>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
@@ -94,8 +90,6 @@ function Dashboard() {
             } height="300px" chart={pieChartData} />
           </Grid>
         </Grid>
-      </ArgonBox>
-      <Footer />
     </Layout>
   );
 }
