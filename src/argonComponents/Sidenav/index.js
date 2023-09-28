@@ -12,6 +12,7 @@ import SidenavRoot from "argonComponents/Sidenav/SidenavRoot";
 import iconLogo from "../../assets/images/logoSiamaco.png";
 import completeLogo from "../../assets/images/completeLogo.png";
 import { useArgonController, setMiniSidenav } from "context";
+import { CheckRole } from "utils/common/roleChecker";
 
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const [controller, dispatch] = useArgonController();
@@ -41,50 +42,13 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   }, [dispatch, location]);
 
   // Render all the routes from the routes.js (All the visible items on the Sidenav)
-  const renderRoutes = routes.map(({ type, name, icon, title, key, href, route }) => {
-    let returnValue;
-
-    if (type === "route") {
-      if (href) {
-        returnValue = (
-          <Link href={href} key={key} target="_blank" rel="noreferrer">
-            <SidenavItem
-              name={name}
-              icon={icon}
-              active={key === itemName}
-            />
-          </Link>
-        );
-      } else {
-        returnValue = (
-          <NavLink to={route} key={key}>
-            <SidenavItem name={name} icon={icon} active={key === itemName} />
-          </NavLink>
-        );
-      }
-    } else if (type === "title") {
-      returnValue = (
-        <ArgonTypography
-          key={key}
-          color={darkSidenav ? "white" : "dark"}
-          display="block"
-          variant="caption"
-          fontWeight="bold"
-          textTransform="uppercase"
-          opacity={0.6}
-          pl={3}
-          mt={2}
-          mb={1}
-          ml={1}
-        >
-          {title}
-        </ArgonTypography>
+  const renderRoutes = routes.map(({ name, icon, key, route, access }) => {
+    if (CheckRole(access))
+      return (
+        <NavLink to={route} key={key}>
+          <SidenavItem name={name} icon={icon} active={key === itemName} />
+        </NavLink>
       );
-    } else if (type === "divider") {
-      returnValue = <Divider key={key} light={darkSidenav} />;
-    }
-
-    return returnValue;
   });
 
   return (

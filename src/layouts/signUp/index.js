@@ -1,14 +1,17 @@
 import { GeneralFetch } from "Api/generalFetch/generalFetch";
 import "./signUp.css"
 import FormGen from "components/form/formGenerator";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import appointmentFields from 'utils/variables/paciente.json'
+import { useRecoilState } from "recoil";
+import { Role } from "store";
 
 export default function SignUp() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ paciente: true })
-    const { FetchData, load } = GeneralFetch()
+    const [, setRole] = useRecoilState(Role)
+    const { FetchData, data, load } = GeneralFetch()
 
     const onCancel = () => { navigate(-1) }
 
@@ -18,7 +21,9 @@ export default function SignUp() {
         })()
     }
 
-    console.log(formData)
+    useEffect(() => {
+        if (data == 1) { navigate('/Inicio'); setRole('normal') }
+    }, [data])
 
     return (
         <div class="formContainer">

@@ -5,16 +5,18 @@ import App from "App";
 
 import { ArgonControllerProvider } from "context";
 
-import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
+import { RecoilRoot } from "recoil";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
   <BrowserRouter>
-    <ArgonControllerProvider>
+    <RecoilRoot>
+      <ArgonControllerProvider>
         <App />
-    </ArgonControllerProvider>
+      </ArgonControllerProvider>
+    </RecoilRoot>
   </BrowserRouter>
 );

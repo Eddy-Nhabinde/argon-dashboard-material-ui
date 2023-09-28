@@ -14,6 +14,7 @@ import LandingPage from "layouts/landingPage/landingPage";
 import SignUp from "layouts/signUp";
 import Alert from "components/alert/alert";
 import { RecoilRoot } from "recoil";
+import { CheckRole } from "utils/common/roleChecker";
 
 export default function App() {
   const [controller, dispatch] = useArgonController();
@@ -46,7 +47,7 @@ export default function App() {
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
-      if (route.route) {
+      if (CheckRole(route.access)) {
         return <Route exact path={route.route} element={route.component} key={route.key} />;
       }
       return null;
@@ -54,29 +55,27 @@ export default function App() {
 
 
   return (
-    <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {layout === "dashboard" && (
-          <>
-            <Sidenav
-              color={sidenavColor}
-              routes={routes}
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-            />
-          </>
-        )}
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {layout === "dashboard" && (
+        <>
+          <Sidenav
+            color={sidenavColor}
+            routes={routes}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          />
+        </>
+      )}
 
-        {contextHolder}
-        <Alert />
-        <Routes>
-          {getRoutes(routes)}
-          <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/criar_conta" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </ThemeProvider>
-    </RecoilRoot>
+      {contextHolder}
+      <Alert />
+      <Routes>
+        {getRoutes(routes)}
+        <Route exact path="/" element={<LandingPage />} />
+        <Route exact path="/criar_conta" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </ThemeProvider>
   );
 }

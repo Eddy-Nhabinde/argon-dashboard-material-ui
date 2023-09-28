@@ -16,11 +16,12 @@ export function GeneralFetch() {
 
     async function FetchData(obj, endPoint, method, table, object) {
 
-        let response = fetch(baseURL + "" + endPoint, getParams(method, obj))
+        fetch(baseURL + "" + endPoint, getParams(method, obj))
             .then((response) => response.json())
             .then((data) => {
                 if (data.error || data.warning || data.success) {
                     setAlert(alert => ({ ...alert, type: Object.keys(data)[0], msg: data[Object.keys(data)[0]] }))
+                    setData(data?.hasOwnProperty('success'))
                 } else {
                     if (object && table) {
                         tableHeadersAndData(data, object)
