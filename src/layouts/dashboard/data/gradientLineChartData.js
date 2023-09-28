@@ -1,27 +1,36 @@
-/**
-=========================================================
-* Argon Dashboard 2 MUI - v3.0.1
-=========================================================
+const gradientLineChartData = (data, type) => {
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-material-ui
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+  function getLabels() {
+    const data = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30","31"]
 
-Coded by www.creative-tim.com
+    if (type == 'month') {
+      const currentDate = new Date();
+      const last30Days = [];
 
- =========================================================
+      for (let i = 1; i <= 30; i++) {
+        const date = new Date(currentDate);
+        date.setDate(currentDate.getDate() - i);
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
+        if (data.indexOf("" + date.getDate().toString() + "") != -1) {
+          last30Days.push(data[data.indexOf("" + date.getDate().toString() + "")]);
+        }
+      }
+      return last30Days
 
-const gradientLineChartData = {
-  labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-  datasets: [
-    {
-      label: "Mobile apps",
-      color: "info",
-      data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-    },
-  ],
+    }
+    else return ["Jan", "Fev", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  }
+
+  return {
+    labels: getLabels(),
+    datasets: [
+      {
+        label: "Mobile apps",
+        color: "info",
+        data: data,
+      },
+    ],
+  }
 };
 
 export default gradientLineChartData;

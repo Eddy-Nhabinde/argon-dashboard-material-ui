@@ -7,89 +7,110 @@ import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData"
 import PieChart from "argonComponents/Charts/PieChart";
 import pieChartData from "./data/pieChart";
 import Layout from "components/layout/mainLayout";
+import { GeneralFetch } from "Api/generalFetch/generalFetch";
+import { useEffect } from "react";
+import { CircularProgress } from '@mui/material';
 
 function Dashboard() {
+  const { FetchData, data, load } = GeneralFetch()
+
+  useEffect(() => {
+    (async () => {
+      await FetchData("", 'getDashBoardData', 'get', false, 'dashData')
+    })()
+  }, [])
 
   return (
     <Layout>
-        <Grid container spacing={2.125} mb={3}>
-          <Grid item xs={12} md={6} lg={3}>
-            <DetailedStatisticsCard
-              title="Consultas Realizadas"
-              count="53,000"
-              icon={{ color: "success", component: <i class="fa-solid fa-check"></i> }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <DetailedStatisticsCard
-              title="Consultas Canceladas"
-              count="2,300"
-              icon={{ color: "error", component: <i class="fa-solid fa-xmark"></i> }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <DetailedStatisticsCard
-              title="Consultas Pendentes"
-              count="+3,462"
-              icon={{ color: "warning", component: <i class="fa-solid fa-calendar-days"></i> }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <DetailedStatisticsCard
-              title="Total"
-              count="103,430"
-              icon={{ color: "info", component: <i class="fa-solid fa-chart-simple"></i> }}
-            />
-          </Grid>
-        </Grid>
-        <Grid container spacing={3} mb={3}>
-          <Grid item xs={12} lg={7}>
-            <GradientLineChart
-              title="Sumário mensal"
-              description={
-                <ArgonBox display="flex" alignItems="center">
-                  <ArgonTypography variant="button" color="text" fontWeight="medium">
-                    Consultas marcadas nos ultimos 30 dias
-                  </ArgonTypography>
-                </ArgonBox>
-              }
-              chart={gradientLineChartData}
-            />
-          </Grid>
-          <Grid item xs={12} lg={5} >
-            <PieChart title="Sumario mensal" description={
-              <ArgonBox display="flex" alignItems="center">
-                <ArgonTypography variant="button" color="text" fontWeight="medium">
-                  Estados das consultas marcadas nos ultimos 30 dias
-                </ArgonTypography>
-              </ArgonBox>
-            } height="300px" chart={pieChartData} />
-          </Grid>
-        </Grid>
-        <Grid container spacing={3}>
-          <Grid item xs={12} lg={7}>
-            <GradientLineChart
-              title="Sumário anual"
-              description={
-                <ArgonBox display="flex" alignItems="center">
-                  <ArgonTypography variant="button" color="text" fontWeight="medium">
-                    Consultas marcadas no ultimo ano
-                  </ArgonTypography>
-                </ArgonBox>
-              }
-              chart={gradientLineChartData}
-            />
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <PieChart title="Sumario anual" description={
-              <ArgonBox display="flex" alignItems="center">
-                <ArgonTypography variant="button" color="text" fontWeight="medium">
-                  Estados das consultas marcadas nos no ultimo ano
-                </ArgonTypography>
-              </ArgonBox>
-            } height="300px" chart={pieChartData} />
-          </Grid>
-        </Grid>
+      {
+        load ? <div style={{ height: "65vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <CircularProgress />
+        </div>
+          : <>
+            <Grid container spacing={2.125} mb={3}>
+              <Grid item xs={12} md={6} lg={3}>
+                <DetailedStatisticsCard
+                  title="Consultas Realizadas"
+                  count={data?.allAppointments?.[0].total || 0}
+                  icon={{ color: "success", component: <i class="fa-solid fa-check"></i> }}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={3}>
+                <DetailedStatisticsCard
+                  title="Consultas Canceladas"
+                  count={data?.allAppointments?.[2].total || 0}
+                  icon={{ color: "error", component: <i class="fa-solid fa-xmark"></i> }}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={3}>
+                <DetailedStatisticsCard
+                  title="Consultas Pendentes"
+                  count={data?.allAppointments?.[1].total || 0}
+                  icon={{ color: "warning", component: <i class="fa-solid fa-calendar-days"></i> }}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={3}>
+                <DetailedStatisticsCard
+                  title="Total"
+                  count={data?.allAppointments?.[0].total + data?.allAppointments?.[1].total + data?.allAppointments?.[2].total || 0}
+                  icon={{ color: "info", component: <i class="fa-solid fa-chart-simple"></i> }}
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={3} mb={3}>
+              <Grid item xs={12} lg={7}>
+                <GradientLineChart
+                  title="Sumário mensal"
+                  description={
+                    <ArgonBox display="flex" alignItems="center">
+                      <ArgonTypography variant="button" color="text" fontWeight="medium">
+                        Consultas marcadas nos ultimos 30 dias
+                      </ArgonTypography>
+                    </ArgonBox>
+                  }
+                  chart={gradientLineChartData(data?.thisMonth, 'month')}
+                />
+              </Grid>
+              <Grid item xs={12} lg={5} >
+                <PieChart title="Sumário mensal" description={
+                  <ArgonBox display="flex" alignItems="center">
+                    <ArgonTypography variant="button" color="text" fontWeight="medium">
+                      Estados das consultas marcadas nos ultimos 30 dias
+                    </ArgonTypography>
+                  </ArgonBox>
+                } height="300px"
+                  chart={pieChartData(data?.thisMonthAppointments)}
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={3}>
+              <Grid item xs={12} lg={7}>
+                <GradientLineChart
+                  title="Sumário anual"
+                  description={
+                    <ArgonBox display="flex" alignItems="center">
+                      <ArgonTypography variant="button" color="text" fontWeight="medium">
+                        Consultas marcadas no ultimo ano
+                      </ArgonTypography>
+                    </ArgonBox>
+                  }
+                  chart={gradientLineChartData(data?.thisYear, 'year')}
+                />
+              </Grid>
+              <Grid item xs={12} md={5}>
+                <PieChart title="Sumário anual" description={
+                  <ArgonBox display="flex" alignItems="center">
+                    <ArgonTypography variant="button" color="text" fontWeight="medium">
+                      Estados das consultas marcadas nos no ultimo ano
+                    </ArgonTypography>
+                  </ArgonBox>
+                } height="300px"
+                  chart={pieChartData(data?.thisYearAppointments)}
+                />
+              </Grid>
+            </Grid>
+          </>
+      }
     </Layout>
   );
 }

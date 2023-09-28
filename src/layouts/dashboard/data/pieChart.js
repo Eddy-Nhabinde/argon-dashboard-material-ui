@@ -1,64 +1,47 @@
-/**
-=========================================================
-* Argon Dashboard 2 MUI - v3.0.1
-=========================================================
+const pieChartData = (consultas) => {
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-material-ui
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-const pieChartData = {
-  tooltip: {
-    trigger: 'item'
-  },
-  legend: {
-    top: '5%',
-    left: 'center',
-    // doesn't perfectly work with our tricks, disable it
-    selectedMode: false
-  },
-  series: [
-    {
-      name: 'Access From',
-      type: 'pie',
-      radius: ['40%', '70%'],
-      center: ['50%', '70%'],
-      // adjust the start angle
-      startAngle: 180,
-      label: {
-        show: true,
-        formatter(param) {
-          // correct the percentage
-          return param.name + ' (' + param.percent * 2 + '%)';
-        }
-      },
-      data: [
-        { value: 1048, name: 'Marcadas' },
-        { value: 735, name: 'realizadas' },
-        { value: 580, name: 'pendentes' },
-        {
-          // make an record to fill the bottom 50%
-          value: 1048 + 735 + 580,
-          itemStyle: {
-            // stop the chart from rendering this piece
-            color: 'none',
-            decal: {
-              symbol: 'none'
-            }
-          },
+  return {
+    color: ["#31E981", '#F25C54', '#FFBC0A'],
+    tooltip: {
+      trigger: 'item'
+    },
+    legend: {
+      top: '5%',
+      left: 'center'
+    },
+    series: [
+      {
+        name: 'Consultas',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 10,
+          borderColor: '#fff',
+          borderWidth: 2
+        },
+        label: {
+          show: false,
+          position: 'center'
+        },
+        emphasis: {
           label: {
-            show: false
+            show: true,
+            fontSize: 40,
+            fontWeight: 'bold'
           }
-        }
-      ]
-    }
-  ]
+        },
+        labelLine: {
+          show: false
+        },
+        data: [
+          { value: consultas?.[0]?.total || 0, name: 'Realizadas' },
+          { value: consultas?.[2]?.total || 0, name: 'Canceladas' },
+          { value: consultas?.[1]?.total || 0, name: 'Pendentes' },
+        ]
+      }
+    ]
+  };
 };
 
 export default pieChartData;

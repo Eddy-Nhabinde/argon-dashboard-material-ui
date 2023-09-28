@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import PropTypes from "prop-types";
-import { Pie } from "react-chartjs-2";
 import Card from "@mui/material/Card";
 import ArgonBox from "argonComponents/ArgonBox";
 import ArgonTypography from "argonComponents/ArgonTypography";
@@ -35,7 +34,7 @@ function PieChart({ title, description, height, chart }) {
           <ArgonBox height={height}  >
             <ReactEcharts
               option={chart}
-              style={{ width: width, height: "420px" }}
+              style={{ width: width, height: "370px" }}
             ></ReactEcharts>
           </ArgonBox>
         ), [chart, height])
