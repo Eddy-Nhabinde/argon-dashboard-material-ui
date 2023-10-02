@@ -1,18 +1,18 @@
 
 const gradientLineChartData = (data, type) => {
   let months = [
-    "Jan",
-    "Fev",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Ooutubro",
+    "Novembro",
+    "Dezembro"
   ]
 
   function getLabels() {
@@ -31,7 +31,7 @@ const gradientLineChartData = (data, type) => {
     labels: getLabels(),
     datasets: [
       {
-        label: "Mobile apps",
+        label: "Consultas",
         color: "info",
         data: data?.data,
       },

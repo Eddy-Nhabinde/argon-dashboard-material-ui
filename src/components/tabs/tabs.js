@@ -4,19 +4,21 @@ import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import EventIcon from '@mui/icons-material/Event';
 
-const TableTabs = () => (
+const TableTabs = ({ setTab, tab }) => (
     <Tabs
-        defaultActiveKey="2"
+        onChange={(e) => setTab(e)}
+        defaultActiveKey={tab}
+        activeKey={tab}
         items={[
-            { icon: DoneIcon, label: "Concluidas", color: "#379634" },
+            { icon: EventIcon, label: "Pendentes", color: "#FAA916" },
             { icon: CloseIcon, label: "Canceladas", color: "#F21B3F" },
-            { icon: EventIcon, label: "Pendentes", color: "#FAA916" }
+            { icon: DoneIcon, label: "Concluidas", color: "#379634" }
         ].map((Icon, i) => {
             const id = String(i + 1);
             return {
                 label: (
                     <span style={{ fontWeight: "500", letterSpacing: "1px", color: Icon.color }} >
-                        <Icon.icon style={{ margin: "10px 5px -3px 0" }} />
+                        <Icon.icon style={{ margin: "-5px 5px -3px 0" }} />
                         {Icon.label}
                     </span>
                 ),

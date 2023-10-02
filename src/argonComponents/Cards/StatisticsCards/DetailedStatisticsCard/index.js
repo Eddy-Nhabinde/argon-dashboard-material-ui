@@ -77,7 +77,7 @@ function DetailedStaticsCard({ bgColor, title, count, icon, direction }) {
                   color={bgColor === "white" ? "text" : "white"}
                   textTransform="uppercase"
                   fontWeight="medium"
-                  fontSize="14px"
+                  fontSize="13px"
                 >
                   {title}
                 </ArgonTypography>
