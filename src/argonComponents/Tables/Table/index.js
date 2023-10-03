@@ -34,6 +34,7 @@ import ArgonTypography from "argonComponents/ArgonTypography";
 // Argon Dashboard 2 MUI base styles
 import typography from "assets/theme/base/typography";
 import borders from "assets/theme/base/borders";
+import TPagination from "components/pagination/tablePagination";
 
 function Table({ columns, rows }) {
   const { size, fontWeightBold } = typography;

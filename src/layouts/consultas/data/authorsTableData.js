@@ -2,7 +2,6 @@ import ArgonBox from "argonComponents/ArgonBox";
 import ArgonTypography from "argonComponents/ArgonTypography";
 
 function Author({ name }) {
-
   return (
     <ArgonBox display="flex" alignItems="center" px={1} py={0.5}>
       <ArgonBox display="flex" flexDirection="column">

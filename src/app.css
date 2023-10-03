@@ -53,3 +53,7 @@ input:-webkit-autofill:active {
 .css-96uzu9{
     width: 100% !important;
 }
+
+.ant-pagination-item-link{
+    margin-top: -3px;
+}

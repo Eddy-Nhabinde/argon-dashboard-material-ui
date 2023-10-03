@@ -9,15 +9,18 @@ import { useEffect } from "react";
 import { GeneralFetch } from "Api/generalFetch/generalFetch";
 import AuthorsTableData from "./data/authorsTableData";
 import { CircularProgress } from "@mui/material";
+import Paging from "components/pagination/tablePagination";
 
 function Consultas() {
   const { FetchData, data, load } = GeneralFetch()
   const { columns, rows } = AuthorsTableData({ data });
   const [tab, setTab] = useState(1)
+  const [page, setPage] = useState(1)
+
 
   useEffect(() => {
     (async () => {
-      await FetchData("", 'getAppointments/' + tab, 'get', false, 'consultas')
+      await FetchData("", 'getAppointments/' + tab + "?page=" + page, 'get', false, 'consultas')
     })()
   }, [tab])
 
@@ -45,6 +48,7 @@ function Consultas() {
                 }}
               >
                 <Table columns={columns} rows={rows} />
+                <Paging setPage={setPage} />
               </ArgonBox>
             </Card>
           </ArgonBox>
