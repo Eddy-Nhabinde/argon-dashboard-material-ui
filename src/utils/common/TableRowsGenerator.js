@@ -23,7 +23,7 @@ function Time({ job }) {
   );
 }
 
-function AuthorsTableData({ data }) {
+function TableRowsGenerator({ data }) {
 
   function getRows() {
     let rows = []
@@ -68,4 +68,4 @@ function AuthorsTableData({ data }) {
   }
 };
 
-export default AuthorsTableData;
+export default TableRowsGenerator;

@@ -35,8 +35,9 @@ import ArgonTypography from "argonComponents/ArgonTypography";
 import typography from "assets/theme/base/typography";
 import borders from "assets/theme/base/borders";
 import TPagination from "components/pagination/tablePagination";
+import Paging from "components/pagination/tablePagination";
 
-function Table({ columns, rows }) {
+function Table({ setPage, columns, rows }) {
   const { size, fontWeightBold } = typography;
   const { borderWidth } = borders;
 
@@ -142,6 +143,7 @@ function Table({ columns, rows }) {
           </ArgonBox>
           <TableBody>{renderRows}</TableBody>
         </MuiTable>
+        <Paging setPage={setPage} />
       </TableContainer>
     ),
     [columns, rows]
