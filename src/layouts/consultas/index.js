@@ -9,13 +9,12 @@ import { useEffect } from "react";
 import { GeneralFetch } from "Api/generalFetch/generalFetch";
 import TableRowsGenerator from "../../utils/common/TableRowsGenerator";
 import { CircularProgress } from "@mui/material";
-import Paging from "components/pagination/tablePagination";
 
 function Consultas() {
   const { FetchData, data, load } = GeneralFetch()
-  const { columns, rows } = TableRowsGenerator({ data, object: "appointments" });
   const [tab, setTab] = useState(1)
   const [page, setPage] = useState(1)
+  const { columns, rows } = TableRowsGenerator({ data, object: "appointments", tab });
 
   useEffect(() => {
     (async () => {
