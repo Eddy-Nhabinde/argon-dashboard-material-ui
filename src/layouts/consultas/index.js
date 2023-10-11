@@ -13,7 +13,7 @@ import Paging from "components/pagination/tablePagination";
 
 function Consultas() {
   const { FetchData, data, load } = GeneralFetch()
-  const { columns, rows } = TableRowsGenerator({ data });
+  const { columns, rows } = TableRowsGenerator({ data, object: "appointments" });
   const [tab, setTab] = useState(1)
   const [page, setPage] = useState(1)
 
@@ -46,7 +46,7 @@ function Consultas() {
                   },
                 }}
               >
-                <Table columns={columns} rows={rows} setPage={setPage} />
+                <Table object="appointments" columns={columns} rows={rows} setPage={setPage} />
               </ArgonBox>
             </Card>
           </ArgonBox>

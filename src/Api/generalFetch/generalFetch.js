@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { OrganizeTable } from "../../utils/tableData/tableHeadersAndData"
 import ReturnParams from "./returnParams"
 import { AlertState } from "store"
 import { useRecoilState } from "recoil"
@@ -10,8 +9,6 @@ export function GeneralFetch() {
     const [alert, setAlert] = useRecoilState(AlertState)
     const [load, setLoad] = useState(false)
     const [data, setData] = useState([])
-
-    const { tableHeadersAndData } = OrganizeTable({ setData })
     const { getParams } = ReturnParams({ setLoad })
 
     async function FetchData(obj, endPoint, method, table, object) {
@@ -23,9 +20,7 @@ export function GeneralFetch() {
                     setAlert(alert => ({ ...alert, type: Object.keys(data)[0], msg: data[Object.keys(data)[0]] }))
                     setData(data?.hasOwnProperty('success'))
                 } else {
-                    if (object && table) {
-                        tableHeadersAndData(data, object)
-                    } else if (object && !table) {
+                    if (object) {
                         if (data[object]) {
                             if (data.data?.[object]) {
                                 setData(data.data[object])
@@ -36,8 +31,8 @@ export function GeneralFetch() {
                             setData(data)
                         }
                     }
+                    setLoad(false)
                 }
-                setLoad(false)
             })
     }
 

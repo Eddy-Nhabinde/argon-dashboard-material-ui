@@ -15,9 +15,9 @@ export default function Psicologos() {
     const [add, setAdd] = useState(false)
     const [formData, setFormData] = useState({})
     const [page, setPage] = useState(1)
-    const [updatedData, setData] = useState(1)
+    const [updatedData, setData] = useState([])
     const { FetchData, data, load } = GeneralFetch()
-    const { columns, rows } = TableRowsGenerator({ updatedData });
+    const { columns, rows } = TableRowsGenerator({ data: updatedData, object: "psychologist" });
 
     useEffect(() => {
         (async () => {

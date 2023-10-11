@@ -1,5 +1,6 @@
 import ArgonBox from "argonComponents/ArgonBox";
 import ArgonTypography from "argonComponents/ArgonTypography";
+import { getTableHeaders } from "utils/tableData/tableHeadersAndData";
 
 function Author({ name }) {
   return (
@@ -23,47 +24,67 @@ function Time({ job }) {
   );
 }
 
-function TableRowsGenerator({ data }) {
+function getRowsObject(val, object) {
+  switch (object) {
+    case "appointments":
+      return {
+        paciente: <Author name={val?.paciente} />,
+        hora: <Time job={val?.hora} />,
+        data: (
+          <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+            {val?.data}
+          </ArgonTypography>
+        ),
+        Acções: (
+          <ArgonTypography
+            component="a"
+            href="#"
+            variant="caption"
+            color="secondary"
+            fontWeight="medium"
+          >
+            Edit
+          </ArgonTypography>
+        ),
+      }
+    case "psychologist":
+      return {
+        nome: <Author name={val?.nome} />,
+        especialidade: <Time job={val?.especialidade} />,
+        estado: (
+          <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+            {val?.estado}
+          </ArgonTypography>
+        ),
+        Acções: (
+          <ArgonTypography
+            component="a"
+            href="#"
+            variant="caption"
+            color="secondary"
+            fontWeight="medium"
+          >
+            Edit
+          </ArgonTypography>
+        ),
+      }
+  }
+}
+
+function TableRowsGenerator({ data, object }) {
 
   function getRows() {
     let rows = []
 
     data?.map((val) => {
-      rows.push(
-        {
-          paciente: <Author name={val?.paciente} />,
-          hora: <Time job={val?.hora} />,
-          data: (
-            <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-              {val?.data}
-            </ArgonTypography>
-          ),
-          Acções: (
-            <ArgonTypography
-              component="a"
-              href="#"
-              variant="caption"
-              color="secondary"
-              fontWeight="medium"
-            >
-              Edit
-            </ArgonTypography>
-          ),
-        },
-      )
+      rows.push(getRowsObject(val, object))
     })
 
     return rows
   }
 
   return {
-    columns: [
-      { name: "paciente", align: "left" },
-      { name: "hora", align: "left" },
-      { name: "data", align: "center" },
-      { name: "Acções", align: "center" },
-    ],
-
+    columns: getTableHeaders(object),
     rows: getRows()
   }
 };

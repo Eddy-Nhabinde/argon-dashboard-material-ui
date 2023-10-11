@@ -7,7 +7,7 @@ import EventIcon from '@mui/icons-material/Event';
 const TableTabs = ({ setTab, tab }) => (
     <Tabs
         onChange={(e) => setTab(e)}
-        defaultActiveKey={tab}
+        defaultActiveKey="1"
         activeKey={tab}
         items={[
             { icon: EventIcon, label: "Pendentes", color: "#FAA916" },
