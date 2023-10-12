@@ -1,8 +1,9 @@
 import ArgonBox from "argonComponents/ArgonBox";
 import ArgonTypography from "argonComponents/ArgonTypography";
 import { getTableHeaders } from "utils/tableData/tableHeadersAndData";
-import { Button, Space } from 'antd';
 import { IconButton } from "@mui/material";
+import DropDownOptions from "components/dropDown/dropDown";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 function Author({ name }) {
   return (
@@ -31,33 +32,24 @@ function Actions(object, tab) {
     case "appointments":
       if (tab == 1)
         return <>
-          <IconButton style={{ marginRight: "5px" }} onClick={() => alert(1)} >
-            <i class="material-icons">check</i>
-          </IconButton>
-          <IconButton style={{ marginRight: "5px" }} onClick={() => alert(1)} >
-            <i class="material-icons">close</i>
-          </IconButton>
-          <IconButton >
-            <i class="material-icons">update</i>
-          </IconButton>
-          <IconButton >
-            <i class="material-icons">info</i>
-          </IconButton>
+          <DropDownOptions object={object} />
         </>
       if (tab == 2)
         return <>
-          <IconButton >
-            <i class="material-icons">info</i>
+          <IconButton style={{ background: "#eee", marginRight: "5px", color: "#000" }} >
+            <InfoOutlinedIcon />
           </IconButton>
         </>
       if (tab == 3)
         return <>
-          <IconButton >
-            <i class="material-icons">info</i>
+          <IconButton style={{ background: "#eee", marginRight: "5px", color: "#000" }} >
+            <InfoOutlinedIcon />
           </IconButton>
         </>
     case "psychologist":
-      return ""
+      return <>
+        <DropDownOptions object={object} />
+      </>
   }
 }
 
@@ -101,7 +93,7 @@ function getRowsObject(val, object, tab) {
             color="secondary"
             fontWeight="medium"
           >
-            Edit
+            {Actions(object, tab)}
           </ArgonTypography>
         ),
       }
