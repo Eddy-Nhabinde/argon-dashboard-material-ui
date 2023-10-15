@@ -13,8 +13,8 @@ import Login from "layouts/login";
 import LandingPage from "layouts/landingPage/landingPage";
 import SignUp from "layouts/signUp";
 import Alert from "components/alert/alert";
-import { RecoilRoot } from "recoil";
 import { CheckRole } from "utils/common/roleChecker";
+import DetailsView from "components/drawer/DetailsView";
 
 export default function App() {
   const [controller, dispatch] = useArgonController();
@@ -70,6 +70,7 @@ export default function App() {
 
       {contextHolder}
       <Alert />
+      <DetailsView />
       <Routes>
         {getRoutes(routes)}
         <Route exact path="/" element={<LandingPage />} />

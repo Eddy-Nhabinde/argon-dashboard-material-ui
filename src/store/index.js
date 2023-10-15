@@ -9,3 +9,8 @@ export const Role = atom({
     key: "Role",
     default: "admin"
 })
+
+export const Details = atom({
+    key: "Details",
+    default: { open: false, data: {} }
+})
