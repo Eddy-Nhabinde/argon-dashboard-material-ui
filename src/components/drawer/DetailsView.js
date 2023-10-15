@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Drawer, Space } from 'antd';
 import { Details } from 'store';
 import { useRecoilState } from 'recoil';
 import './style.css'
+import Table from 'argonComponents/Tables/Table';
+import { GetHistory } from 'hooks/paciente/getHistory';
+import { GetPsychoDetails } from 'hooks/psicologo/getPsychoDetails';
+import TableRowsGenerator from 'utils/common/TableRowsGenerator';
+import CloseIcon from '@mui/icons-material/Close';
+import { IconButton } from '@mui/material';
 
 const DetailsView = () => {
     const [details, setDetails] = useRecoilState(Details)
+    const [page, setPage] = useState(1)
+    const { historico, loadHistory } = GetHistory({ details })
+    const { psicologo, loadPsycho } = GetPsychoDetails({ details })
+    const { columns, rows } = TableRowsGenerator({ data: historico?.history, object: "history" })
 
     const onClose = () => {
         setDetails({ open: false });
@@ -13,23 +23,30 @@ const DetailsView = () => {
 
     return (
         <Drawer
-            title="Detalhes Da Consulta"
             closeIcon={false}
             placement={'right'}
-            width={400}
+            width={450}
             onClose={onClose}
             open={details?.open}
         >
-            <div class="container" style={{ display: "flex", flexDirection: "column", marginTop: "80px", }} >
-                <span style={{ textAlign: "center", fontSize: "30px", fontWeight: "bold", fontStyle: "oblique" }} >Clayd Nhabinde</span>
+            <div class="container" style={{ display: "flex", flexDirection: "column", marginTop: "-10px", }} >
+                <span style={{ textAlign: "center", fontSize: "27px", fontWeight: "500", fontStyle: "oblique" }} >{details?.data?.paciente}</span>
 
                 <table>
+                    <tr>
+                        <td>
+                            <span>Estado:</span>
+                        </td>
+                        <td>
+                            {details?.data?.estado}
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <span>Problema:</span>
                         </td>
                         <td>
-                            Familiar
+                            {details?.data?.problema}
                         </td>
                     </tr>
                     <tr>
@@ -37,7 +54,7 @@ const DetailsView = () => {
                             <span>Data:</span>
                         </td>
                         <td>
-                            2022-10-10
+                            {details?.data?.data}
                         </td>
                     </tr>
                     <tr>
@@ -45,7 +62,7 @@ const DetailsView = () => {
                             <span>Hora:</span>
                         </td>
                         <td>
-                            13:30
+                            {details?.data?.hora}
                         </td>
                     </tr>
                     <tr>
@@ -53,7 +70,7 @@ const DetailsView = () => {
                             <span>Psicólogo:</span>
                         </td>
                         <td>
-                            Dr. Maposse
+                            {psicologo?.[0]?.nome}
                         </td>
                     </tr>
                     <tr>
@@ -65,18 +82,23 @@ const DetailsView = () => {
                         </td>
                     </tr>
                 </table>
-
             </div>
+
             <Space class='options'>
                 <Button type="primary" danger>
                     Cancelar
                 </Button>
                 <Button type="primary">Remarcar</Button>
             </Space>
+
+            <div class='Historico' >
+                <span style={{ fontSize: "18px", fontStyle: "oblique", lineHeight: "50px", fontWeight: "500" }} >Histórico do paciente</span>
+                <Table object="history" columns={columns} rows={rows} setPage={setPage} />
+            </div>
             <Space class='sair'>
-                <Button type="dashed" style={{ background: "46ACC2" }}>
-                    Sair
-                </Button>
+                <IconButton onClick={onClose} aria-label="delete">
+                    <CloseIcon />
+                </IconButton>
             </Space>
         </Drawer>
     );

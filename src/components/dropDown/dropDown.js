@@ -11,7 +11,7 @@ import { CircularProgress } from '@mui/material';
 import { Details } from 'store';
 import { useRecoilState } from 'recoil';
 
-function DropDownOptions({ id, object }) {
+function DropDownOptions({ data, object }) {
     const { FetchData, load } = GeneralFetch()
     const [details, setDetails] = useRecoilState(Details)
 
@@ -24,7 +24,7 @@ function DropDownOptions({ id, object }) {
     const items = [
         object == 'appointments' &&
         {
-            label: <div onClick={() => optionEvent('closeAppointment/' + id, 'PUT')} ><DoneOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Fechar</span></div>,
+            label: <div onClick={() => optionEvent('closeAppointment/' + data.id, 'PUT')} ><DoneOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Fechar</span></div>,
             key: '0',
         },
         object == 'appointments' &&
@@ -38,7 +38,7 @@ function DropDownOptions({ id, object }) {
             key: '1',
         },
         {
-            label: <div onClick={() => setDetails({ open: true })} ><InfoOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Detalhes</span></div>,
+            label: <div onClick={() => setDetails({ open: true, data: data })} ><InfoOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Detalhes</span></div>,
             key: '2',
         },
         object == 'appointments' &&
@@ -47,7 +47,7 @@ function DropDownOptions({ id, object }) {
         },
         object == 'appointments' &&
         {
-            label: <div><CloseOutlinedIcon onClick={() => optionEvent('cancelAppointment/' + { id }, 'PUT')} fontSize='small' style={{ margin: "-5px 7px 0 0", color: "#EE6055" }} /> <span style={{ color: "#EE6055" }} >Cancelar</span></div>,
+            label: <div><CloseOutlinedIcon onClick={() => optionEvent('cancelAppointment/' + data.id, 'PUT')} fontSize='small' style={{ margin: "-5px 7px 0 0", color: "#EE6055" }} /> <span style={{ color: "#EE6055" }} >Cancelar</span></div>,
             key: '3',
         },
     ];

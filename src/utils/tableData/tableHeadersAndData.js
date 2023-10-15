@@ -1,5 +1,5 @@
 export function getTableHeaders(object) {
-    console.log(object)
+
     switch (object) {
         case 'appointments':
             return [
@@ -14,6 +14,12 @@ export function getTableHeaders(object) {
                 { name: "especialidade", align: "left" },
                 { name: "estado", align: "center" },
                 { name: "Acções", align: "center" },
+            ]
+        case 'history':
+            return [
+                { name: "data", align: "left" },
+                { name: "hora", align: "left" },
+                { name: "psicologo", align: "center" },
             ]
 
     }

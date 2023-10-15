@@ -31,7 +31,6 @@ export default function Login() {
 
     useEffect(() => {
         if (data?.access_token) {
-            console.log(data)
             if (data?.user?.novo == 1) {
                 setUpdate(true)
                 setFormData({})

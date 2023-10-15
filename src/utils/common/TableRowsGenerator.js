@@ -27,12 +27,12 @@ function Time({ job }) {
   );
 }
 
-function Actions(object, tab, id) {
+function Actions(object, tab, data) {
   switch (object) {
     case "appointments":
       if (tab == 1)
         return <>
-          <DropDownOptions object={object} id={id} />
+          <DropDownOptions object={object} data={data} />
         </>
       if (tab == 2)
         return <>
@@ -48,7 +48,7 @@ function Actions(object, tab, id) {
         </>
     case "psychologist":
       return <>
-        <DropDownOptions id={id} object={object} />
+        <DropDownOptions data={data} object={object} />
       </>
   }
 }
@@ -72,7 +72,7 @@ function getRowsObject(val, object, tab) {
             color="secondary"
             fontWeight="medium"
           >
-            {Actions(object, tab, val.id)}
+            {Actions(object, tab, val)}
           </ArgonTypography>
         ),
       }
@@ -93,9 +93,19 @@ function getRowsObject(val, object, tab) {
             color="secondary"
             fontWeight="medium"
           >
-            {Actions(object, tab, val.id)}
+            {Actions(object, tab, val)}
           </ArgonTypography>
         ),
+      }
+    case "history":
+      return {
+        data: (
+          <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+            {val?.data}
+          </ArgonTypography>
+        ),
+        hora: <Time job={val?.hora} />,
+        psicologo: <Author name={val?.psicologo} />
       }
   }
 }
