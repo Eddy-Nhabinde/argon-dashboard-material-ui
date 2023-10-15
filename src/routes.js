@@ -34,7 +34,7 @@ const routes = [
     name: "Nova Consulta",
     key: "nova-consulta",
     route: "/nova-consulta",
-    access: 'all',
+    access: 'admin and normal',
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="fa-regular fa-calendar-plus" />,
     component: <NovaConsulta />,
   },

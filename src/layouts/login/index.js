@@ -5,6 +5,8 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useNavigate } from 'react-router-dom';
 import { GeneralFetch } from 'Api/generalFetch/generalFetch';
 import { CircularProgress } from '@mui/material';
+import { useRecoilState } from 'recoil';
+import { Role } from 'store';
 
 export default function Login() {
     const { FetchData, data, load } = GeneralFetch()
@@ -36,6 +38,7 @@ export default function Login() {
                 setFormData({})
             } else {
                 localStorage.setItem("token", data?.access_token)
+                localStorage.setItem("uId", data?.user?.id)
                 localStorage.setItem("acesso", data?.user?.acesso)
                 localStorage.setItem("email", data?.user?.email)
                 localStorage.setItem("nome", data?.user?.nome.split(" ")[0])
@@ -104,7 +107,7 @@ export default function Login() {
                                 </div>}
                             </>
                         }
-                        <button type="submit" class="button" 
+                        <button type="submit" class="button"
                             onClick={() =>
                                 btnEvent(forgot ? "passwordRequest" : update ? "passwordUpdate" : "login")
                             }

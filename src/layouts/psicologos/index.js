@@ -4,10 +4,9 @@ import ArgonBox from 'argonComponents/ArgonBox';
 import Table from 'argonComponents/Tables/Table';
 import { Button } from 'antd';
 import { UserAddOutlined, CloseOutlined } from '@ant-design/icons';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import Psicologo from 'utils/variables/Psicologo'
 import FormGen from 'components/form/formGenerator';
-import { GeneralFetch } from 'Api/generalFetch/generalFetch';
 import { CircularProgress } from '@mui/material';
 import TableRowsGenerator from 'utils/common/TableRowsGenerator';
 import { GetPsychoList } from 'hooks/psicologo/getPsychoList';

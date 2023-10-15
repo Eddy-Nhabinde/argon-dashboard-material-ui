@@ -6,6 +6,7 @@ import EventIcon from '@mui/icons-material/Event';
 
 const TableTabs = ({ setTab, tab }) => (
     <Tabs
+        style={{ marginTop: "20px" }}
         onChange={(e) => setTab(e)}
         defaultActiveKey="1"
         activeKey={tab}
