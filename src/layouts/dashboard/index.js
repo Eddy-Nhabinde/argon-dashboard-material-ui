@@ -7,18 +7,11 @@ import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData"
 import PieChart from "argonComponents/Charts/PieChart";
 import pieChartData from "./data/pieChart";
 import Layout from "components/layout/mainLayout";
-import { GeneralFetch } from "Api/generalFetch/generalFetch";
-import { useEffect } from "react";
 import { CircularProgress } from '@mui/material';
+import { GetDashData } from "hooks/dashboard/getDashboardData";
 
 function Dashboard() {
-  const { FetchData, data, load } = GeneralFetch()
-
-  useEffect(() => {
-    (async () => {
-      await FetchData("", 'getDashBoardData', 'get', false, 'dashData')
-    })()
-  }, [])
+  const { data, load } = GetDashData()
 
   return (
     <Layout>

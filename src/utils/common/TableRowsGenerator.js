@@ -4,6 +4,8 @@ import { getTableHeaders } from "utils/tableData/tableHeadersAndData";
 import { IconButton } from "@mui/material";
 import DropDownOptions from "components/dropDown/dropDown";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { useRecoilState } from "recoil";
+import { Details } from "store";
 
 function Author({ name }) {
   return (
@@ -27,22 +29,16 @@ function Time({ job }) {
   );
 }
 
-function Actions(object, tab, data) {
+function Actions(object, tab, data, infoClick) {
   switch (object) {
     case "appointments":
       if (tab == 1)
         return <>
           <DropDownOptions object={object} data={data} />
         </>
-      if (tab == 2)
+      if (tab == 2 || tab == 3)
         return <>
-          <IconButton style={{ background: "#eee", marginRight: "5px", color: "#000" }} >
-            <InfoOutlinedIcon />
-          </IconButton>
-        </>
-      if (tab == 3)
-        return <>
-          <IconButton style={{ background: "#eee", marginRight: "5px", color: "#000" }} >
+          <IconButton onClick={() => { infoClick(data) }} style={{ background: "#eee", marginRight: "5px", color: "#000" }} >
             <InfoOutlinedIcon />
           </IconButton>
         </>
@@ -53,7 +49,7 @@ function Actions(object, tab, data) {
   }
 }
 
-function getRowsObject(val, object, tab) {
+function getRowsObject(val, object, tab, infoClick) {
   switch (object) {
     case "appointments":
       return {
@@ -72,7 +68,7 @@ function getRowsObject(val, object, tab) {
             color="secondary"
             fontWeight="medium"
           >
-            {Actions(object, tab, val)}
+            {Actions(object, tab, val, infoClick)}
           </ArgonTypography>
         ),
       }
@@ -93,7 +89,7 @@ function getRowsObject(val, object, tab) {
             color="secondary"
             fontWeight="medium"
           >
-            {Actions(object, tab, val)}
+            {Actions(object, tab, val, infoClick)}
           </ArgonTypography>
         ),
       }
@@ -111,12 +107,17 @@ function getRowsObject(val, object, tab) {
 }
 
 function TableRowsGenerator({ data, object, tab }) {
+  const [, setDetails] = useRecoilState(Details)
+
+  const infoClick = (dataValue) => {
+    setDetails({ open: true, data: dataValue })
+  }
 
   function getRows() {
     let rows = []
 
     data?.map((val) => {
-      rows.push(getRowsObject(val, object, tab))
+      rows.push(getRowsObject(val, object, tab, infoClick))
     })
 
     return rows

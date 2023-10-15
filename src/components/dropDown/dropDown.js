@@ -13,7 +13,7 @@ import { useRecoilState } from 'recoil';
 
 function DropDownOptions({ data, object }) {
     const { FetchData, load } = GeneralFetch()
-    const [details, setDetails] = useRecoilState(Details)
+    const [, setDetails] = useRecoilState(Details)
 
     function optionEvent(endpoint, method) {
         (async () => {

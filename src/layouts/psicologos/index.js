@@ -10,24 +10,14 @@ import FormGen from 'components/form/formGenerator';
 import { GeneralFetch } from 'Api/generalFetch/generalFetch';
 import { CircularProgress } from '@mui/material';
 import TableRowsGenerator from 'utils/common/TableRowsGenerator';
+import { GetPsychoList } from 'hooks/psicologo/getPsychoList';
 
 export default function Psicologos() {
     const [add, setAdd] = useState(false)
     const [formData, setFormData] = useState({})
     const [page, setPage] = useState(1)
-    const [updatedData, setData] = useState([])
-    const { FetchData, data, load } = GeneralFetch()
-    const { columns, rows } = TableRowsGenerator({ data: updatedData, object: "psychologist" });
-
-    useEffect(() => {
-        (async () => {
-            await FetchData("", 'getPsychologist?page=' + page, 'get', false, 'consultas')
-        })()
-    }, [page])
-
-    useEffect(() => {
-        if (data) setData(data?.data?.psicologos)
-    }, [data])
+    const { data, load } = GetPsychoList({ page })
+    const { columns, rows } = TableRowsGenerator({ data, object: "psychologist" });
 
     const onCancel = () => { setAdd(!add) }
 
