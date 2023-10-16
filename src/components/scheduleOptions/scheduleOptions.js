@@ -40,7 +40,7 @@ export const ScheduleOptions = ({ style, ...restProps }) => {
         <>
             {
                 restProps?.appointmentData ?
-                    <div style={{ background: "#fff" }} >
+                    <div style={{background:"#fff"}} >
                         <div className={styles.container1} >
                             <div className={styles.div} ></div>
                             <div>

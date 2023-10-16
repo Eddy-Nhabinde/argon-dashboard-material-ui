@@ -61,4 +61,5 @@ input:-webkit-autofill:active {
 
 .css-8ludsl.Header-flexContainer {
     background-color: #fff !important;
+    z-index: 10000;
 }

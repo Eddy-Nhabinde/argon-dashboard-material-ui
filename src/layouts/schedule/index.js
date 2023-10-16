@@ -91,7 +91,6 @@ export default function Schedule() {
 
                   <AppointmentTooltip
                     showCloseButton
-
                     contentComponent={ScheduleOptions}
                   />
                 </Scheduler>
