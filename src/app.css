@@ -1,4 +1,4 @@
-body{
+body {
     overflow-x: hidden;
 }
 
@@ -50,10 +50,15 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
 }
-.css-96uzu9{
+
+.css-96uzu9 {
     width: 100% !important;
 }
 
-.ant-pagination-item-link{
+.ant-pagination-item-link {
     margin-top: -3px;
+}
+
+.css-8ludsl.Header-flexContainer {
+    background-color: #fff !important;
 }

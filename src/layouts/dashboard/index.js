@@ -24,21 +24,21 @@ function Dashboard() {
               <Grid item xs={12} md={6} lg={3}>
                 <DetailedStatisticsCard
                   title="Consultas Realizadas"
-                  count={data?.allAppointments?.[0].total || 0}
+                  count={data?.allAppointments?.[2]?.total || 0}
                   icon={{ color: "success", component: <i class="fa-solid fa-check"></i> }}
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={3}>
                 <DetailedStatisticsCard
                   title="Consultas Canceladas"
-                  count={data?.allAppointments?.[2].total || 0}
+                  count={data?.allAppointments?.[1]?.total || 0}
                   icon={{ color: "error", component: <i class="fa-solid fa-xmark"></i> }}
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={3}>
                 <DetailedStatisticsCard
                   title="Consultas Pendentes"
-                  count={data?.allAppointments?.[1].total || 0}
+                  count={data?.allAppointments?.[0]?.total || 0}
                   icon={{ color: "warning", component: <i class="fa-solid fa-calendar-days"></i> }}
                 />
               </Grid>

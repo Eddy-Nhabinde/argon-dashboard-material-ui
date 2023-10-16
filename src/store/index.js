@@ -14,3 +14,9 @@ export const Details = atom({
     key: "Details",
     default: { open: false, data: {} }
 })
+
+export const ModalState = atom({
+    key: "ModalState",
+    default: { open: false }
+})
+

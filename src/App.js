@@ -15,6 +15,7 @@ import SignUp from "layouts/signUp";
 import Alert from "components/alert/alert";
 import { CheckRole } from "utils/common/roleChecker";
 import DetailsView from "components/drawer/DetailsView";
+import { ScheduleOptions } from "components/scheduleOptions/scheduleOptions";
 
 export default function App() {
   const [controller, dispatch] = useArgonController();
@@ -69,6 +70,7 @@ export default function App() {
       )}
 
       {contextHolder}
+      <ScheduleOptions />
       <Alert />
       <DetailsView />
       <Routes>

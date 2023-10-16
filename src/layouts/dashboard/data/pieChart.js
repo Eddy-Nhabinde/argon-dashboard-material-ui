@@ -35,9 +35,9 @@ const pieChartData = (consultas) => {
           show: false
         },
         data: [
-          { value: consultas?.[0]?.total || 0, name: 'Realizadas' },
-          { value: consultas?.[2]?.total || 0, name: 'Canceladas' },
-          { value: consultas?.[1]?.total || 0, name: 'Pendentes' },
+          { value: consultas?.[2]?.total || 0, name: 'Realizadas' },
+          { value: consultas?.[1]?.total || 0, name: 'Canceladas' },
+          { value: consultas?.[0]?.total || 0, name: 'Pendentes' },
         ]
       }
     ]
