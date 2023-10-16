@@ -37,8 +37,8 @@
     {
         "key": "especialidade",
         "label": "Especialidade",
+        "type": "select",
         "valueType": "select",
-        "type": "text",
-        "variant": "standard"
+        "options": []
     }
 ]

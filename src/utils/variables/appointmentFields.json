@@ -35,53 +35,19 @@
         "valueType": "text"
     },
     {
-        "key": "data",
-        "label": "Data da Consulta",
-        "variant": "standard",
-        "type": "date",
-        "valueType": "date"
-    },
-    {
         "key": "problema",
         "label": "Problema",
         "variant": "standard",
         "type": "select",
         "valueType": "select",
-        "options": [
-            {
-                "value": "1",
-                "label": "Masculino"
-            },
-            {
-                "value": "2",
-                "label": "Femenino"
-            },
-            {
-                "value": "2",
-                "label": "Femenino"
-            },
-            {
-                "value": "2",
-                "label": "Femenino"
-            }
-        ]
+        "options": []
     },
     {
-        "key": "psicologo",
-        "label": "Psicologo",
+        "key": "data",
+        "label": "Data da Consulta",
         "variant": "standard",
-        "type": "select",
-        "valueType": "select",
-        "options": [
-            {
-                "value": "m",
-                "label": "Masculino"
-            },
-            {
-                "value": "f",
-                "label": "Femenino"
-            }
-        ]
+        "type": "date",
+        "valueType": "date"
     },
     {
         "key": "hora",
@@ -109,6 +75,23 @@
             {
                 "value": "5",
                 "label": "14:30 - 15:30"
+            }
+        ]
+    },
+    {
+        "key": "psicologo",
+        "label": "Psicologo",
+        "variant": "standard",
+        "type": "select",
+        "valueType": "select",
+        "options": [
+            {
+                "value": "m",
+                "label": "Masculino"
+            },
+            {
+                "value": "f",
+                "label": "Femenino"
             }
         ]
     }

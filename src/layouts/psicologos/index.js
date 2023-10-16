@@ -4,12 +4,13 @@ import ArgonBox from 'argonComponents/ArgonBox';
 import Table from 'argonComponents/Tables/Table';
 import { Button } from 'antd';
 import { UserAddOutlined, CloseOutlined } from '@ant-design/icons';
-import {  useState } from 'react';
+import { useEffect, useState } from 'react';
 import Psicologo from 'utils/variables/Psicologo'
 import FormGen from 'components/form/formGenerator';
 import { CircularProgress } from '@mui/material';
 import TableRowsGenerator from 'utils/common/TableRowsGenerator';
 import { GetPsychoList } from 'hooks/psicologo/getPsychoList';
+import { GetSpecilidade } from 'hooks/psicologo/getSpeciality';
 
 export default function Psicologos() {
     const [add, setAdd] = useState(false)
@@ -17,6 +18,12 @@ export default function Psicologos() {
     const [page, setPage] = useState(1)
     const { data, load } = GetPsychoList({ page })
     const { columns, rows } = TableRowsGenerator({ data, object: "psychologist" });
+    const [options, setOptions] = useState({})
+    const { speciality, loadSpeciality } = GetSpecilidade({ add })
+
+    useEffect(() => {
+        if (speciality) setOptions({ especialidade: speciality })
+    }, [speciality])
 
     const onCancel = () => { setAdd(!add) }
 
@@ -24,7 +31,7 @@ export default function Psicologos() {
 
     return (
         <Layout>
-            {load ? <div style={{ height: "65vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            {load || loadSpeciality ? <div style={{ height: "65vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <CircularProgress />
             </div> :
                 <>
@@ -42,7 +49,7 @@ export default function Psicologos() {
                     <ArgonBox>
                         {
                             add ?
-                                <FormGen onConfirm={onConfirm} onCancel={onCancel} setFormData={setFormData} formData={formData} addPsy={true} fields={Psicologo} />
+                                <FormGen onConfirm={onConfirm} onCancel={onCancel} setFormData={setFormData} formData={formData} addPsy={true} fields={Psicologo} options={options} />
                                 :
                                 <Table setPage={setPage} columns={columns} rows={rows} />
                         }
