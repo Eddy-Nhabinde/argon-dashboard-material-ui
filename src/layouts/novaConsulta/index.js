@@ -9,7 +9,7 @@ import { Verify } from 'utils/appointments/verify';
 export default function NovaConsulta() {
     const [formData, setFormData] = useState({})
     const [options, setOptions] = useState({})
-    const { psicologos } = Verify({ formData })
+    const { psicologos, horaDisponivel } = Verify({ formData })
     const { problemsData, loadProblems } = GetProblems()
 
     useEffect(() => {
@@ -19,6 +19,10 @@ export default function NovaConsulta() {
     useEffect(() => {
         if (psicologos) setOptions(options => ({ ...options, psicologo: psicologos }))
     }, [psicologos])
+
+    useEffect(() => {
+        if (horaDisponivel) setOptions(options => ({ ...options, hora: horaDisponivel }))
+    }, [horaDisponivel])
 
     const onCancel = () => { }
 

@@ -6,11 +6,14 @@
 import { GetPsychoList } from "hooks/psicologo/getPsychoList";
 import { useEffect, useState } from "react";
 import time from '../variables/time.json'
+import { GetBusySchedules } from "hooks/psicologo/getBusySchedules";
+import moment from "moment";
 
 export function Verify({ formData }) {
     const [psicologos, setPsicolgos] = useState([])
+    const [horaDisponivel, setHoras] = useState([])
     const { data, load } = GetPsychoList({ paging: 'false', page: 0 })
-
+    const { busyDays, loadBusyDays } = GetBusySchedules()
 
     function updateKeys(finalList) {
         for (let i = 0; i < finalList?.length; i++) {
@@ -21,7 +24,23 @@ export function Verify({ formData }) {
         return finalList
     }
 
-    function getBusySchedules() {
+    function getBusySchedules(availableTime) {
+        let dia = new Date(formData?.data)
+        let copyTime = [...availableTime]
+
+        busyDays?.busySchedules.map((val) => {
+            let busyDay = new Date(val?.data)
+            if (moment(dia).format('l') == moment(busyDay).format('l')) {
+                availableTime?.map((time, index) => {
+                    if (time.id == val.hora)
+                        copyTime.splice(index, 1)
+                })
+            }
+        })
+        return copyTime
+    }
+
+    function filterByProblem() {
 
     }
 
@@ -59,8 +78,8 @@ export function Verify({ formData }) {
                     }
                 }
             }
-            console.log(availableTime)
         }
+        return getBusySchedules(availableTime)
     }
 
     useEffect(() => {
@@ -70,9 +89,9 @@ export function Verify({ formData }) {
         if (formData?.data) filteredData = filterByAvailability()
         if (formData?.psicologo) availableTime = getPsychologistAvailableTime(filteredData)
 
-
+        setHoras(availableTime)
         setPsicolgos(updateKeys(filteredData))
     }, [formData])
 
-    return { psicologos }
+    return { psicologos, horaDisponivel }
 }

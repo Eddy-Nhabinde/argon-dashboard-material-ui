@@ -72,27 +72,6 @@
         "variant": "standard",
         "type": "select",
         "valueType": "select",
-        "options": [
-            {
-                "value": "1",
-                "label": "08:30 - 09:30"
-            },
-            {
-                "value": "2",
-                "label": "10:00 - 11:00"
-            },
-            {
-                "value": "3",
-                "label": "11:30 - 12:30"
-            },
-            {
-                "value": "4",
-                "label": "13:00 - 14:00"
-            },
-            {
-                "value": "5",
-                "label": "14:30 - 15:30"
-            }
-        ]
+        "options": []
     }
 ]
