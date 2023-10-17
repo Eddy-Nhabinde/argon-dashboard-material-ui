@@ -12,14 +12,14 @@ const style = {
 
 function Input({ type, placeholder, keyy, onChange, label, value, min, max, zerar, variant }) {
     const maxWidth = useMediaQuery('(max-width: 420px)')
-
+    console.log(maxWidth && placeholder == 'Ocupação',placeholder)
     return (
         <TextField
             sx={style}
             type={type}
             variant='outlined'
             placeholder={placeholder}
-            style={maxWidth ? { marginTop: "-23px", marginBottom: "-1000px" } : {}}
+            style={maxWidth && placeholder == 'Ocupação' ? { marginTop: "-23px", marginBottom: "-30px" } : maxWidth ? { marginTop: "-23px" } : {}}
             // value={formData[campos.key]}
             // helperText={helper?.[campos.key]}
             // disabled={Disable(campos.key)}

@@ -40,6 +40,7 @@ function GenericFields(props) {
                     variant={variant}
                     formData={formData}
                     placeholder={placeholder}
+
                 />
             )
 
@@ -71,20 +72,24 @@ function GenericFields(props) {
             )
 
         case 'radio':
+
             return (
-                <RadioButtonsGroup
-                    label={label}
-                    options={options}
-                    onChange={onChange}
-                    variant={variant}
-                    keyy={keyy}
-                    formData={formData}
-                />
+                <div style={maxWidth ? { marginTop: "10px", marginBottom: "25px" } : {}} >
+                    <RadioButtonsGroup
+                        label={label}
+                        options={options}
+                        onChange={onChange}
+                        variant={variant}
+                        keyy={keyy}
+                        formData={formData}
+                    />
+                </div>
             )
 
         case 'date':
             let style = { height: "40px", }
             if (maxWidth) style = { height: "40px", marginTop: "10px" }
+
             return (
                 <DatePicker
                     style={style}

@@ -17,7 +17,7 @@ header::before {
     background-color: #4070f4;
 }
 
-.formContainer{
+.formContainer {
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -27,12 +27,39 @@ header::before {
     width: 100vw;
 }
 
-.content{
+.content {
     position: relative;
     width: 80%;
     border-radius: 6px;
     padding: 30px;
     margin: 0 15px;
     background-color: #fff;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 480px) {
+    .formContainer {
+        padding: 10px 0 10px 0;
+    }
+
+    .content {
+        width: 90%;
+        padding: 10px;
+    }
+
+    header {
+        position: relative;
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .content {
+        padding: 10px;
+        width: 90%;
+    }
 }

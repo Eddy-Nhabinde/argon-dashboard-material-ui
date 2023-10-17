@@ -23,7 +23,7 @@
     .container {
         grid-template-columns: 49% 50% !important;
         justify-content: space-between;
-        padding: 20px 40px 0 30px;
+        padding: 20px 20px 0 15px;
     }
 }
 

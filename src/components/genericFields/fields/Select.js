@@ -9,7 +9,9 @@ export default function Selects({ size = "large", keyy, style, data, label, onCh
     let estilo = { cursor: "pointer", height: "40px" }
 
     if (mobile && keyy == 'problema') estilo = { ...estilo, marginTop: "-21px" }
+    else if (mobile && keyy == 'estadoCivil') estilo = { ...estilo, marginTop: "-21px", marginBottom: "35px" }
     else if (mobile) estilo = { ...estilo, marginTop: "10px" }
+
     if (tablet && keyy == 'hora') estilo = { ...estilo, marginTop: "21px" }
 
     return (
