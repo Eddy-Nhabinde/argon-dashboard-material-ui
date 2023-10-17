@@ -1,7 +1,6 @@
 import React from 'react'
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import styles from './Fields.module.css'
-import { TextField } from "@mui/material"
+import { TextField, useMediaQuery } from "@mui/material"
 
 const style = {
     "& .MuiOutlinedInput-root": {
@@ -12,6 +11,7 @@ const style = {
 }
 
 function Input({ type, placeholder, keyy, onChange, label, value, min, max, zerar, variant }) {
+    const maxWidth = useMediaQuery('(max-width: 420px)')
 
     return (
         <TextField
@@ -19,7 +19,7 @@ function Input({ type, placeholder, keyy, onChange, label, value, min, max, zera
             type={type}
             variant='outlined'
             placeholder={placeholder}
-            // style={{ lineHeight: '23vw' }}
+            style={maxWidth ? { marginTop: "-23px", marginBottom: "-1000px" } : {}}
             // value={formData[campos.key]}
             // helperText={helper?.[campos.key]}
             // disabled={Disable(campos.key)}

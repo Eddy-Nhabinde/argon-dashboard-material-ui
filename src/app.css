@@ -67,3 +67,7 @@ input:-webkit-autofill:active {
 .css-1j5rxij {
     display: flex;
 }
+
+header::before {
+    background-color: #fff !important
+}

@@ -13,4 +13,25 @@
     font-size: 27px;
     font-weight: 500;
     text-transform: capitalize;
+    transition: ease 0.4;
+}
+
+@media screen and (max-width: 420px) {
+    .formTitle h1 {
+        border-left: 4px solid #36558F;
+        margin: 5px 0 30px -10px;
+        padding: 5px 0 4px 35px;
+        font-size: 21px;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width:677px) {
+    .formTitle h1 {
+        border-left: 4px solid #36558F;
+        margin: 10px 0 30px -10px;
+        padding: 5px 0 4px 35px;
+        font-size: 21px;
+        margin-bottom: 30px;
+    }
 }

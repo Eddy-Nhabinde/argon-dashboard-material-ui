@@ -9,9 +9,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { DatePicker } from 'antd';
 import MaskPassword from './fields/Password.js';
+import { useMediaQuery } from '@mui/material';
 
 
 function GenericFields(props) {
+    const maxWidth = useMediaQuery('(max-width: 420px)')
+
     const { keyy, size, label, type, onChange, value, options, placeholder, styles, variant, setFormData, formData, designacao } = props
 
     switch (type) {
@@ -80,9 +83,11 @@ function GenericFields(props) {
             )
 
         case 'date':
+            let style = { height: "40px", }
+            if (maxWidth) style = { height: "40px", marginTop: "10px" }
             return (
                 <DatePicker
-                    style={{ height: "40px" }}
+                    style={style}
                     onChange={(e) => { onChange(keyy, e.$d) }}
                     placeholder={placeholder}
                 />

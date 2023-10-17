@@ -19,8 +19,29 @@
     font-size: 1.2vw;
     font-weight: 500;
     line-height: 1;
-    text-transform: uppercase;
+    text-transform: capitalize;
     overflow: hidden;
     transition: 0.3s ease;
     color: '#e3e3e3'
+}
+
+@media screen and (min-width:300px) and (max-width: 677px) {
+    .button {
+        outline: 0;
+        cursor: pointer;
+        position: relative;
+        width: 50%;
+        border: 0;
+        border-radius: 5px;
+        padding: 8px 0;
+        font-size: 2.3vw;
+    }
+}
+
+@media screen and (max-width: 677px) {
+    .buttonContainerRegister {
+        width: 50%;
+        margin-left: -50px;
+        margin-top: 15px;
+    }
 }
