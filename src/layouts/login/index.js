@@ -37,12 +37,12 @@ export default function Login() {
                 setUpdate(true)
                 setFormData({})
             } else {
-                localStorage.setItem("token", data?.access_token)
-                localStorage.setItem("uId", data?.user?.id)
-                localStorage.setItem("acesso", data?.user?.acesso)
-                localStorage.setItem("email", data?.user?.email)
-                localStorage.setItem("nome", data?.user?.nome.split(" ")[0])
-                localStorage.setItem("apelido", data?.user?.nome.split(" ")[1])
+                sessionStorage.setItem("token", data?.access_token)
+                sessionStorage.setItem("uId", data?.user?.id)
+                sessionStorage.setItem("acesso", data?.user?.acesso)
+                sessionStorage.setItem("email", data?.user?.email)
+                sessionStorage.setItem("nome", data?.user?.nome.split(" ")[0])
+                sessionStorage.setItem("apelido", data?.user?.nome.split(" ")[1])
 
                 navigate("/Inicio")
             }

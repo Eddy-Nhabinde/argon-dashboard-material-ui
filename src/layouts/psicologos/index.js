@@ -17,7 +17,7 @@ export default function Psicologos() {
     const [formData, setFormData] = useState({})
     const [page, setPage] = useState(1)
     const { data, load } = GetPsychoList({ page })
-    const { columns, rows } = TableRowsGenerator({ data, object: "psychologist" });
+    const { columns, rows } = TableRowsGenerator({ data: data?.data, object: "psychologist" });
     const [options, setOptions] = useState({})
     const { speciality, loadSpeciality } = GetSpecilidade({ add })
 
@@ -51,7 +51,7 @@ export default function Psicologos() {
                             add ?
                                 <FormGen onConfirm={onConfirm} onCancel={onCancel} setFormData={setFormData} formData={formData} addPsy={true} fields={Psicologo} options={options} />
                                 :
-                                <Table setPage={setPage} columns={columns} rows={rows} />
+                                <Table setPage={setPage} columns={columns} rows={rows} data={data} />
                         }
                     </ArgonBox>
                 </>

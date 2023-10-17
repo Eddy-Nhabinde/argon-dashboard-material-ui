@@ -4,18 +4,21 @@ import Layout from "components/layout/mainLayout";
 import FormGen from "components/form/formGenerator";
 import { useEffect, useState } from 'react';
 import { GetProblems } from 'hooks/appointments/getProblems';
-import { GetPsychoList } from 'hooks/psicologo/getPsychoList';
+import { Verify } from 'utils/appointments/verify';
 
 export default function NovaConsulta() {
     const [formData, setFormData] = useState({})
     const [options, setOptions] = useState({})
-
+    const { psicologos } = Verify({ formData })
     const { problemsData, loadProblems } = GetProblems()
-    const { data, load } = GetPsychoList({ paging: 'false' })
 
     useEffect(() => {
         if (problemsData) setOptions(options => ({ ...options, problema: problemsData }))
     }, [problemsData])
+
+    useEffect(() => {
+        if (psicologos) setOptions(options => ({ ...options, psicologo: psicologos }))
+    }, [psicologos])
 
     const onCancel = () => { }
 

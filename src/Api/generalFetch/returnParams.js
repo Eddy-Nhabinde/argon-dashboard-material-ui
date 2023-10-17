@@ -1,6 +1,6 @@
 export default function ReturnParams({ setLoad }) {
     let headerss = {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
         'Content-Type': 'application/json',
         "Accept": "application/json",
     }

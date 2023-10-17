@@ -41,7 +41,7 @@ function PopoverPopupState({ classes }) {
         (async () => {
             await FetchData(null, 'logout', 'POST', false, 'user')
         })()
-        localStorage.clear();
+        sessionStorage.clear();
         navigate('/')
     }
 

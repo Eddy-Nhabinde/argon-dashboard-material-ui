@@ -1,5 +1,7 @@
 import { GeneralFetch } from "Api/generalFetch/generalFetch"
 import { useEffect } from "react"
+import { useRecoilState } from "recoil"
+import { PsychoList } from "store"
 
 export function GetPsychoList({ page, paging = 'true' }) {
     const { FetchData, load, data } = GeneralFetch()
@@ -10,5 +12,5 @@ export function GetPsychoList({ page, paging = 'true' }) {
         })()
     }, [page])
 
-    return { data: data?.data?.psicologos, load }
+    return { data, load }
 }

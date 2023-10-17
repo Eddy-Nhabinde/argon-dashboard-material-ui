@@ -20,3 +20,8 @@ export const ModalState = atom({
     default: { open: false }
 })
 
+export const PsychoList = atom({
+    key: "PsychoList",
+    default: []
+})
+

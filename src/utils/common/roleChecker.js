@@ -1,6 +1,6 @@
 export function CheckRole(access) {
 
-    switch (localStorage.getItem('acesso')) {
+    switch (sessionStorage.getItem('acesso')) {
         case 'normal':
             if (access == 'all' || access == 'admin and normal') return true
             else return false

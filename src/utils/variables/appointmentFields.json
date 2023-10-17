@@ -50,6 +50,23 @@
         "valueType": "date"
     },
     {
+        "key": "psicologo",
+        "label": "Psicologo",
+        "variant": "standard",
+        "type": "select",
+        "valueType": "select",
+        "options": [
+            {
+                "value": "m",
+                "label": "Masculino"
+            },
+            {
+                "value": "f",
+                "label": "Femenino"
+            }
+        ]
+    },
+    {
         "key": "hora",
         "label": "Hora",
         "variant": "standard",
@@ -75,23 +92,6 @@
             {
                 "value": "5",
                 "label": "14:30 - 15:30"
-            }
-        ]
-    },
-    {
-        "key": "psicologo",
-        "label": "Psicologo",
-        "variant": "standard",
-        "type": "select",
-        "valueType": "select",
-        "options": [
-            {
-                "value": "m",
-                "label": "Masculino"
-            },
-            {
-                "value": "f",
-                "label": "Femenino"
             }
         ]
     }

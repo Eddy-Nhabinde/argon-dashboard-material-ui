@@ -5,8 +5,8 @@ export function GetDashData() {
     const { FetchData, load, data } = GeneralFetch()
 
     function getEndPoint() {
-        if (localStorage.getItem('acesso') == 'admin') return 'getDashBoardData'
-        else return 'getDashBoardData?user_id=' + localStorage.getItem('uId')
+        if (sessionStorage.getItem('acesso') == 'admin') return 'getDashBoardData'
+        else return 'getDashBoardData?user_id=' + sessionStorage.getItem('uId')
     }
 
     useEffect(() => {
