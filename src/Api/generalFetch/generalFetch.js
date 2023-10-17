@@ -31,8 +31,8 @@ export function GeneralFetch() {
                             setData(data)
                         }
                     }
-                    setLoad(false)
                 }
+                setLoad(false)
             })
     }
 

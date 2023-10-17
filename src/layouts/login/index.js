@@ -44,8 +44,8 @@ export default function Login() {
                 sessionStorage.setItem("nome", data?.user?.nome.split(" ")[0])
                 sessionStorage.setItem("apelido", data?.user?.nome.split(" ")[1])
 
-                if (data?.user?.acesso == 'paciente') navigate("/consult")
-                else navigate("/consult")
+                if (data?.user?.acesso == 'paciente') navigate("/consultas")
+                else navigate("/inicio")
             }
         }
     }, [data])

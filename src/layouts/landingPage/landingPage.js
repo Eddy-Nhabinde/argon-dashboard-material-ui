@@ -2,10 +2,11 @@ import PageLayout from "argonComponents/LayoutContainers/PageLayout";
 import im from '../../assets/images/consultaPsi.jpg'
 import './landingPage.css'
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "usehooks-ts";
 
 export default function LandingPage() {
     const navigate = useNavigate();
-
+    let minWidth = useMediaQuery('(max-width: 672px)')
     return (
         <PageLayout>
             <div style={{ overflowX: "hidden !important" }} >
@@ -85,7 +86,7 @@ export default function LandingPage() {
                                 </div>
                                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
                                     <div class="h-100">
-                                        <div class="d-flex flex-column" style={{ alignItems: 'center', rowGap: '5px', borderRight: "solid 1px #D8E4FF", borderLeft: "solid 1px #D8E4FF" }}>
+                                        <div class="d-flex flex-column" style={minWidth ? { alignItems: 'center', rowGap: '5px' } : { alignItems: 'center', rowGap: '5px', borderRight: "solid 1px #D8E4FF", borderLeft: "solid 1px #D8E4FF" }}>
                                             <div class="iconContainer">
                                                 <i class="fa-solid fa-clock"></i>
                                             </div>
@@ -133,7 +134,7 @@ export default function LandingPage() {
                                 </div>
                                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
                                     <div class="h-100">
-                                        <div class="d-flex flex-column" style={{ alignItems: 'center', rowGap: '5px', borderRight: "solid 1px #D8E4FF", borderLeft: "solid 1px #D8E4FF" }}>
+                                        <div class="d-flex flex-column" style={minWidth ? { alignItems: 'center', rowGap: '5px' } : { alignItems: 'center', rowGap: '5px', borderRight: "solid 1px #D8E4FF", borderLeft: "solid 1px #D8E4FF" }}>
                                             <div class="iconContainer">
                                                 <i class="fa-solid fa-star"></i>
                                             </div>
