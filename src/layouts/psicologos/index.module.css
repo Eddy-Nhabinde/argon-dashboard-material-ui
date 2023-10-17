@@ -18,3 +18,30 @@
 .button {
     margin: 30px 30px 30px 0px;
 }
+
+@media screen and (max-width: 480px) {
+    .pageTitle h1 {
+        border-left: 4px solid #36558F;
+        margin: 3px 0 30px -10px;
+        padding: 5px 0 4px 20px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 790px) {
+    .pageTitle h1 {
+        border-left: 4px solid #36558F;
+        margin: 30px 0 30px -10px;
+        padding: 5px 0 4px 20px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 643px) {
+    .pageTitle h1 {
+        border-left: 4px solid #36558F;
+        margin: 7px 0 30px -10px;
+        padding: 5px 0 4px 20px;
+        font-size: 20px;
+    }
+}

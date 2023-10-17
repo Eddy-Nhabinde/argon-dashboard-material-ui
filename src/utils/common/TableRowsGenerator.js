@@ -1,6 +1,6 @@
 import ArgonBox from "argonComponents/ArgonBox";
 import ArgonTypography from "argonComponents/ArgonTypography";
-import { getTableHeaders } from "utils/tableData/tableHeadersAndData";
+import { GetTableHeaders } from "utils/tableData/tableHeadersAndData";
 import { IconButton } from "@mui/material";
 import DropDownOptions from "components/dropDown/dropDown";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -71,6 +71,11 @@ function getRowsObject(val, object, tab, infoClick) {
             {Actions(object, tab, val, infoClick)}
           </ArgonTypography>
         ),
+        estado: (
+          <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+            {val?.estado}
+          </ArgonTypography>
+        ),
       }
     case "psychologist":
       return {
@@ -124,7 +129,7 @@ function TableRowsGenerator({ data, object, tab }) {
   }
 
   return {
-    columns: getTableHeaders(object),
+    columns: GetTableHeaders(object),
     rows: getRows()
   }
 };

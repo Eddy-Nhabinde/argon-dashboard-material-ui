@@ -1,7 +1,7 @@
 export function CheckRole(access) {
 
     switch (sessionStorage.getItem('acesso')) {
-        case 'normal':
+        case 'paciente':
             if (access == 'all' || access == 'admin and normal') return true
             else return false
         case 'psicologo':
@@ -12,3 +12,4 @@ export function CheckRole(access) {
             else return false
     }
 }
+

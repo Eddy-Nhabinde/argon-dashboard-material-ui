@@ -72,7 +72,7 @@ function Table({ setPage, columns, rows, data, page }) {
         opacity={0.7}
         sx={({ palette: { light } }) => ({ borderBottom: `${borderWidth[1]} solid ${light.main}` })}
       >
-        {name.toUpperCase()}
+        {name?.toUpperCase()}
       </ArgonBox>
     );
   });

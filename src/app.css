@@ -63,3 +63,7 @@ input:-webkit-autofill:active {
     background-color: #fff !important;
     z-index: 10000;
 }
+
+.css-1j5rxij {
+    display: flex;
+}

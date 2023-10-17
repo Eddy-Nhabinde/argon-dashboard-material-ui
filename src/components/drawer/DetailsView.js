@@ -21,7 +21,6 @@ const DetailsView = () => {
         setDetails({ open: false });
     };
 
-    console.log(historico)
     return (
 
         <Drawer

@@ -36,12 +36,16 @@ import {
 } from "context";
 
 import PerfilSection from "argonComponents/ProfileSection/Perfil";
+import { useMediaQuery } from "usehooks-ts";
 
 function DashboardNavbar({ absolute, light, isMini, showTitle }) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useArgonController();
   const { miniSidenav, transparentNavbar, fixedNavbar } = controller;
   const route = useLocation().pathname.split("/").slice(1);
+  const maxWidth = useMediaQuery('(max-width: 480px)')
+  const maxWidth2 = useMediaQuery('(max-width: 370px)')
+
 
   useEffect(() => {
     // Setting the navbar type
@@ -83,13 +87,13 @@ function DashboardNavbar({ absolute, light, isMini, showTitle }) {
           mb={{ xs: 1, md: 0 }}
           sx={(theme) => navbarRow(theme, { isMini })}
         >
-          <Breadcrumbs
+          {!maxWidth && <Breadcrumbs
             icon="home"
             title={route[route.length - 1]}
             route={route}
             light={transparentNavbar ? light : false}
             showTitle={showTitle}
-          />
+          />}
           <Icon fontSize="medium" sx={navbarDesktopMenu} onClick={handleMiniSidenav}>
             {miniSidenav ? "menu_open" : "menu"}
           </Icon>
@@ -98,7 +102,7 @@ function DashboardNavbar({ absolute, light, isMini, showTitle }) {
         <ArgonBox sx={(theme) => navbarRow(theme, { isMini })}>
           <ArgonBox pr={1}>
             <TextField
-              style={{ width: '300px' }}
+              style={!maxWidth ? { width: '300px' } : maxWidth2 ? { width: '90%' } : { width: '100%' }}
               placeholder="Type here..."
               InputProps={{
                 startAdornment:
@@ -109,20 +113,20 @@ function DashboardNavbar({ absolute, light, isMini, showTitle }) {
             />
           </ArgonBox>
 
-          <ArgonBox color={light ? "white" : "inherit"}>
-            <IconButton
-              size="small"
-              color={light && transparentNavbar ? "white" : "dark"}
-              sx={navbarMobileMenu}
-              onClick={handleMiniSidenav}
-            >
-              <Icon>{miniSidenav ? "menu_open" : "menu"}</Icon>
-            </IconButton>
+            <ArgonBox color={light ? "white" : "inherit"}>
+              <IconButton
+                size="small"
+                color={light && transparentNavbar ? "white" : "dark"}
+                sx={navbarMobileMenu}
+                onClick={handleMiniSidenav}
+              >
+                <Icon>{miniSidenav ? "menu_open" : "menu"}</Icon>
+              </IconButton>
 
-            <IconButton sx={navbarIconButton} size="small">
-              <PerfilSection />
-            </IconButton>
-          </ArgonBox>
+              <IconButton sx={navbarIconButton} size="small">
+                <PerfilSection />
+              </IconButton>
+            </ArgonBox>
         </ArgonBox>
       </Toolbar>
     </AppBar>

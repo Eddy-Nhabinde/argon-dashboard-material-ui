@@ -260,3 +260,9 @@
     transform: perspective(120px) rotateY(180deg) rotateX(180deg);
   }
 }
+
+@media screen and (max-width: 480px) {
+  .login {
+    width: 330px;
+  }
+}
