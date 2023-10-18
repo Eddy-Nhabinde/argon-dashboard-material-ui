@@ -4,6 +4,7 @@
         "label": "Nome",
         "valueType": "text",
         "type": "text",
+        "required": true,
         "variant": "standard"
     },
     {
@@ -11,19 +12,21 @@
         "label": "Apelido",
         "valueType": "text",
         "type": "text",
+        "required": true,
         "variant": "standard"
     },
     {
         "key": "email",
         "label": "Email",
-        "valueType": "text",
+        "valueType": "email",
         "type": "text",
+        "required": true,
         "variant": "standard"
     },
     {
         "key": "estadoCivil",
         "label": "Estado Civil",
-        "valueType": "select",
+        "valueType": "text",
         "type": "select",
         "options": [
             {
@@ -49,6 +52,7 @@
         "label": "Ocupação",
         "valueType": "text",
         "type": "text",
+        "required": true,
         "variant": "standard"
     },
     {
@@ -56,6 +60,7 @@
         "label": "Data de Nascimento",
         "valueType": "date",
         "type": "date",
+        "required": true,
         "variant": "standard"
     },
     {
@@ -80,6 +85,7 @@
         "label": "Contacto Principal",
         "valueType": "text",
         "type": "text",
+        "required": true,
         "variant": "standard"
     },
     {
@@ -87,6 +93,7 @@
         "label": "Contacto Opcional",
         "valueType": "text",
         "type": "text",
+        "required": false,
         "variant": "standard"
     },
     {
@@ -94,6 +101,7 @@
         "label": "Senha",
         "valueType": "password",
         "type": "password",
+        "required": true,
         "variant": "standard"
     },
     {
@@ -101,6 +109,7 @@
         "label": "Confirme a senha",
         "valueType": "password",
         "type": "password",
+        "required": true,
         "variant": "standard"
     }
 ]

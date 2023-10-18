@@ -32,7 +32,7 @@ export default function NovaConsulta() {
 
     const onConfirm = () => {
         let response = Validate(formData)
-        if (response == true) console.log(11)
+        if (response == true) console.log(formData)
         else setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))
     }
 

@@ -4,6 +4,9 @@ export function ValidateParams(type, value) {
         case 'text':
             return value?.length > 0
 
+        case 'password':
+            return value?.length > 0
+
         case 'number':
             return typeof value == 'number'
 

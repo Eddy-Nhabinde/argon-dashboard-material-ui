@@ -6,19 +6,22 @@ import { useNavigate } from "react-router-dom";
 import appointmentFields from 'utils/variables/paciente.json'
 import { useRecoilState } from "recoil";
 import { Role } from "store";
+import { AlertState } from "store";
+import { ValidateUser } from "utils/validation/validateUser";
 
 export default function SignUp() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ paciente: true })
     const [, setRole] = useRecoilState(Role)
     const { FetchData, data, load } = GeneralFetch()
+    const [alert, setAlert] = useRecoilState(AlertState)
 
     const onCancel = () => { navigate(-1) }
 
     const onConfirm = () => {
-        (async () => {
-            await FetchData(formData, 'saveuser', 'post', false, '')
-        })()
+        let response = ValidateUser(formData)
+        if (response == true) console.log(formData)
+        else setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))
     }
 
     useEffect(() => {

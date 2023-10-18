@@ -13,7 +13,7 @@ export default function Selects({ size = "large", keyy, style, data, label, onCh
     else if (mobile) estilo = { ...estilo, marginTop: "10px" }
 
     if (tablet && keyy == 'hora') estilo = { ...estilo, marginTop: "21px" }
-console.log(data)
+
     return (
         <Select
             showSearch
