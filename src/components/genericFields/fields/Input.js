@@ -12,7 +12,7 @@ const style = {
 
 function Input({ type, placeholder, keyy, onChange, label, value, min, max, zerar, variant }) {
     const maxWidth = useMediaQuery('(max-width: 420px)')
-    console.log(maxWidth && placeholder == 'Ocupação',placeholder)
+
     return (
         <TextField
             sx={style}

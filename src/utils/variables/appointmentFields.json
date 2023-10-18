@@ -4,6 +4,7 @@
         "label": "Nome",
         "variant": "standard",
         "type": "text",
+        "required":true,
         "valueType": "text"
     },
     {
@@ -11,6 +12,7 @@
         "label": "Apelido",
         "variant": "standard",
         "type": "text",
+        "required":true,
         "valueType": "text"
     },
     {
@@ -18,28 +20,32 @@
         "label": "Email",
         "variant": "standard",
         "type": "text",
-        "valueType": "text"
+        "required":true,
+        "valueType": "email"
     },
     {
         "key": "contacto1",
         "label": "Contacto Principal",
         "variant": "standard",
         "type": "text",
-        "valueType": "text"
+        "required":true,
+        "valueType": "contact"
     },
     {
         "key": "contacto2",
         "label": "Contacto Opcional",
         "variant": "standard",
         "type": "text",
-        "valueType": "text"
+        "required":false,
+        "valueType": "contact"
     },
     {
         "key": "problema",
         "label": "Problema",
         "variant": "standard",
         "type": "select",
-        "valueType": "select",
+        "required":true,
+        "valueType": "number",
         "options": []
     },
     {
@@ -47,6 +53,7 @@
         "label": "Data da Consulta",
         "variant": "standard",
         "type": "date",
+        "required":true,
         "valueType": "date"
     },
     {
@@ -54,24 +61,17 @@
         "label": "Psicologo",
         "variant": "standard",
         "type": "select",
-        "valueType": "select",
-        "options": [
-            {
-                "value": "m",
-                "label": "Masculino"
-            },
-            {
-                "value": "f",
-                "label": "Femenino"
-            }
-        ]
+        "required":true,
+        "valueType": "number",
+        "options": []
     },
     {
         "key": "hora",
         "label": "Hora",
         "variant": "standard",
         "type": "select",
-        "valueType": "select",
+        "required":true,
+        "valueType": "text",
         "options": []
     }
 ]

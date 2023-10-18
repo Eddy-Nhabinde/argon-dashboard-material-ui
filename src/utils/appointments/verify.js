@@ -32,7 +32,7 @@ export function Verify({ formData }) {
             let busyDay = new Date(val?.data)
             if (moment(dia).format('l') == moment(busyDay).format('l')) {
                 availableTime?.map((time, index) => {
-                    if (time.id == val.hora)
+                    if (time.value == val.hora)
                         copyTime.splice(index, 1)
                 })
             }
@@ -48,7 +48,7 @@ export function Verify({ formData }) {
         let dia = new Date(formData?.data)
         let filteredPsychologist = []
 
-        for (let i = 0; i < data?.data.length; i++) {
+        for (let i = 0; i < data?.data?.length; i++) {
             for (let j = 0; j < data?.data?.[i]?.disponibilidade?.length; j++)
                 if (data?.data?.[i]?.disponibilidade?.[j]?.diaDaSemana == dia?.getDay()) {
                     filteredPsychologist.push(data?.data?.[i])
@@ -69,7 +69,7 @@ export function Verify({ formData }) {
                 for (let j = 0; j < filteredData?.[i]?.disponibilidade?.length; j++) {
                     if (filteredData?.[i]?.disponibilidade?.[j].diaDaSemana == dia.getDay()) {
                         time.map((hora) => {
-                            if (hora.id == filteredData?.[i]?.disponibilidade?.[j]?.inicio) insert = true
+                            if (hora.value == filteredData?.[i]?.disponibilidade?.[j]?.inicio) insert = true
 
                             if (insert) availableTime.push(hora)
 

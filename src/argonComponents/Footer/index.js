@@ -62,11 +62,8 @@ function Footer({ company, links }) {
       >
         &copy; {new Date().getFullYear()}, desenvolvido com
         <ArgonBox fontSize={size.md} color="text" mb={-0.5} mx={0.25}>
-          <Icon color="inherit" fontSize="inherit">
-            favorite
-          </Icon>
         </ArgonBox>
-        pelo
+        por
         <ArgonTypography variant="button" fontWeight="medium">
           &nbsp; Edmilson Nhabinde &nbsp;
         </ArgonTypography>

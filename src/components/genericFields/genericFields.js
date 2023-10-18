@@ -93,7 +93,7 @@ function GenericFields(props) {
             return (
                 <DatePicker
                     style={style}
-                    onChange={(e) => { onChange(keyy, e.$d) }}
+                    onChange={(e) => { onChange(keyy, e?.$d) }}
                     placeholder={placeholder}
                 />
             )
