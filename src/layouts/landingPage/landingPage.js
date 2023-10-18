@@ -7,6 +7,7 @@ import { useMediaQuery } from "usehooks-ts";
 export default function LandingPage() {
     const navigate = useNavigate();
     let minWidth = useMediaQuery('(max-width: 672px)')
+    
     return (
         <PageLayout>
             <div style={{ overflowX: "hidden !important" }} >

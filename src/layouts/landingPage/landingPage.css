@@ -51,6 +51,37 @@
     position: relative;
 }
 
+@media screen and (max-width:994px) {
+    .Vantagens {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .Porqueapostar p {
+        display: none !important;
+    }
+
+    .Porqueapostar h1 {
+        font-size: 20px !important;
+        text-align: center !important;
+    }
+
+    .feature-box {
+        display: flex !important;
+    }
+
+    .vantagebsContainer i {
+        font-size: 40px !important;
+    }
+
+    .vantagebsContainer h4 {
+        margin: 10px 0 0 30px
+    }
+    .row {
+       font-size: 10px;
+    }
+}
+
 @media screen and (max-width: 672px) {
     .categoryWrapper {
         height: 50vh;
@@ -69,7 +100,16 @@
     .navbar-brand {
         margin-left: 0px;
     }
+
+    #ContServ {
+        padding: 10px !important;
+    }
+
+    #ContServ p {
+        font-size: 13px !important;
+    }
 }
+
 
 .categoryWrapper:hover:after {
     opacity: 0.4;
@@ -323,6 +363,7 @@
     margin-bottom: -2px;
     font-weight: 300;
     transition: .5s;
+    margin-left: -10px !important;
 }
 
 #servicos p:hover {
@@ -351,4 +392,5 @@
 .border-bottom {
     text-decoration: none !important;
     color: #eee;
+    border: none !important;
 }
