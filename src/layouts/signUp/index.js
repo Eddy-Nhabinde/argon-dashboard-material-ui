@@ -7,7 +7,7 @@ import appointmentFields from 'utils/variables/paciente.json'
 import { useRecoilState } from "recoil";
 import { Role } from "store";
 import { AlertState } from "store";
-import { ValidateUser } from "utils/validation/validateUser";
+import { Validate } from "utils/validation/validate";
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function SignUp() {
     const onCancel = () => { navigate(-1) }
 
     const onConfirm = () => {
-        let response = ValidateUser(formData)
+        let response = Validate(formData, 'user')
         if (response == true) console.log(formData)
         else setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))
     }

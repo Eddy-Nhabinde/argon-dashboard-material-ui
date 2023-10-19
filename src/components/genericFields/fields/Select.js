@@ -2,7 +2,7 @@ import React from 'react';
 import { Select } from 'antd';
 import { useMediaQuery } from '@mui/material';
 
-export default function Selects({ size = "large", keyy, style, data, label, onChange, formData }) {
+export default function Selects({ size = "large", keyy, style, data, label, onChange, formData, day = null, value }) {
     const mobile = useMediaQuery('(max-width: 420px)')
     const tablet = useMediaQuery('(max-width: 677px)')
 
@@ -19,9 +19,9 @@ export default function Selects({ size = "large", keyy, style, data, label, onCh
             showSearch
             placeholder={label}
             optionFilterProp="children"
-            onChange={(value) => onChange(keyy, value)}
+            onChange={(value) => onChange(keyy, value, day)}
             style={{ ...style, ...estilo }}
-            value={formData?.[keyy] || null}
+            value={value || formData?.[keyy] || null}
             size={size}
             filterOption={(input, option) =>
                 (option?.label ?? '').toLowerCase().includes(input.toLowerCase())

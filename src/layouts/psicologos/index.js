@@ -11,6 +11,9 @@ import { CircularProgress } from '@mui/material';
 import TableRowsGenerator from 'utils/common/TableRowsGenerator';
 import { GetPsychoList } from 'hooks/psicologo/getPsychoList';
 import { GetSpecilidade } from 'hooks/psicologo/getSpeciality';
+import { Validate } from 'utils/validation/validate';
+import { useRecoilState } from 'recoil';
+import { AlertState } from 'store';
 
 export default function Psicologos() {
     const [add, setAdd] = useState(false)
@@ -20,6 +23,7 @@ export default function Psicologos() {
     const { columns, rows } = TableRowsGenerator({ data: data?.data, object: "psychologist" });
     const [options, setOptions] = useState({})
     const { speciality, loadSpeciality } = GetSpecilidade({ add })
+    const [alert, setAlert] = useRecoilState(AlertState)
 
     useEffect(() => {
         if (speciality) setOptions({ especialidade: speciality })
@@ -27,7 +31,12 @@ export default function Psicologos() {
 
     const onCancel = () => { setAdd(!add) }
 
-    const onConfirm = () => { }
+    const onConfirm = () => {
+        console.log(formData)
+        let response = Validate(formData, 'psychologist')
+        if (response == true) console.log(formData)
+        else setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))
+    }
 
     return (
         <Layout>

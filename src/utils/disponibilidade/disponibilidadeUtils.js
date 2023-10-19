@@ -1,50 +1,45 @@
-export function DisponibilidadeFunctions() {
-    const days = [
-        { "label": "Segunda-feira", "value": "1" },
-        { "label": "Terca-feira", "value": "2" },
-        { "label": "Quarta-feira", "value": "3" },
-        { "label": "Quinta-feira", "value": "4" },
-        { "label": "Sexta-feira", "value": "5" },
-        { "label": "Segunda a sexta", "value": "0" },
-    ]
+import { useEffect, useState } from 'react'
+import time from '../variables/time.json'
+
+export function DisponibilidadeFunctions({ formData, setFormData }) {
+    const [arrayTime, setArrayTime] = useState({})
+
+    useEffect(() => {
+        setArrayTime(arrayTime => ({ Inicio: getInicio(), Fim: getFim() }))
+    }, [])
 
     const Time = [
         { "value": "1", "label": "Inicio" },
         { "value": "2", "label": "Fim" },
     ]
 
-    // function Changing(day, checked) {
-    //     if (checked) {
-    //         setFormData(formData => ({ ...formData, disponibilidade: { ...formData?.disponibilidade, [day]: {} } }))
-    //     } else {
-    //         let data = { ...formData }
-    //         data.disponibilidade[day] = undefined
-    //         setFormData(data)
-    //     }
-    // }
-
-    function getTime(label) {
-        switch (label) {
-            case 'Inicio':
-                return [
-                    { "value": "1", "label": "08:30" },
-                    { "value": "2", "label": "10:00" },
-                    { "value": "3", "label": "11:30" },
-                    { "value": "4", "label": "13:00" },
-                    { "value": "5", "label": "14:30" },
-                ]
-
-            default:
-                return [
-                    { "value": "1", "label": "09:50" },
-                    { "value": "2", "label": "11:20" },
-                    { "value": "3", "label": "12:50" },
-                    { "value": "4", "label": "14:20" },
-                    { "value": "5", "label": "15:50" },
-                ]
+    const Changing = (day, checked) => {
+        if (checked) {
+            setFormData(formData => ({ ...formData, disponibilidade: { ...formData?.disponibilidade, [day]: {} } }))
+        } else {
+            let data = { ...formData }
+            data.disponibilidade[day] = undefined
+            setFormData(data)
         }
-
+    }
+    
+    const onTimeSelected = (key, value, day) => {
+        setFormData(formData => ({ ...formData, disponibilidade: { ...formData?.disponibilidade, [day]: { ...formData?.disponibilidade?.[day], [key]: value } } }))
     }
 
-    return { getTime, Time, days }
+    const getInicio = () => {
+        let data = []
+        for (let i = 0; i < time?.length; i++)
+            data.push({ value: time[i].inicio, label: time[i].inicio })
+        return data
+    }
+
+    const getFim = () => {
+        let data = []
+        for (let i = 0; i < time?.length; i++)
+            data.push({ value: time[i].fim, label: time[i].fim })
+        return data
+    }
+
+    return { arrayTime, Time, Changing, onTimeSelected }
 }

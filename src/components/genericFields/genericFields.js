@@ -15,7 +15,7 @@ import { useMediaQuery } from '@mui/material';
 function GenericFields(props) {
     const maxWidth = useMediaQuery('(max-width: 420px)')
 
-    const { keyy, size, label, type, onChange, value, options, placeholder, styles, variant, setFormData, formData, designacao } = props
+    const { keyy, size, label, type, onChange, value, options, placeholder, styles, variant, formData, day } = props
 
     switch (type) {
         case 'number':
@@ -64,10 +64,11 @@ function GenericFields(props) {
                     style={styles}
                     data={options}
                     formData={formData}
-                    designacao={designacao}
                     size={size}
                     onChange={onChange}
                     keyy={keyy}
+                    day={day}
+                    value={value}
                 />
             )
 

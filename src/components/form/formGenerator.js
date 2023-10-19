@@ -3,22 +3,13 @@ import styles from './formGenerator.module.css'
 import { Checkbox, FormControlLabel } from '@mui/material'
 import FormButtons from 'components/formButtons/formButtons'
 import { DisponibilidadeFunctions } from 'utils/disponibilidade/disponibilidadeUtils'
+import days from '../../utils/variables/days.json'
 
 export default function FormGen({ load, setFormData, formData, fields, addPsy = false, onCancel, onConfirm, options = [] }) {
-    const { getTime, Time, days } = DisponibilidadeFunctions()
+    const { arrayTime, Time, Changing, onTimeSelected } = DisponibilidadeFunctions({ formData, setFormData })
 
     const onChangeInput = (key, value) => {
         setFormData(formData => ({ ...formData, [key]: value }))
-    }
-
-    function Changing(day, checked) {
-        if (checked) {
-            setFormData(formData => ({ ...formData, disponibilidade: { ...formData?.disponibilidade, [day]: {} } }))
-        } else {
-            let formDataCopy = { ...formData }
-            formDataCopy.disponibilidade[day] = undefined
-            setFormData(formDataCopy)
-        }
     }
 
     return (
@@ -35,7 +26,6 @@ export default function FormGen({ load, setFormData, formData, fields, addPsy = 
                             options={options?.[val?.key] || val?.options}
                             onChange={onChangeInput}
                             formData={formData}
-                            setFormData={setFormData}
                         />
                     )
                 }
@@ -57,17 +47,17 @@ export default function FormGen({ load, setFormData, formData, fields, addPsy = 
                                             {Time.map((val) => {
                                                 return (
                                                     <GenericFields
+                                                        keyy={val.label}
                                                         type={'select'}
                                                         variant={'standard'}
                                                         styles={{ marginRight: "5px", cursor: "pointer" }}
                                                         size={"middle"}
                                                         label={val.label}
                                                         day={campo.value}
-                                                        designacao={val.label}
-                                                        onChange={() => { alert(1) }}
-                                                        options={getTime(val.label)}
+                                                        onChange={onTimeSelected}
+                                                        options={arrayTime?.[val.label]}
                                                         formData={formData}
-                                                        setFormData={setFormData}
+                                                        value={formData?.disponibilidade?.[campo.value]?.[val.label]}
                                                     />
                                                 )
                                             })}

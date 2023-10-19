@@ -1,0 +1,26 @@
+[
+    {
+        "label": "Segunda-feira",
+        "value": "1"
+    },
+    {
+        "label": "Terca-feira",
+        "value": "2"
+    },
+    {
+        "label": "Quarta-feira",
+        "value": "3"
+    },
+    {
+        "label": "Quinta-feira",
+        "value": "4"
+    },
+    {
+        "label": "Sexta-feira",
+        "value": "5"
+    },
+    {
+        "label": "Segunda a sexta",
+        "value": "0"
+    }
+]

@@ -5,9 +5,9 @@ import FormGen from "components/form/formGenerator";
 import { useEffect, useState } from 'react';
 import { GetProblems } from 'hooks/appointments/getProblems';
 import { Verify } from 'utils/appointments/verify';
-import { Validate } from 'utils/validation/validateAppointment';
 import { useRecoilState } from 'recoil';
 import { AlertState } from 'store';
+import { Validate } from 'utils/validation/validate';
 
 export default function NovaConsulta() {
     const [formData, setFormData] = useState({})
@@ -31,7 +31,7 @@ export default function NovaConsulta() {
     const onCancel = () => { }
 
     const onConfirm = () => {
-        let response = Validate(formData)
+        let response = Validate(formData, 'appointment')
         if (response == true) console.log(formData)
         else setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))
     }

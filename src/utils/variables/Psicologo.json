@@ -4,6 +4,7 @@
         "label": "Nome",
         "valueType": "text",
         "type": "text",
+        "required": true,
         "variant": "standard"
     },
     {
@@ -11,34 +12,39 @@
         "label": "Apelido",
         "valueType": "text",
         "type": "text",
+        "required": true,
         "variant": "standard"
     },
     {
         "key": "email",
         "label": "Email",
-        "valueType": "text",
+        "valueType": "email",
         "type": "text",
+        "required": true,
         "variant": "standard"
     },
     {
         "key": "contacto1",
         "label": "Contacto Principal",
-        "valueType": "text",
+        "valueType": "contact",
         "type": "text",
+        "required": true,
         "variant": "standard"
     },
     {
         "key": "contacto2",
         "label": "Contacto Opcional",
-        "valueType": "text",
+        "valueType": "contact",
         "type": "text",
+        "required": false,
         "variant": "standard"
     },
     {
         "key": "especialidade",
         "label": "Especialidade",
         "type": "select",
-        "valueType": "select",
+        "required": false,
+        "valueType": "number",
         "options": []
     }
 ]

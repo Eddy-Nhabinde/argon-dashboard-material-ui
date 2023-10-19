@@ -7,7 +7,7 @@ import { useMediaQuery } from "usehooks-ts";
 export default function LandingPage() {
     const navigate = useNavigate();
     let minWidth = useMediaQuery('(max-width: 672px)')
-    
+
     return (
         <PageLayout>
             <div style={{ overflowX: "hidden !important" }} >
@@ -61,7 +61,7 @@ export default function LandingPage() {
                 </div>
 
                 <div class="container" id="about">
-                    <div class="container">
+                    <div class="container" style={{ paddingBottom: "15px" }} >
                         <div class="row g-4 align-items-end mb-4">
                             <div class="startText" data-wow-delay="0.3s">
                                 <p class="sismaco"> <span></span> Sismaco</p>
@@ -168,7 +168,7 @@ export default function LandingPage() {
                 </div>
 
                 <div class="vantagebsContainer">
-                    <div class="container">
+                    <div class="container" style={{ padding: '10px' }}>
                         <div class="Vantagens">
                             <div class="Porqueapostar">
                                 <p class="d-inline-block border rounded text-primary-color fw-semi-bold py-1 px-3" style={{ color: "#7389AE", fontSize: "17px" }} >Vantagens de usar o SISMACO!</p>
