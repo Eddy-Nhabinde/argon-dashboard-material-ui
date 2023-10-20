@@ -10,10 +10,17 @@ import { GeneralFetch } from 'Api/generalFetch/generalFetch';
 import { CircularProgress } from '@mui/material';
 import { Details } from 'store';
 import { useRecoilState } from 'recoil';
+import { ModalState } from 'store';
+import moment from 'moment';
 
 function DropDownOptions({ data, object }) {
     const { FetchData, load } = GeneralFetch()
     const [, setDetails] = useRecoilState(Details)
+    const [open, setOpen] = useRecoilState(ModalState)
+
+    function Remarcar() {
+        setOpen(open => ({ ...open, open: true, component: 'Remarcar', data: data.data, hora: data.hora, id: data.id, psiId: data.psicologo_id, }))
+    }
 
     function optionEvent(endpoint, method) {
         (async () => {
@@ -29,7 +36,7 @@ function DropDownOptions({ data, object }) {
         },
         object == 'appointments' &&
         {
-            label: <div><UpdateOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Remarcar</span></div>,
+            label: <div onClick={() => Remarcar()} ><UpdateOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Remarcar</span></div>,
             key: '1',
         },
         object == 'psychologist' &&

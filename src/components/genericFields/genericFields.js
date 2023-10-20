@@ -14,6 +14,7 @@ import { useMediaQuery } from '@mui/material';
 
 function GenericFields(props) {
     const maxWidth = useMediaQuery('(max-width: 420px)')
+    const today = new Date();
 
     const { keyy, size, label, type, onChange, value, options, placeholder, styles, variant, formData, day } = props
 
@@ -93,6 +94,12 @@ function GenericFields(props) {
 
             return (
                 <DatePicker
+                    shouldDisableDate={(dateParam) => {
+                        let data = new Date(dateParam)
+                        if (keyy != 'dataNasc')
+                            return data?.getDay() === 0 || data?.getDay() === 6;
+                        else return false
+                    }}
                     style={style}
                     onChange={(e) => { onChange(keyy, e?.$d) }}
                     placeholder={placeholder}
@@ -103,6 +110,7 @@ function GenericFields(props) {
             return (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateTimePicker
+                        minDate={today}
                         label={label}
                         value={value}
                         renderInput={(params) => <TextField {...params} style={{ width: styles }} />}

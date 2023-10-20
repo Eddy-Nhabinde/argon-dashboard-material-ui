@@ -12,6 +12,7 @@ import moment from "moment";
 export function Verify({ formData }) {
     const [psicologos, setPsicolgos] = useState([])
     const [horaDisponivel, setHoras] = useState([])
+    const [diasDisponivel, setDias] = useState([])
     const { data, load } = GetPsychoList({ paging: 'false', page: 0 })
     const { busyDays, loadBusyDays } = GetBusySchedules()
 
@@ -28,7 +29,7 @@ export function Verify({ formData }) {
         let dia = new Date(formData?.data)
         let copyTime = [...availableTime]
 
-        busyDays?.busySchedules.map((val) => {
+        busyDays?.busySchedules?.map((val) => {
             let busyDay = new Date(val?.data)
             if (moment(dia).format('l') == moment(busyDay).format('l')) {
                 availableTime?.map((time, index) => {
@@ -40,8 +41,15 @@ export function Verify({ formData }) {
         return copyTime
     }
 
-    function filterByProblem() {
+    function getAvailabeDays() {
+        let availableDays = []
 
+        for (let i = 0; i < data?.data?.length; i++)
+            if (data?.data?.[i]?.id == formData?.psicologo)
+                for (let j = 0; j < data?.data?.[i]?.disponibilidade?.length; j++)
+                    availableDays.push(data?.data?.[i]?.disponibilidade?.[j]?.diaDaSemana)
+
+        return availableDays
     }
 
     function filterByAvailability() {
@@ -64,7 +72,7 @@ export function Verify({ formData }) {
         let availableTime = []
         let insert = false
 
-        for (let i = 0; i < filteredData.length; i++) {
+        for (let i = 0; i < filteredData?.length; i++) {
             if (filteredData?.[i]?.id == formData?.psicologo) {
                 for (let j = 0; j < filteredData?.[i]?.disponibilidade?.length; j++) {
                     if (filteredData?.[i]?.disponibilidade?.[j].diaDaSemana == dia.getDay()) {
@@ -93,5 +101,5 @@ export function Verify({ formData }) {
         setPsicolgos(updateKeys(filteredData))
     }, [formData])
 
-    return { psicologos, horaDisponivel }
+    return { psicologos, horaDisponivel, diasDisponivel, getAvailabeDays }
 }

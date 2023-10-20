@@ -11,7 +11,7 @@ import { CircularProgress } from '@mui/material';
 import { GetDashData } from "hooks/dashboard/getDashboardData";
 
 function Dashboard() {
-  const { data, load } = GetDashData()
+  const { data, load } = GetDashData({})
 
   return (
     <Layout>
