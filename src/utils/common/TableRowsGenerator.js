@@ -1,6 +1,6 @@
 import ArgonBox from "argonComponents/ArgonBox";
 import ArgonTypography from "argonComponents/ArgonTypography";
-import { GetTableHeaders } from "utils/tableData/tableHeadersAndData";
+import { GetTableHeaders } from "utils/table/tableHeaders";
 import { IconButton } from "@mui/material";
 import DropDownOptions from "components/dropDown/dropDown";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';

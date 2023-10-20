@@ -32,7 +32,6 @@ export default function Psicologos() {
     const onCancel = () => { setAdd(!add) }
 
     const onConfirm = () => {
-        console.log(formData)
         let response = Validate(formData, 'psychologist')
         if (response == true) console.log(formData)
         else setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))

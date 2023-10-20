@@ -38,7 +38,7 @@ function DropDownOptions({ data, object }) {
             key: '1',
         },
         {
-            label: <div onClick={() => setDetails({ open: true, data: data })} ><InfoOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Detalhes</span></div>,
+            label: <div onClick={() => setDetails({ open: true, data: data, object: object })} ><InfoOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Detalhes</span></div>,
             key: '2',
         },
         object == 'appointments' &&
