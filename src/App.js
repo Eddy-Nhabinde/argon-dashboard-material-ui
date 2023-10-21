@@ -16,6 +16,7 @@ import Alert from "components/alert/alert";
 import { CheckRole } from "utils/common/roleChecker";
 import DetailsView from "components/drawer/DetailsView";
 import BasicModal from "components/modal/modal";
+import ConfimDialog from "components/confirmDialog/confirmDialog";
 
 export default function App() {
   const [controller, dispatch] = useArgonController();
@@ -23,6 +24,7 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const { pathname } = useLocation();
   const { contextHolder } = Alert
+  const { ConfirmContextHoldert } = ConfimDialog
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
@@ -70,9 +72,12 @@ export default function App() {
       )}
 
       {contextHolder}
+      {ConfirmContextHoldert}
       <Alert />
       <DetailsView />
       <BasicModal />
+      <ConfimDialog />
+
       <Routes>
         {getRoutes(routes)}
         <Route exact path="/" element={<LandingPage />} />

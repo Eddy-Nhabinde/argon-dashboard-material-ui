@@ -20,8 +20,8 @@ export const ModalState = atom({
     default: { open: false }
 })
 
-// export const ListResource = atom({
-//     key: "ListResuyrce",
-//     default: null
-// })
+export const Confirmation = atom({
+    key: "Confirmation",
+    default: { open: false, confirm: false }
+})
 
