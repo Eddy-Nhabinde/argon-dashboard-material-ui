@@ -17,12 +17,13 @@ export default function ConfimDialog() {
     const onConfirm = () => {
         setOpenConfirm(openConfirm => ({ ...openConfirm, open: false }));
         (async () => {
-            await FetchData(null, openConfirm?.endpoint, openConfirm?.method, 'user')
+            await FetchData({ ...openConfirm?.body }, openConfirm?.endpoint, openConfirm?.method, 'user')
         })();
+        setOpenConfirm(openConfirm => ({ ...openConfirm, done: true }));
     }
 
     useEffect(() => {
-        if (alert?.type != "error") {
+        if (alert?.type != "error" && openConfirm?.operation != "reschedule") {
             let copy = rows?.filter((row) => row.id != openConfirm?.id)
             setRows(copy)
         }

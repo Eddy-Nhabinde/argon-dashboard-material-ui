@@ -19,7 +19,6 @@ function DropDownOptions({ data, object }) {
     const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
     const [add, setAdd] = useRecoilState(AddOrEdit)
 
-    console.log(data)
     function Remarcar() {
         setOpen(open => ({ ...open, open: true, component: 'Remarcar', data: data.data, hora: data.hora, id: data.id, psiId: data.psicologo_id, }))
     }
@@ -29,6 +28,7 @@ function DropDownOptions({ data, object }) {
         {
             label: <div onClick={() => setOpenConfirm({
                 ...openConfirm,
+                body: null,
                 open: true,
                 msg: "Tem certeza que quer fechar a consulta?",
                 operation: "close",
@@ -62,6 +62,7 @@ function DropDownOptions({ data, object }) {
         {
             label: <div onClick={() => setOpenConfirm({
                 ...openConfirm,
+                body: null,
                 open: true,
                 msg: "Tem certeza que quer cancelar a consulta?",
                 operation: "cancel",

@@ -10,11 +10,9 @@ import { ModalState } from "store";
 import { useRecoilState } from "recoil";
 
 export const ScheduleOptions = ({ style, ...restProps }) => {
-    const { FetchData } = GeneralFetch()
     const [open, setOpen] = useRecoilState(ModalState)
 
     function Remarcar(value) {
-        console.log(value)
         setOpen(open => ({ ...open, open: true, component: 'Remarcar', data: value.startDate, hora: moment(value.startDate).format('LT').substring(0, moment(value.startDate).format('LT').length - 3), id: value.id, psiId: value.psi_id, }))
     }
 

@@ -12,6 +12,8 @@ import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { AlertState } from "store";
 import { Verify } from "utils/appointments/verify";
+import { Confirmation } from "store";
+import moment from "moment";
 
 const style = {
     position: 'absolute',
@@ -36,8 +38,8 @@ export default function Remarcar({ id, date, time, cId }) {
     const { FetchData, load } = GeneralFetch()
     const [open, setOpen] = useRecoilState(ModalState)
     let days = getAvailabeDays()
+    const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
 
-    console.log(days)
 
     function Reschedule() {
         let newDate = new Date(formData?.data)
@@ -48,12 +50,18 @@ export default function Remarcar({ id, date, time, cId }) {
                 setOpen({ open: false })
                 setAlert(alert => ({ ...alert, type: 'warning', msg: 'Escolha data e/ou data diferente' }))
             } else {
-                (async () => {
-                    let response = await FetchData(formData, 'Reschedule', 'post', '')
-                    if (response) {
-                        setOpen({ open: false })
-                    }
-                })()
+                setOpen({ open: false })
+                setOpenConfirm({
+                    ...openConfirm,
+                    open: true,
+                    msg: "Tem certeza que quer remarcar a consulta para dia " + moment(formData.data).format('L') + " as " + formData.hora + " ?",
+                    operation: "close",
+                    endpoint: 'Reschedule',
+                    method: 'POST',
+                    body: formData,
+                    id: cId,
+                    operation: "reschedule"
+                })
             }
         } else {
             setOpen({ open: false })
@@ -108,14 +116,14 @@ export default function Remarcar({ id, date, time, cId }) {
                 </div>
             </div>
             <div className={styles.btnCont} >
-                <button disabled={load} onClick={() => { setOpen({ open: false }) }} className={styles.button} style={!load ? { background: '#7389AE' } : {}} >
+                <button disabled={load} onClick={() => { setOpen({ open: false }) }} className={styles.button} style={!load ? { background: '#7389AE', textTransform: "capitalize" } : {}} >
                     {
                         load ? <Spin size="small" /> :
                             <span style={{ color: 'white' }} >Voltar</span>
                     }
                 </button>
 
-                <button disabled={load} onClick={() => { Reschedule() }} className={styles.button} style={{ background: '#DF3B57' }} >
+                <button disabled={load} onClick={() => { Reschedule() }} className={styles.button} style={{ background: '#DF3B57', textTransform: "capitalize" }} >
                     <span style={{ color: 'white' }} >Remarcar</span>
                 </button>
             </div>
