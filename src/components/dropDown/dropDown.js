@@ -14,21 +14,9 @@ import { ModalState } from 'store';
 import { Confirmation } from 'store';
 
 function DropDownOptions({ data, object }) {
-    const { FetchData, load } = GeneralFetch()
     const [, setDetails] = useRecoilState(Details)
     const [open, setOpen] = useRecoilState(ModalState)
     const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
-
-    useEffect(() => {
-        if (openConfirm?.confirmed) {
-            if (openConfirm?.operation == 'cancel') {
-                (async () => {
-                    await FetchData(null, 'cancelAppointment/' + openConfirm?.id, 'PUT', false, 'user')
-                })()
-                setOpenConfirm({})
-            }
-        }
-    }, [openConfirm])
 
     function Remarcar() {
         setOpen(open => ({ ...open, open: true, component: 'Remarcar', data: data.data, hora: data.hora, id: data.id, psiId: data.psicologo_id, }))
@@ -37,7 +25,17 @@ function DropDownOptions({ data, object }) {
     const items = [
         object == 'appointments' &&
         {
-            label: <div onClick={() => setOpenConfirm({ ...openConfirm, open: true, msg: "Tem certeza que quer fechar a consulta?", operation: "close", id: data?.id })} ><DoneOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Fechar</span></div >,
+            label: <div onClick={() => setOpenConfirm({
+                ...openConfirm,
+                open: true,
+                msg: "Tem certeza que quer fechar a consulta?",
+                operation: "close",
+                id: data?.id,
+                endpoint: 'closeAppointment/' + data?.id,
+                method: 'PUT',
+            })} >
+                <DoneOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Fechar</span>
+            </div >,
             key: '0',
         },
         object == 'appointments' &&
@@ -60,7 +58,17 @@ function DropDownOptions({ data, object }) {
         },
         object == 'appointments' &&
         {
-            label: <div onClick={() => setOpenConfirm({ ...openConfirm, open: true, msg: "Tem certeza que quer cancelar a consulta?", operation: "cancel", id: data?.id })}><CloseOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0", color: "#EE6055" }} /> <span style={{ color: "#EE6055" }} >Cancelar</span></div>,
+            label: <div onClick={() => setOpenConfirm({
+                ...openConfirm,
+                open: true,
+                msg: "Tem certeza que quer cancelar a consulta?",
+                operation: "cancel",
+                endpoint: 'cancelAppointment/' + data?.id,
+                id: data?.id,
+                method: 'PUT'
+            })}>
+                <CloseOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0", color: "#EE6055" }} /> <span style={{ color: "#EE6055" }} >Cancelar</span>
+            </div>,
             key: '3',
         },
     ];
@@ -77,7 +85,7 @@ function DropDownOptions({ data, object }) {
                 <a onClick={(e) => e.preventDefault()}>
                     <Space>
                         {
-                            load ? <CircularProgress size={'20px'} /> :
+                            openConfirm?.load && openConfirm?.id == data?.id ? <CircularProgress size={'20px'} /> :
                                 <MoreHorizIcon fontSize='medium' style={{ color: "#5B5B5B" }} />
                         }
                     </Space>

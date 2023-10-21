@@ -6,7 +6,7 @@ export function GetDashData({ id = null }) {
 
     useEffect(() => {
         (async () => {
-            await FetchData("", 'getDashBoardData?psicologo_id=' + id, 'get', false, 'dashData')
+            await FetchData("", 'getDashBoardData?psicologo_id=' + id, 'get', 'dashData')
         })()
     }, [id])
 

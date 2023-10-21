@@ -25,3 +25,9 @@ export const Confirmation = atom({
     default: { open: false, confirm: false }
 })
 
+export const List = atom({
+    key: "List",
+    default: []
+})
+
+

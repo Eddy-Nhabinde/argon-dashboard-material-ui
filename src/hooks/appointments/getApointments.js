@@ -6,7 +6,7 @@ export function GetAppointments({ page, tab }) {
 
     useEffect(() => {
         (async () => {
-            await FetchData("", 'getAppointments/' + tab + "?page=" + page, 'get', false, 'consultas')
+            await FetchData("", 'getAppointments/' + tab + "?page=" + page, 'get', 'consultas')
         })()
     }, [tab, page])
 

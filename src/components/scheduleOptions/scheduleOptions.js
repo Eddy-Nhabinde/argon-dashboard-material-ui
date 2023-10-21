@@ -31,7 +31,7 @@ export const ScheduleOptions = ({ style, ...restProps }) => {
         // }).then((result) => {
         //     if (result.isDismissed && result.dismiss == "cancel") {
         //         (async () => {
-        //             await FetchData(null, 'cancelAppointment/' + value.id, 'put', false, 'detalhes')
+        //             await FetchData(null, 'cancelAppointment/' + value.id, 'put', 'detalhes')
         //         })()
         //     }
         // })

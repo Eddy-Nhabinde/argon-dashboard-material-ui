@@ -8,7 +8,7 @@ export function GetPsychoList({ page, paging = 'true' }) {
 
     useEffect(() => {
         (async () => {
-            await FetchData("", `getPsychologist?page=${page}&paging=${paging}`, 'get', false, 'consultas')
+            await FetchData("", `getPsychologist?page=${page}&paging=${paging}`, 'get', 'consultas')
         })()
     }, [page])
 

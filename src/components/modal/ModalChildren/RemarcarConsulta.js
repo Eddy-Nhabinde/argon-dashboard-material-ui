@@ -49,7 +49,7 @@ export default function Remarcar({ id, date, time, cId }) {
                 setAlert(alert => ({ ...alert, type: 'warning', msg: 'Escolha data e/ou data diferente' }))
             } else {
                 (async () => {
-                    let response = await FetchData(formData, 'Reschedule', 'post', false, '')
+                    let response = await FetchData(formData, 'Reschedule', 'post', '')
                     if (response) {
                         setOpen({ open: false })
                     }

@@ -6,7 +6,7 @@ export function GetBusySchedules() {
 
     useEffect(() => {
         (async () => {
-            await FetchData(null, 'getBusySchedules', 'get', false, 'schedule')
+            await FetchData(null, 'getBusySchedules', 'get', 'schedule')
         })()
     }, [])
 

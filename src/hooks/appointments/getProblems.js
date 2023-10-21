@@ -6,7 +6,7 @@ export function GetProblems() {
 
     useEffect(() => {
         (async () => {
-            await FetchData("", 'getProblems', 'get', false, 'problemas')
+            await FetchData("", 'getProblems', 'get', 'problemas')
         })()
     }, [])
 

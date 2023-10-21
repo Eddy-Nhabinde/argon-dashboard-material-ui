@@ -11,7 +11,7 @@ export function GeneralFetch() {
     const [data, setData] = useState([])
     const { getParams } = ReturnParams({ setLoad })
 
-    async function FetchData(obj, endPoint, method, table, object) {
+    async function FetchData(obj, endPoint, method, object) {
 
         fetch(baseURL + "" + endPoint, getParams(method, obj))
             .then((response) => response.json())

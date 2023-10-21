@@ -27,7 +27,7 @@ export default function Login() {
 
     function btnEvent(endPoint) {
         (async () => {
-            await FetchData(formData, endPoint, 'post', false, 'login')
+            await FetchData(formData, endPoint, 'post', 'login')
         })()
     }
 

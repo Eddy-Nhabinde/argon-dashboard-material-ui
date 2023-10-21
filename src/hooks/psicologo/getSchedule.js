@@ -6,7 +6,7 @@ export function GetSchedule() {
 
     useEffect(() => {
         (async () => {
-            await FetchData(null, 'getSchedule', 'get', false, 'schedule')
+            await FetchData(null, 'getSchedule', 'get', 'schedule')
         })()
     }, [])
 

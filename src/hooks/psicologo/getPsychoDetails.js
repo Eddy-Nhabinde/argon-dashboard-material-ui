@@ -7,7 +7,7 @@ export function GetPsychoDetails({ details }) {
     useEffect(() => {
         if (details?.data?.psicologo_id) {
             (async () => {
-                await FetchData(null, `getPsiDetails/${details.data.psicologo_id}`, 'get', false, 'psicologo')
+                await FetchData(null, `getPsiDetails/${details.data.psicologo_id}`, 'get', 'psicologo')
             })()
         }
     }, [details])

@@ -7,7 +7,7 @@ export function GetHistory({ page, details }) {
     useEffect(() => {
         if (details?.data?.paciente_id) {
             (async () => {
-                await FetchData(null, `historico/${details.data.paciente_id}?page=${page}`, 'get', false, 'historico')
+                await FetchData(null, `historico/${details.data.paciente_id}?page=${page}`, 'get', 'historico')
             })()
         }
     }, [details, page])

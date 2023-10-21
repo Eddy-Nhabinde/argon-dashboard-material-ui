@@ -2,19 +2,23 @@ import ArgonBox from "argonComponents/ArgonBox";
 import Table from "argonComponents/Tables/Table";
 import TableTabs from "components/tabs/tabs";
 import Layout from "components/layout/mainLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TableRowsGenerator from "../../utils/common/TableRowsGenerator";
 import { CircularProgress, useMediaQuery } from "@mui/material";
 import { GetAppointments } from "hooks/appointments/getApointments";
 import styles from '../psicologos/index.module.css'
 import GenericFields from "components/genericFields/genericFields";
+import { List } from "store";
+import { useRecoilState } from "recoil";
 
 function Consultas() {
   const [tab, setTab] = useState(1)
   const [page, setPage] = useState(1)
   const [formData, setFormData] = useState({ Estado: 1 })
   const { data, load } = GetAppointments({ page, tab })
-  const { columns, rows } = TableRowsGenerator({ data, object: "appointments", tab });
+  const { columns } = TableRowsGenerator({ data, object: "appointments", tab });
+  const [rows,] = useRecoilState(List)
+
   const maxWidth = useMediaQuery('(max-width: 643px)')
 
   const onChangeInput = (key, value) => { setTab(value); setFormData({ Estado: value }) }

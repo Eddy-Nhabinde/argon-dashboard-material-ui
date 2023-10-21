@@ -6,6 +6,8 @@ import DropDownOptions from "components/dropDown/dropDown";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useRecoilState } from "recoil";
 import { Details } from "store";
+import { useEffect, useState } from "react";
+import { List } from "store";
 
 function Author({ name }) {
   return (
@@ -53,6 +55,7 @@ function getRowsObject(val, object, tab, infoClick) {
   switch (object) {
     case "appointments":
       return {
+        id: val?.id,
         paciente: <Author name={val?.paciente} />,
         hora: <Time job={val?.hora} />,
         data: (
@@ -79,6 +82,7 @@ function getRowsObject(val, object, tab, infoClick) {
       }
     case "psychologist":
       return {
+        id: val?.id,
         nome: <Author name={val?.nome} />,
         especialidade: <Time job={val?.especialidade} />,
         estado: (
@@ -100,6 +104,7 @@ function getRowsObject(val, object, tab, infoClick) {
       }
     case "history":
       return {
+        id: val?.id,
         data: (
           <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
             {val?.data}
@@ -113,24 +118,26 @@ function getRowsObject(val, object, tab, infoClick) {
 
 function TableRowsGenerator({ data, object, tab }) {
   const [, setDetails] = useRecoilState(Details)
+  const [, setRows] = useRecoilState(List)
 
   const infoClick = (dataValue) => {
     setDetails({ open: true, data: dataValue })
   }
 
-  function getRows() {
-    let rows = []
+  useEffect(() => {
+    if (data?.length > 0) {
+      let TableRows = []
 
-    data?.map((val) => {
-      rows.push(getRowsObject(val, object, tab, infoClick))
-    })
+      data?.map((val) => {
+        TableRows.push(getRowsObject(val, object, tab, infoClick))
+      })
+      setRows(TableRows)
+    }
+  }, [data])
 
-    return rows
-  }
 
   return {
     columns: GetTableHeaders(object),
-    rows: getRows()
   }
 };
 

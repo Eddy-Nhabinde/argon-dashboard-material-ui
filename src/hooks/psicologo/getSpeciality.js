@@ -7,7 +7,7 @@ export function GetSpecilidade({ add }) {
     useEffect(() => {
         if (add)
             (async () => {
-                await FetchData("", `getEspecialidade`, 'get', false, 'especialidades')
+                await FetchData("", `getEspecialidade`, 'get', 'especialidades')
             })()
     }, [add])
 
