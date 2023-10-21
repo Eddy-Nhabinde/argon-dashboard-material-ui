@@ -10,7 +10,7 @@ const style = {
     }
 }
 
-function Input({ type, placeholder, keyy, onChange, label, value, min, max, zerar, variant }) {
+function Input({ type, placeholder, keyy, onChange, formData }) {
     const maxWidth = useMediaQuery('(max-width: 420px)')
 
     return (
@@ -20,7 +20,7 @@ function Input({ type, placeholder, keyy, onChange, label, value, min, max, zera
             variant='outlined'
             placeholder={placeholder}
             style={maxWidth && placeholder == 'Ocupação' ? { marginTop: "-23px", marginBottom: "-30px" } : maxWidth ? { marginTop: "-23px" } : {}}
-            // value={formData[campos.key]}
+            value={formData[keyy] || null}
             // helperText={helper?.[campos.key]}
             // disabled={Disable(campos.key)}
             className={styles.inputs}

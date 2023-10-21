@@ -30,6 +30,7 @@ function GenericFields(props) {
                     onChange={onChange}
                     value={value}
                     variant={variant}
+                    formData={formData}
                 />
             )
 
@@ -41,7 +42,6 @@ function GenericFields(props) {
                     variant={variant}
                     formData={formData}
                     placeholder={placeholder}
-
                 />
             )
 
@@ -55,6 +55,7 @@ function GenericFields(props) {
                     value={value}
                     placeholder={placeholder}
                     variant={variant}
+                    formData={formData}
                 />
             )
 

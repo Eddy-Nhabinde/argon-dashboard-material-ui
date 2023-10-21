@@ -6,18 +6,20 @@ import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import { GeneralFetch } from 'Api/generalFetch/generalFetch';
 import { CircularProgress } from '@mui/material';
 import { Details } from 'store';
 import { useRecoilState } from 'recoil';
 import { ModalState } from 'store';
 import { Confirmation } from 'store';
+import { AddOrEdit } from 'store';
 
 function DropDownOptions({ data, object }) {
     const [, setDetails] = useRecoilState(Details)
     const [open, setOpen] = useRecoilState(ModalState)
     const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
+    const [add, setAdd] = useRecoilState(AddOrEdit)
 
+    console.log(data)
     function Remarcar() {
         setOpen(open => ({ ...open, open: true, component: 'Remarcar', data: data.data, hora: data.hora, id: data.id, psiId: data.psicologo_id, }))
     }
@@ -45,7 +47,7 @@ function DropDownOptions({ data, object }) {
         },
         object == 'psychologist' &&
         {
-            label: <div><EditOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Editar</span></div>,
+            label: <div onClick={() => setAdd({ add: true, update: true, oldData: data })} ><EditOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Editar</span></div>,
             key: '1',
         },
         {

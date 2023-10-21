@@ -30,4 +30,9 @@ export const List = atom({
     default: []
 })
 
+export const AddOrEdit = atom({
+    key: "AddOrEdit",
+    default: { add: false }
+})
+
 
