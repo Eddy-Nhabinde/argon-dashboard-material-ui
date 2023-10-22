@@ -16,10 +16,11 @@ import { useRecoilState } from 'recoil';
 import { AlertState } from 'store';
 import { List } from 'store';
 import { AddOrEdit } from 'store';
+import { AddNewPsycho } from 'hooks/psicologo/newPsychologist';
 
 export default function Psicologos() {
     const [add, setAdd] = useRecoilState(AddOrEdit)
-    const [formData, setFormData] = useState({})
+    const [formData, setFormData] = useState({ acesso: 'psicologo' })
     const [page, setPage] = useState(1)
     const { data, load } = GetPsychoList({ page })
     const { columns, rows } = TableRowsGenerator({ object: "psychologist" });
@@ -27,6 +28,7 @@ export default function Psicologos() {
     const [options, setOptions] = useState({})
     const { speciality, loadSpeciality } = GetSpecilidade({ add })
     const [alert, setAlert] = useRecoilState(AlertState)
+    const { NewPsycho, loadAdd } = AddNewPsycho({ formData })
 
     useEffect(() => {
         if (data?.data?.length > 0) setAllData(data?.data)
@@ -44,7 +46,8 @@ export default function Psicologos() {
 
     const onConfirm = () => {
         let response = Validate(formData, 'psychologist')
-        if (response == true) console.log(formData)
+
+        if (response == true) NewPsycho()
         else setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))
     }
 
@@ -68,7 +71,7 @@ export default function Psicologos() {
                     <ArgonBox>
                         {
                             add?.add ?
-                                <FormGen onConfirm={onConfirm} onCancel={onCancel} setFormData={setFormData} formData={formData} addPsy={true} fields={Psicologo} options={options} />
+                                <FormGen load={loadAdd} onConfirm={onConfirm} onCancel={onCancel} setFormData={setFormData} formData={formData} addPsy={true} fields={Psicologo} options={options} />
                                 :
                                 <Table setPage={setPage} columns={columns} rows={rows} data={data} />
                         }

@@ -11,9 +11,9 @@ import { Validate } from "utils/validation/validate";
 
 export default function SignUp() {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({ paciente: true })
+    const [formData, setFormData] = useState({ paciente: true, acesso: "paciente" })
     const [, setRole] = useRecoilState(Role)
-    const { FetchData, data, load } = GeneralFetch()
+    const { data, load } = GeneralFetch()
     const [alert, setAlert] = useRecoilState(AlertState)
 
     const onCancel = () => { navigate(-1) }
@@ -25,7 +25,7 @@ export default function SignUp() {
     }
 
     useEffect(() => {
-        if (data == 1) { navigate('/Inicio'); setRole('normal') }
+        if (data == 1) { navigate('/Inicio'); setRole('paciente') }
     }, [data])
 
     return (

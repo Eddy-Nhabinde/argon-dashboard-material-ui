@@ -42,11 +42,14 @@ export function Validate(formData, resource) {
                 return 'disponibilidade'
             } else {
                 for (let i = 0; i < keys.length; i++) {
-                    console.log(formData?.disponibilidade?.[keys[i]])
-                    if (!formData?.disponibilidade?.[keys[i]].Inicio)
-                        return `Inicio da ${days[keys[i] - 1].label}`
-                    else if (!formData?.disponibilidade?.[keys[i]].Fim)
-                        return `Fim da ${days[keys[i] - 1].label}`
+                    if (formData?.disponibilidade?.[keys[i]] == undefined) {
+                        delete formData?.disponibilidade?.[keys[i]];
+                    } else {
+                        if (!formData?.disponibilidade?.[keys[i]].Inicio)
+                            return `Inicio da ${days[keys[i] - 1].label}`
+                        else if (!formData?.disponibilidade?.[keys[i]].Fim)
+                            return `Fim da ${days[keys[i] - 1].label}`
+                    }
                 }
             }
 
