@@ -16,8 +16,16 @@ function Consultas() {
   const [page, setPage] = useState(1)
   const [formData, setFormData] = useState({ Estado: 1 })
   const { data, load } = GetAppointments({ page, tab })
-  const { columns } = TableRowsGenerator({ data, object: "appointments", tab });
-  const [rows,] = useRecoilState(List)
+  const { columns, rows } = TableRowsGenerator({ object: "appointments", tab });
+  const [, setAllData] = useRecoilState(List)
+
+  useEffect(() => {
+    setAllData(data)
+  }, [data])
+
+  useEffect(() => {
+    setAllData([])
+  }, [])
 
   const maxWidth = useMediaQuery('(max-width: 643px)')
 
@@ -31,8 +39,8 @@ function Consultas() {
         :
         <div>
           <div style={{ display: "flex", justifyContent: "space-between" }} >
-            <div className={styles.pageTitle}>
-              <h1>Lista das Consultas</h1>
+            <div className={styles.pageTitle} >
+              <h1 style={{ padding: '5px 0 4px 23px' }}>Lista das Consultas</h1>
             </div>
             {maxWidth && < GenericFields
               placeholder={'Estado'}

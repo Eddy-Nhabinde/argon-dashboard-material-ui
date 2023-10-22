@@ -55,7 +55,6 @@ function getRowsObject(val, object, tab, infoClick) {
   switch (object) {
     case "appointments":
       return {
-        id: val?.id,
         paciente: <Author name={val?.paciente} />,
         hora: <Time job={val?.hora} />,
         data: (
@@ -82,7 +81,6 @@ function getRowsObject(val, object, tab, infoClick) {
       }
     case "psychologist":
       return {
-        id: val?.id,
         nome: <Author name={val?.nome} />,
         especialidade: <Time job={val?.especialidade} />,
         estado: (
@@ -104,7 +102,6 @@ function getRowsObject(val, object, tab, infoClick) {
       }
     case "history":
       return {
-        id: val?.id,
         data: (
           <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
             {val?.data}
@@ -116,28 +113,30 @@ function getRowsObject(val, object, tab, infoClick) {
   }
 }
 
-function TableRowsGenerator({ data, object, tab }) {
+function TableRowsGenerator({ object, tab }) {
   const [, setDetails] = useRecoilState(Details)
-  const [, setRows] = useRecoilState(List)
+  const [rows, setRows] = useState([])
+  const [allData,] = useRecoilState(List)
 
   const infoClick = (dataValue) => {
     setDetails({ open: true, data: dataValue })
   }
 
   useEffect(() => {
-    if (data?.length > 0) {
+    if (allData?.length > 0) {
       let TableRows = []
 
-      data?.map((val) => {
+      allData?.map((val) => {
         TableRows.push(getRowsObject(val, object, tab, infoClick))
       })
       setRows(TableRows)
     }
-  }, [data])
+  }, [allData])
 
 
   return {
     columns: GetTableHeaders(object),
+    rows
   }
 };
 

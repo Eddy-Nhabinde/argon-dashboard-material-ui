@@ -22,11 +22,19 @@ export default function Psicologos() {
     const [formData, setFormData] = useState({})
     const [page, setPage] = useState(1)
     const { data, load } = GetPsychoList({ page })
-    const { columns } = TableRowsGenerator({ data: data?.data, object: "psychologist" });
-    const [rows,] = useRecoilState(List)
+    const { columns, rows } = TableRowsGenerator({ object: "psychologist" });
+    const [, setAllData] = useRecoilState(List)
     const [options, setOptions] = useState({})
     const { speciality, loadSpeciality } = GetSpecilidade({ add })
     const [alert, setAlert] = useRecoilState(AlertState)
+
+    useEffect(() => {
+        if (data?.data?.length > 0) setAllData(data?.data)
+    }, [data])
+
+    useEffect(() => {
+        setAllData([])
+    }, [])
 
     useEffect(() => {
         if (speciality) setOptions({ especialidade: speciality })
@@ -59,7 +67,7 @@ export default function Psicologos() {
                     </div>
                     <ArgonBox>
                         {
-                            add?.add  ?
+                            add?.add ?
                                 <FormGen onConfirm={onConfirm} onCancel={onCancel} setFormData={setFormData} formData={formData} addPsy={true} fields={Psicologo} options={options} />
                                 :
                                 <Table setPage={setPage} columns={columns} rows={rows} data={data} />

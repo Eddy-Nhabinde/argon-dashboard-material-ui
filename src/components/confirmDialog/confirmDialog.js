@@ -6,12 +6,13 @@ import { Confirmation } from 'store';
 import { GeneralFetch } from 'Api/generalFetch/generalFetch';
 import { List } from 'store';
 import { AlertState } from 'store';
+import moment from 'moment';
 
 export default function ConfimDialog() {
     const [modal, ConfirmContextHoldert] = Modal.useModal();
     const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
     const { FetchData, load } = GeneralFetch()
-    const [rows, setRows] = useRecoilState(List)
+    const [allData, setAllData] = useRecoilState(List)
     const [alert,] = useRecoilState(AlertState)
 
     const onConfirm = () => {
@@ -24,8 +25,21 @@ export default function ConfimDialog() {
 
     useEffect(() => {
         if (alert?.type != "error" && openConfirm?.operation != "reschedule") {
-            let copy = rows?.filter((row) => row.id != openConfirm?.id)
-            setRows(copy)
+            let copy = allData?.filter((row) => row.id != openConfirm?.id)
+            setAllData(copy)
+        } else if (openConfirm?.operation == "reschedule") {
+            let copy = [...allData]
+            allData?.map((val, index) => {
+                if (val.id == openConfirm?.id) {
+                    let data = moment(openConfirm?.body?.data).format("L").toString()
+                    copy[index] = {
+                        ...val,
+                        hora: openConfirm?.body?.hora,
+                        data: data?.substring(6) + "-" + data?.substring(0, 2) + "-" + data?.substring(3, 5)
+                    }
+                }
+            })
+            setAllData(copy)
         }
     }, [alert])
 
