@@ -13,7 +13,7 @@ const Alert = ({ width }) => {
                 message: alert.type.toUpperCase(),
                 description: alert.msg,
                 style: {
-                    width: width || 300,
+                    width: width || 500,
                 },
             });
         }

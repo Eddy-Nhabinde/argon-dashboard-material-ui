@@ -8,24 +8,26 @@ import { useRecoilState } from "recoil";
 import { Role } from "store";
 import { AlertState } from "store";
 import { Validate } from "utils/validation/validate";
+import { Regist } from "hooks/paciente/singUp";
 
 export default function SignUp() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ paciente: true, acesso: "paciente" })
     const [, setRole] = useRecoilState(Role)
-    const { data, load } = GeneralFetch()
     const [alert, setAlert] = useRecoilState(AlertState)
+    const { Register, load, data } = Regist({ formData })
 
     const onCancel = () => { navigate(-1) }
 
     const onConfirm = () => {
         let response = Validate(formData, 'user')
-        if (response == true) console.log(formData)
+
+        if (response == true) Register()
         else setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))
     }
 
     useEffect(() => {
-        if (data == 1) { navigate('/Inicio'); setRole('paciente') }
+        if (data == 1) { navigate('/login'); setRole('paciente') }
     }, [data])
 
     return (

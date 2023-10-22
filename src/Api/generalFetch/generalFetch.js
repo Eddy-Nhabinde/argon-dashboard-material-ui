@@ -17,7 +17,10 @@ export function GeneralFetch() {
             .then((response) => response.json())
             .then((data) => {
                 if (data.error || data.warning || data.success) {
-                    setAlert(alert => ({ ...alert, type: Object.keys(data)[0], msg: data[Object.keys(data)[0]] }))
+                    if (data?.validation == true)
+                        setAlert(alert => ({ ...alert, type: Object.keys(data)[1], msg: data?.[Object.keys(data)[1]]?.[Object.keys(data[Object.keys(data)[1]])[0]]?.[0] }))
+                    else
+                        setAlert(alert => ({ ...alert, type: Object.keys(data)[0], msg: data[Object.keys(data)[0]] }))
                     setData(data?.hasOwnProperty('success'))
                 } else {
                     if (object) {
