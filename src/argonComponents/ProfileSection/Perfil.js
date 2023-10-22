@@ -52,7 +52,7 @@ function PopoverPopupState({ classes }) {
 
     return (
         <div>
-            <Avatar style={{ margin: '-10px -35px 0 0', cursor: 'pointer' }} {...stringAvatar("Eddy Nhabinde")} onClick={(event) => { handleClick(event) }} />
+            <Avatar style={{ margin: '-10px -35px 0 0', cursor: 'pointer' }} {...stringAvatar(sessionStorage.getItem("nome") + " " + sessionStorage.getItem("apelido"))} onClick={(event) => { handleClick(event) }} />
 
             <Popover
                 id={id}

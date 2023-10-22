@@ -1,45 +1,27 @@
 import moment from "moment/moment"
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Button } from 'antd';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { IconButton } from '@mui/material';
 import * as React from 'react'
 import { GeneralFetch } from "../../Api/generalFetch/generalFetch";
 import styles from '../../layouts/schedule/Schedule.module.css'
 import { ModalState } from "store";
 import { useRecoilState } from "recoil";
+import { Confirmation } from "store";
 
 export const ScheduleOptions = ({ style, ...restProps }) => {
     const [open, setOpen] = useRecoilState(ModalState)
+    const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
 
+    console.log(restProps?.appointmentData)
     function Remarcar(value) {
         setOpen(open => ({ ...open, open: true, component: 'Remarcar', data: value.startDate, hora: moment(value.startDate).format('LT').substring(0, moment(value.startDate).format('LT').length - 3), id: value.id, psiId: value.psi_id, }))
-    }
-
-    function Cancelar(value) {
-        // Swal.fire({
-        //     title: 'Tem certeza?',
-        //     icon: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     confirmButtonText: 'Nao',
-        //     cancelButtonText: 'Sim',
-        //     position: 'top'
-        // }).then((result) => {
-        //     if (result.isDismissed && result.dismiss == "cancel") {
-        //         (async () => {
-        //             await FetchData(null, 'cancelAppointment/' + value.id, 'put', 'detalhes')
-        //         })()
-        //     }
-        // })
     }
 
     return (
         <>
             {
                 restProps?.appointmentData ?
-                    <div style={{background:"#fff"}} >
+                    <div style={{ background: "#fff" }} >
                         <div className={styles.container1} >
                             <div className={styles.div} ></div>
                             <div>
@@ -59,10 +41,18 @@ export const ScheduleOptions = ({ style, ...restProps }) => {
                         </div>
                         <div style={{ margin: '7px 0 10px 0' }} >
                             <Button onClick={() => Remarcar(restProps.appointmentData)} style={{ marginLeft: '83px', backgroundColor: '#7389AE', color: '#fff' }} >Remarcar</Button>
-                            <Button onClick={() => Cancelar(restProps.appointmentData)} style={{ marginLeft: '10px' }} type="primary" danger>Cancelar</Button>
-                            <IconButton style={{ color: '#455a64', marginLeft: '10px', width: '40px', height: '40px' }} /*onClick={() => setSeeHistory(true)}*/ >
-                                <MoreVertIcon />
-                            </IconButton>
+                            <Button onClick={() => setOpenConfirm({
+                                ...openConfirm,
+                                body: null,
+                                open: true,
+                                msg: "Tem certeza que quer cancelar a consulta?",
+                                operation: "cancel",
+                                endpoint: 'cancelAppointment/' + restProps?.appointmentData?.id,
+                                id: restProps?.appointmentData?.id,
+                                method: 'PUT'
+                            })} style={{ marginLeft: '10px' }} type="primary" danger>
+                                Cancelar
+                            </Button>
                         </div>
                     </div>
                     :

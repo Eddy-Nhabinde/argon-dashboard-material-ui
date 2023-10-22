@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { GeneralFetch } from 'Api/generalFetch/generalFetch';
 import { CircularProgress } from '@mui/material';
 import { useRecoilState } from 'recoil';
-import { Role } from 'store';
+import { List } from 'store';
 
 export default function Login() {
     const { FetchData, data, load } = GeneralFetch()
@@ -14,6 +14,11 @@ export default function Login() {
     const [update, setUpdate] = useState(false)
     const [forgot, setForgot] = useState(false)
     const [formData, setFormData] = useState({})
+    const [, setAllData] = useRecoilState(List)
+
+    useEffect(() => {
+        setAllData([])
+    }, [])
 
     function back() {
         if (forgot) setForgot(false)

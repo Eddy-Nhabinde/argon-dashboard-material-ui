@@ -14,6 +14,8 @@ import { GetSchedule } from 'hooks/psicologo/getSchedule';
 import { GetProblems } from 'hooks/appointments/getProblems';
 import { ScheduleOptions } from 'components/scheduleOptions/scheduleOptions';
 import { CircularProgress } from '@mui/material';
+import { useRecoilState } from 'recoil';
+import { Confirmation } from 'store';
 
 const Appointment = ({
   children, style, ...restProps
@@ -37,6 +39,7 @@ export default function Schedule() {
   const [problems, setProblemas] = React.useState([])
   const { load, data } = GetSchedule()
   const { dados } = GetData({ data })
+  const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
 
   React.useEffect(() => {
     let helper = []
@@ -89,10 +92,11 @@ export default function Schedule() {
                     data={resources}
                   />
 
-                  <AppointmentTooltip
+                  {openConfirm?.open == false && <AppointmentTooltip
                     showCloseButton
                     contentComponent={ScheduleOptions}
-                  />
+                  />}
+                  
                 </Scheduler>
               </Card>
             </div>
