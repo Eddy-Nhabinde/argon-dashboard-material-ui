@@ -8,8 +8,8 @@ import Psicologos from "layouts/psicologos";
 const routes = [
   {
     name: "Início",
-    key: "Inicio",
-    route: "/Inicio",
+    key: "inicio",
+    route: "/inicio",
     access: 'psi and admin',
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-tv-2" />,
     component: <Dashboard />,

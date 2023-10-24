@@ -20,7 +20,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const location = useLocation();
   const { pathname } = location;
   const itemName = pathname.split("/").slice(1)[0];
-
+console.log(itemName)
   const closeSidenav = () => setMiniSidenav(dispatch, true);
 
   useEffect(() => {

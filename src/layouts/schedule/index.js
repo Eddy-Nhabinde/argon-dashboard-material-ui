@@ -16,30 +16,52 @@ import { ScheduleOptions } from 'components/scheduleOptions/scheduleOptions';
 import { CircularProgress } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import { Confirmation } from 'store';
+import { List } from 'store';
 
 const Appointment = ({
   children, style, ...restProps
-}) => (
-  <Appointments.Appointment
-    {...restProps}
-    style={{
-      ...style,
-      backgroundColor: '#376996',
-      borderRadius: '3px',
-      margin: '4px'
-    }}
-  >
-    {children}
-  </Appointments.Appointment>
-);
+}) => {
+
+  function GetColor() {
+    if (restProps?.data?.estado == 1)
+      return { backgroundColor: '#FB9140' }
+    if (restProps?.data?.estado == 2)
+      return { backgroundColor: '#EC0B43' }
+    if (restProps?.data?.estado == 3)
+      return { backgroundColor: '#16DB65' }
+  }
+
+  return (
+    <Appointments.Appointment
+      {...restProps}
+      style={{
+        ...style,
+        ...GetColor(),
+        borderRadius: '3px',
+        margin: '4px'
+      }}
+    >
+      {children}
+    </Appointments.Appointment>
+  );
+}
 
 export default function Schedule() {
   const [dia, setDia] = React.useState()
   const { problemsData, loadProblems } = GetProblems()
   const [problems, setProblemas] = React.useState([])
   const { load, data } = GetSchedule()
-  const { dados } = GetData({ data })
-  const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
+  const { dados } = GetData()
+  const [openConfirm,] = useRecoilState(Confirmation)
+  const [, setAllData] = useRecoilState(List)
+
+  React.useEffect(() => {
+    setAllData(data)
+  }, [data])
+
+  React.useEffect(() => {
+    setAllData([])
+  }, [])
 
   React.useEffect(() => {
     let helper = []
@@ -96,7 +118,7 @@ export default function Schedule() {
                     showCloseButton
                     contentComponent={ScheduleOptions}
                   />}
-                  
+
                 </Scheduler>
               </Card>
             </div>

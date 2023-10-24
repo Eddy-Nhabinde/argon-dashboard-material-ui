@@ -49,7 +49,8 @@ export const ScheduleOptions = ({ style, ...restProps }) => {
                                 operation: "cancel",
                                 endpoint: 'cancelAppointment/' + restProps?.appointmentData?.id,
                                 id: restProps?.appointmentData?.id,
-                                method: 'PUT'
+                                method: 'PUT',
+                                schedule: true
                             })} style={{ marginLeft: '10px' }} type="primary" danger>
                                 Cancelar
                             </Button>

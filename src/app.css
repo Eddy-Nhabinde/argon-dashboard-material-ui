@@ -71,3 +71,7 @@ input:-webkit-autofill:active {
 header::before {
     display: none !important;
 }
+
+.ant-modal {
+    margin-top: 80px;
+}

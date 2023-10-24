@@ -25,8 +25,21 @@ export default function ConfimDialog() {
 
     useEffect(() => {
         if (alert?.type != "error" && openConfirm?.operation != "reschedule") {
-            let copy = allData?.filter((row) => row.id != openConfirm?.id)
-            setAllData(copy)
+            if (openConfirm?.operation == 'cancel' && openConfirm?.schedule == true) {
+                let copy = [...allData]
+                allData?.map((val, index) => {
+                    if (val.id == openConfirm?.id) {
+                        copy[index] = {
+                            ...val,
+                            estado_id: 2,
+                        }
+                    }
+                })
+                setAllData(copy)
+            } else {
+                let copy = allData?.filter((row) => row.id != openConfirm?.id)
+                setAllData(copy)
+            }
         } else if (openConfirm?.operation == "reschedule") {
             let copy = [...allData]
             allData?.map((val, index) => {

@@ -1,23 +1,28 @@
 import { useEffect, useState } from "react"
+import { useRecoilState } from "recoil"
+import { List } from "store"
 
-export default function GetData({ data }) {
+
+export default function GetData() {
+    const [allData,] = useRecoilState(List)
     const [dados, setDados] = useState([])
     let schedule = []
 
     useEffect(() => {
-        data?.map((val) => {
+        allData?.map((val) => {
             let date = val?.data.split("-")
             schedule.push(returnAppointments(val, date))
         })
 
         setDados(schedule)
-    }, [data])
+    }, [allData])
 
     function returnAppointments(value, date) {
 
         switch (value?.hora) {
             case "08:30":
                 return {
+                    estado: value.estado_id,
                     problema: 'Problema ' + value.problema,
                     id: value.id,
                     psi_id: value.psicologo_id,
@@ -27,6 +32,7 @@ export default function GetData({ data }) {
                 }
             case "10:00":
                 return {
+                    estado: value.estado_id,
                     problema: 'Problema ' + value.problema,
                     id: value.id,
                     psi_id: value.psicologo_id,
@@ -36,6 +42,7 @@ export default function GetData({ data }) {
                 }
             case "11:30":
                 return {
+                    estado: value.estado_id,
                     problema: 'Problema ' + value.problema,
                     id: value.id,
                     psi_id: value.psicologo_id,
@@ -45,6 +52,7 @@ export default function GetData({ data }) {
                 }
             case "13:00":
                 return {
+                    estado: value.estado_id,
                     problema: 'Problema ' + value.problema,
                     id: value.id,
                     psi_id: value.psicologo_id,
@@ -54,6 +62,7 @@ export default function GetData({ data }) {
                 }
             case "14:30":
                 return {
+                    estado: value.estado_id,
                     problema: 'Problema ' + value.problema,
                     id: value.id,
                     psi_id: value.psicologo_id,
