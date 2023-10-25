@@ -40,8 +40,8 @@ function Actions(object, tab, data, infoClick) {
         </>
       if (tab == 2 || tab == 3)
         return <>
-          <IconButton onClick={() => { infoClick(data) }} style={{ background: "#eee", marginRight: "5px", color: "#000" }} >
-            <InfoOutlinedIcon />
+          <IconButton style={{ marginRight: "5px" }} >
+            <InfoOutlinedIcon onClick={() => { infoClick(data) }} />
           </IconButton>
         </>
     case "psychologist":
@@ -52,7 +52,7 @@ function Actions(object, tab, data, infoClick) {
 }
 
 function getRowsObject(val, object, tab, infoClick) {
-  console.log(val)
+
   switch (object) {
     case "appointments":
       return {

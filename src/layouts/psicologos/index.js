@@ -18,6 +18,8 @@ import { List } from 'store';
 import { AddOrEdit } from 'store';
 import { AddNewPsycho } from 'hooks/psicologo/newPsychologist';
 import useDebounce from 'hooks/search/useDebounce';
+import { Nothing2Show } from 'components/nothing2show/nothing2show';
+import { NameFilter } from 'store';
 
 export default function Psicologos() {
     const debouncedValue = useDebounce()
@@ -26,11 +28,12 @@ export default function Psicologos() {
     const [page, setPage] = useState(1)
     const { data, load } = GetPsychoList({ page, debouncedValue })
     const { columns, rows } = TableRowsGenerator({ object: "psychologist" });
-    const [, setAllData] = useRecoilState(List)
+    const [allData, setAllData] = useRecoilState(List)
     const [options, setOptions] = useState({})
     const { speciality, loadSpeciality } = GetSpecilidade({ add })
     const [alert, setAlert] = useRecoilState(AlertState)
     const { NewPsycho, loadAdd } = AddNewPsycho({ formData })
+    const [, setFilter] = useRecoilState(NameFilter)
 
     useEffect(() => {
         if (data?.data?.length > 0) setAllData(data?.data)
@@ -39,6 +42,7 @@ export default function Psicologos() {
 
     useEffect(() => {
         setAllData([])
+        setFilter("")
     }, [])
 
     useEffect(() => {
@@ -76,7 +80,13 @@ export default function Psicologos() {
                             add?.add ?
                                 <FormGen load={loadAdd} onConfirm={onConfirm} onCancel={onCancel} setFormData={setFormData} formData={formData} addPsy={true} fields={Psicologo} options={options} />
                                 :
-                                <Table setPage={setPage} columns={columns} rows={rows} data={data} />
+                                <>
+                                    {
+                                        data?.data?.length > 0 ?
+                                            <Table setPage={setPage} columns={columns} rows={rows} data={data} /> :
+                                            <Nothing2Show />
+                                    }
+                                </>
                         }
                     </ArgonBox>
                 </>

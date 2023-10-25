@@ -12,6 +12,8 @@ import { List } from "store";
 import { useRecoilState } from "recoil";
 import MultiSelect from "components/multiSelect/multiSelect";
 import useDebounce from "hooks/search/useDebounce";
+import { Nothing2Show } from "components/nothing2show/nothing2show";
+import { NameFilter } from "store";
 
 function Consultas() {
   const debouncedValue = useDebounce()
@@ -21,7 +23,8 @@ function Consultas() {
   const [formData, setFormData] = useState({ Estado: 1 })
   const { data, load } = GetAppointments({ page, tab, value, debouncedValue })
   const { columns, rows } = TableRowsGenerator({ object: "appointments", tab });
-  const [, setAllData] = useRecoilState(List)
+  const [allData, setAllData] = useRecoilState(List)
+  const [, setFilter] = useRecoilState(NameFilter)
 
   useEffect(() => {
     setAllData(data)
@@ -29,6 +32,7 @@ function Consultas() {
 
   useEffect(() => {
     setAllData([])
+    setFilter("")
   }, [])
 
   const maxWidth = useMediaQuery('(max-width: 643px)')
@@ -70,7 +74,11 @@ function Consultas() {
               },
             }}
           >
-            <Table object="appointments" columns={columns} rows={rows} setPage={setPage} data={data} page={page} />
+            {
+              data?.length > 0 ?
+                <Table object="appointments" columns={columns} rows={rows} setPage={setPage} data={data} page={page} /> :
+                <Nothing2Show />
+            }
           </ArgonBox>
         </div>
       }
