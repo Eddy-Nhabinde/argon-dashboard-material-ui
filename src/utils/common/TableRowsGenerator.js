@@ -13,7 +13,7 @@ function Author({ name }) {
   return (
     <ArgonBox display="flex" alignItems="center" px={1} py={0.5}>
       <ArgonBox display="flex" flexDirection="column">
-        <ArgonTypography variant="button" fontWeight="medium">
+        <ArgonTypography variant="button" fontWeight="medium" color="text">
           {name}
         </ArgonTypography>
       </ArgonBox>
@@ -52,10 +52,12 @@ function Actions(object, tab, data, infoClick) {
 }
 
 function getRowsObject(val, object, tab, infoClick) {
+  console.log(val)
   switch (object) {
     case "appointments":
       return {
         paciente: <Author name={val?.paciente} />,
+        psicólogo: <Author name={val?.psicologo} />,
         hora: <Time job={val?.hora} />,
         data: (
           <ArgonTypography variant="caption" color="secondary" fontWeight="medium">

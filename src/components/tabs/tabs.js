@@ -3,29 +3,16 @@ import { Tabs } from 'antd';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import EventIcon from '@mui/icons-material/Event';
+import { Radio } from 'antd';
 
 const TableTabs = ({ setTab, tab }) => (
-    <Tabs
-        style={{ marginTop: "20px" }}
-        onChange={(e) => setTab(e)}
-        defaultActiveKey="1"
-        activeKey={tab}
-        items={[
-            { icon: EventIcon, label: "Pendentes", color: "#FAA916" },
-            { icon: CloseIcon, label: "Canceladas", color: "#F21B3F" },
-            { icon: DoneIcon, label: "Concluidas", color: "#379634" }
-        ].map((Icon, i) => {
-            const id = String(i + 1);
-            return {
-                label: (
-                    <span style={{ fontWeight: "500", letterSpacing: "1px", color: Icon.color }} >
-                        <Icon.icon style={{ margin: "-5px 5px -3px 0" }} />
-                        {Icon.label}
-                    </span>
-                ),
-                key: id,
-            };
-        })}
-    />
+    <div style={{ margin: "13px 0 0 30px", display: "flex", flexDirection: "column" }}>
+        <span style={{ fontSize: "14px", fontWeight: "600" }} >Filtrar pelos estados das consultas</span>
+        <Radio.Group defaultValue={tab} onChange={(e) => setTab(e.target.value)} style={{ borderWidth: "2px" }} >
+            <Radio.Button value={1} style={{ color: "#FAA916", borderWidth: "2px", fontWeight:"600" }} ><EventIcon style={{margin:"-3px 5px 0 0"}} />Pendentes</Radio.Button>
+            <Radio.Button value={2} style={{ color: "#F21B3F", borderWidth: "2px", fontWeight:"600" }}><CloseIcon style={{margin:"-3px 5px 0 0"}} />Canceladas</Radio.Button>
+            <Radio.Button value={3} style={{ color: "#379634", borderWidth: "2px", fontWeight:"600" }}><DoneIcon style={{margin:"-3px 5px 0 0"}} />Concluídas</Radio.Button>
+        </Radio.Group>
+    </div>
 );
 export default TableTabs;

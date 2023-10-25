@@ -10,12 +10,14 @@ import styles from '../psicologos/index.module.css'
 import GenericFields from "components/genericFields/genericFields";
 import { List } from "store";
 import { useRecoilState } from "recoil";
+import MultiSelect from "components/multiSelect/multiSelect";
 
 function Consultas() {
   const [tab, setTab] = useState(1)
+  const [value, setValue] = useState([]);
   const [page, setPage] = useState(1)
   const [formData, setFormData] = useState({ Estado: 1 })
-  const { data, load } = GetAppointments({ page, tab })
+  const { data, load } = GetAppointments({ page, tab, value })
   const { columns, rows } = TableRowsGenerator({ object: "appointments", tab });
   const [, setAllData] = useRecoilState(List)
 
@@ -42,6 +44,7 @@ function Consultas() {
             <div className={styles.pageTitle} >
               <h1 style={{ padding: '5px 0 4px 23px' }}>Lista das Consultas</h1>
             </div>
+            {sessionStorage.getItem('acesso') == 'admin' && <MultiSelect value={value} setValue={setValue} />}
             {maxWidth && < GenericFields
               placeholder={'Estado'}
               label={'Estado'}

@@ -8,13 +8,14 @@ export function GetTableHeaders(object) {
             if (maxWidth)
                 return [
                     { name: "data", align: "center" },
-                    { name: "hora", align: "left" },
+                    { name: "hora", align: "center" },
                     { name: 'estado', align: "center" }
                 ]
             else
                 return [
                     { name: "paciente", align: "left" },
-                    { name: "hora", align: "left" },
+                    { name: "psicólogo", align: "left" },
+                    { name: "hora", align: "center" },
                     { name: "data", align: "center" },
                     { name: "Acções", align: "center" },
                 ]
