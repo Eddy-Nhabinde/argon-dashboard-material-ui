@@ -37,6 +37,8 @@ import {
 
 import PerfilSection from "argonComponents/ProfileSection/Perfil";
 import { useMediaQuery } from "usehooks-ts";
+import { NameFilter } from "store";
+import { useRecoilState } from "recoil";
 
 function DashboardNavbar({ absolute, light, isMini, showTitle }) {
   const [navbarType, setNavbarType] = useState();
@@ -45,7 +47,7 @@ function DashboardNavbar({ absolute, light, isMini, showTitle }) {
   const route = useLocation().pathname.split("/").slice(1);
   const maxWidth = useMediaQuery('(max-width: 480px)')
   const maxWidth2 = useMediaQuery('(max-width: 370px)')
-
+  const [filter, setFilter] = useRecoilState(NameFilter)
 
   useEffect(() => {
     // Setting the navbar type
@@ -101,32 +103,37 @@ function DashboardNavbar({ absolute, light, isMini, showTitle }) {
 
         <ArgonBox sx={(theme) => navbarRow(theme, { isMini })}>
           <ArgonBox pr={1}>
-            <TextField
-              style={!maxWidth ? { width: '300px' } : maxWidth2 ? { width: '90%' } : { width: '100%' }}
-              placeholder="Type here..."
-              InputProps={{
-                startAdornment:
-                  <Icon fontSize="small" style={{ marginRight: "6px" }}>
-                    search
-                  </Icon>
-              }}
-            />
+            {
+              (route[0] == 'psicologos' || route[0] == 'consultas') &&
+              <TextField
+                style={!maxWidth ? { width: '300px' } : maxWidth2 ? { width: '90%' } : { width: '100%' }}
+                placeholder={route[0] == 'psicologos' ? 'Pesquise pelo psicologo' : 'Pesquise pelo paciente'}
+                onChange={(e) => setFilter(e.target.value)}
+                value={filter}
+                InputProps={{
+                  startAdornment:
+                    <Icon fontSize="small" style={{ marginRight: "6px" }}>
+                      search
+                    </Icon>
+                }}
+              />
+            }
           </ArgonBox>
 
-            <ArgonBox color={light ? "white" : "inherit"}>
-              <IconButton
-                size="small"
-                color={light && transparentNavbar ? "white" : "dark"}
-                sx={navbarMobileMenu}
-                onClick={handleMiniSidenav}
-              >
-                <Icon>{miniSidenav ? "menu_open" : "menu"}</Icon>
-              </IconButton>
+          <ArgonBox color={light ? "white" : "inherit"}>
+            <IconButton
+              size="small"
+              color={light && transparentNavbar ? "white" : "dark"}
+              sx={navbarMobileMenu}
+              onClick={handleMiniSidenav}
+            >
+              <Icon>{miniSidenav ? "menu_open" : "menu"}</Icon>
+            </IconButton>
 
-              <IconButton sx={navbarIconButton} size="small">
-                <PerfilSection />
-              </IconButton>
-            </ArgonBox>
+            <IconButton sx={navbarIconButton} size="small">
+              <PerfilSection />
+            </IconButton>
+          </ArgonBox>
         </ArgonBox>
       </Toolbar>
     </AppBar>

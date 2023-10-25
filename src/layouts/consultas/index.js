@@ -11,13 +11,15 @@ import GenericFields from "components/genericFields/genericFields";
 import { List } from "store";
 import { useRecoilState } from "recoil";
 import MultiSelect from "components/multiSelect/multiSelect";
+import useDebounce from "hooks/search/useDebounce";
 
 function Consultas() {
+  const debouncedValue = useDebounce()
   const [tab, setTab] = useState(1)
   const [value, setValue] = useState([]);
   const [page, setPage] = useState(1)
   const [formData, setFormData] = useState({ Estado: 1 })
-  const { data, load } = GetAppointments({ page, tab, value })
+  const { data, load } = GetAppointments({ page, tab, value, debouncedValue })
   const { columns, rows } = TableRowsGenerator({ object: "appointments", tab });
   const [, setAllData] = useRecoilState(List)
 

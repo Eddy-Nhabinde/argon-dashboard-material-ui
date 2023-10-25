@@ -17,12 +17,14 @@ import { AlertState } from 'store';
 import { List } from 'store';
 import { AddOrEdit } from 'store';
 import { AddNewPsycho } from 'hooks/psicologo/newPsychologist';
+import useDebounce from 'hooks/search/useDebounce';
 
 export default function Psicologos() {
+    const debouncedValue = useDebounce()
     const [add, setAdd] = useRecoilState(AddOrEdit)
     const [formData, setFormData] = useState({ acesso: 'psicologo' })
     const [page, setPage] = useState(1)
-    const { data, load } = GetPsychoList({ page })
+    const { data, load } = GetPsychoList({ page, debouncedValue })
     const { columns, rows } = TableRowsGenerator({ object: "psychologist" });
     const [, setAllData] = useRecoilState(List)
     const [options, setOptions] = useState({})
@@ -32,6 +34,7 @@ export default function Psicologos() {
 
     useEffect(() => {
         if (data?.data?.length > 0) setAllData(data?.data)
+        else setAllData([])
     }, [data])
 
     useEffect(() => {

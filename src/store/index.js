@@ -35,4 +35,11 @@ export const AddOrEdit = atom({
     default: { add: false }
 })
 
+export const NameFilter = atom({
+    key: "NameFilter",
+    default: ""
+})
+
+
+
 

@@ -132,7 +132,7 @@ function TableRowsGenerator({ object, tab }) {
         TableRows.push(getRowsObject(val, object, tab, infoClick))
       })
       setRows(TableRows)
-    }
+    } else setRows([])
   }, [allData])
 
 
