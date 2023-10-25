@@ -1,4 +1,4 @@
-export function ValidateParams(type, value) {
+export function ValidateParams(type, value, key) {
 
     switch (type) {
         case 'text':
@@ -32,6 +32,15 @@ export function ValidateParams(type, value) {
 
         case 'date':
             let date = new Date(value)
+            if (key == 'dataNasc') {
+
+                var month_diff = Date.now() - date.getTime();
+                var age_dt = new Date(month_diff);
+                var year = age_dt.getUTCFullYear();
+                var age = Math.abs(year - 1970);
+
+                return age >= 18
+            }
             return value && date
 
         case 'char':

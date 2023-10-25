@@ -9,7 +9,7 @@ export function Validate(formData, resource) {
     switch (resource) {
         case 'appointment':
             for (let i = 0; i < appVars.length; i++) {
-                if (appVars[i].required) {
+                if (appVars[i].required || formData?.[appVars[i].key]) {
                     if (!ValidateParams(appVars[i].valueType, formData[appVars[i].key])) {
                         return appVars[i].label
                     }
@@ -19,8 +19,8 @@ export function Validate(formData, resource) {
 
         case 'user':
             for (let i = 0; i < userVars.length; i++) {
-                if (userVars[i].required) {
-                    if (!ValidateParams(userVars[i].valueType, formData[userVars[i].key])) {
+                if (userVars[i].required || formData?.[userVars[i].key]) {
+                    if (!ValidateParams(userVars[i].valueType, formData[userVars[i].key], userVars[i].key)) {
                         return userVars[i].label
                     }
                 }
@@ -29,9 +29,9 @@ export function Validate(formData, resource) {
 
         case 'psychologist':
             for (let i = 0; i < psychoVars.length; i++) {
-                if (psychoVars[i].required) {
+                if (psychoVars[i].required || formData?.[psychoVars[i].key]) {
                     if (!ValidateParams(psychoVars[i].valueType, formData[psychoVars[i].key])) {
-                        return psychoVars[i]
+                        return psychoVars[i].label
                     }
                 }
             }

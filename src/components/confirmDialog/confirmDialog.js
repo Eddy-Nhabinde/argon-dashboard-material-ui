@@ -23,6 +23,10 @@ export default function ConfimDialog() {
         setOpenConfirm(openConfirm => ({ ...openConfirm, done: true }));
     }
 
+    const onCancel = () => {
+        setOpenConfirm(openConfirm => ({ ...openConfirm, done: true, open: false }));
+    }
+
     useEffect(() => {
         if (alert?.type != "error" && openConfirm?.operation != "reschedule") {
             if (openConfirm?.operation == 'cancel' && openConfirm?.schedule == true) {
@@ -68,6 +72,7 @@ export default function ConfimDialog() {
                 content: openConfirm?.msg,
                 okText: 'Sim',
                 cancelText: 'Não',
+                onCancel: onCancel,
                 onOk: onConfirm
             });
         }

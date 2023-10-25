@@ -12,7 +12,6 @@ export const ScheduleOptions = ({ style, ...restProps }) => {
     const [open, setOpen] = useRecoilState(ModalState)
     const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
 
-    console.log(restProps?.appointmentData)
     function Remarcar(value) {
         setOpen(open => ({ ...open, open: true, component: 'Remarcar', data: value.startDate, hora: moment(value.startDate).format('LT').substring(0, moment(value.startDate).format('LT').length - 3), id: value.id, psiId: value.psi_id, }))
     }
