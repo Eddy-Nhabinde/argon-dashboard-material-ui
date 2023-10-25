@@ -35,7 +35,6 @@ export default function FormGen({ load, setFormData, formData, fields, addPsy = 
         }
     }, [add])
 
-    console.log(formData)
     return (
         <div>
             <div className={styles.container} >

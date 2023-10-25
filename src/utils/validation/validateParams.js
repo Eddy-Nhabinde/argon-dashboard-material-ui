@@ -1,4 +1,5 @@
 export function ValidateParams(type, value, key) {
+    const contPrefix = ['82', '83', '84', '85', '86', '87']
 
     switch (type) {
         case 'text':
@@ -19,15 +20,15 @@ export function ValidateParams(type, value, key) {
 
             if (value?.length == 9) {
                 //Aqui no caso do contacto estar na forma regular 8X XX XX XXX
-                return value?.match(valid)
+                return value?.match(valid) && contPrefix.indexOf(value?.substring(0, 2)) != -1
 
             } else if (value?.substring(4).length == 13) {
                 //Aqui quando o numero esta  assim +258 8X XX XX XXX
-                return value?.match(value.substring(4))
+                return value?.match(value.substring(4)) && contPrefix.indexOf(value?.substring(4, 6)) != -1
 
             } else if (value?.substring(3).length == 12) {
                 //Aqui quando o numero esta assim 258 8X XX XX XXX
-                return value?.match(value.substring(3))
+                return value?.match(value.substring(3)) && contPrefix.indexOf(value?.substring(3, 5)) != -1
             }
 
         case 'date':
@@ -44,7 +45,7 @@ export function ValidateParams(type, value, key) {
             return value && date
 
         case 'char':
-            return value.length = 1
+            return value.length == 1
 
     }
 }

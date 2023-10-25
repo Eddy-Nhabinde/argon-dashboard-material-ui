@@ -23,11 +23,11 @@ export default function SignUp() {
         let response = Validate(formData, 'user')
 
         if (response == true) Register()
-        else if (response == 'Data de Nascimento') {
+        else if (response == 'Data de Nascimento')
             setAlert(alert => ({ ...alert, type: 'warning', msg: `A idade mínima permitida pelo sistema sao 18 anos!` }))
-        } else {
-            setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))
-        }
+        else if (response == 'Contacto Principal' || response == 'Contacto Opcional')
+            setAlert(alert => ({ ...alert, type: 'warning', msg: `Por favor degite um ${response} válido!` }))
+        else setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))
     }
 
     useEffect(() => {
