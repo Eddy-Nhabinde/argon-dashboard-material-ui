@@ -56,6 +56,7 @@ function getRowsObject(val, object, tab, infoClick) {
   switch (object) {
     case "appointments":
       return {
+        id: val?.id,
         paciente: <Author name={val?.paciente} />,
         psicólogo: <Author name={val?.psicologo} />,
         hora: <Time job={val?.hora} />,
@@ -83,6 +84,7 @@ function getRowsObject(val, object, tab, infoClick) {
       }
     case "psychologist":
       return {
+        id: val?.id,
         nome: <Author name={val?.nome} />,
         especialidade: <Time job={val?.especialidade} />,
         estado: (
@@ -104,6 +106,7 @@ function getRowsObject(val, object, tab, infoClick) {
       }
     case "history":
       return {
+        id: val?.id,
         data: (
           <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
             {val?.data}

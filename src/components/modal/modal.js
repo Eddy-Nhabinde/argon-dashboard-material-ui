@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Modal from '@mui/material/Modal';
-import Remarcar from './ModalChildren/RemarcarConsulta';
 import { ModalState } from 'store';
 import { useRecoilState } from 'recoil';
+import Remarcar from './remarcar/RemarcarConsulta';
+import { Modal } from '@mui/material';
 
 export default function BasicModal() {
     const [open,] = useRecoilState(ModalState)

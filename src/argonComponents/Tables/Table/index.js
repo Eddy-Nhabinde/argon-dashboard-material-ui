@@ -22,7 +22,7 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 
 // @mui material components
-import { Table as MuiTable } from "@mui/material";
+import { Table as MuiTable, useMediaQuery } from "@mui/material";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
@@ -34,12 +34,20 @@ import ArgonTypography from "argonComponents/ArgonTypography";
 // Argon Dashboard 2 MUI base styles
 import typography from "assets/theme/base/typography";
 import borders from "assets/theme/base/borders";
-import TPagination from "components/pagination/tablePagination";
 import Paging from "components/pagination/tablePagination";
+import { useRecoilState } from "recoil";
+import { Details } from "store";
 
 function Table({ setPage, columns, rows, data, page }) {
   const { size, fontWeightBold } = typography;
   const { borderWidth } = borders;
+  const maxWidth = useMediaQuery('(max-width: 480px)')
+  const [, setDetails] = useRecoilState(Details)
+
+  const onRowClick = (id) => {
+    let dados = data?.filter((val) => val.id == id)
+    if (maxWidth && dados?.length > 0) setDetails({ open: true, data: dados[0], object: 'appointments' })
+  }
 
   const renderColumns = columns.map(({ name, align, width }, key) => {
     let pl;
@@ -95,7 +103,6 @@ function Table({ setPage, columns, rows, data, page }) {
           >
             <ArgonBox display="flex" alignItems="center" py={0.5} px={1}>
               <ArgonBox mr={2}>
-                {/* <ArgonAvatar src={row[name][0]} name={row[name][1]} variant="rounded" size="sm" /> */}
               </ArgonBox>
               <ArgonTypography variant="button" fontWeight="medium" sx={{ width: "max-content" }}>
                 {row[name][1]}
@@ -131,7 +138,7 @@ function Table({ setPage, columns, rows, data, page }) {
       return template;
     });
 
-    return <TableRow key={rowKey}>{tableRow}</TableRow>;
+    return <TableRow onClick={() => onRowClick(row.id)} key={rowKey}>{tableRow}</TableRow>;
   });
 
   return useMemo(
