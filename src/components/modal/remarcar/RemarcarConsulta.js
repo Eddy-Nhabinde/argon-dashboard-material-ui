@@ -1,8 +1,6 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
 import styles from './Remarcar.module.css'
-import { Box } from "@mui/material";
-import { GeneralFetch } from "../../../Api/generalFetch/generalFetch";
-import Spin from 'antd/es/spin';
+import { Box, useMediaQuery } from "@mui/material";
 import { ModalState } from "store";
 import { useRecoilState } from "recoil";
 import { InputLabel, MenuItem, Select } from "@material-ui/core";
@@ -15,31 +13,33 @@ import { Verify } from "utils/appointments/verify";
 import { Confirmation } from "store";
 import moment from "moment";
 
-const style = {
-    position: 'absolute',
-    display: 'flex',
-    flexDirection: 'column',
-    top: '45%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 500,
-    maxHeight: '61vh',
-    borderRadius: '10px',
-    bgcolor: '#fff',
-    boxShadow: 24,
-    p: 2,
-};
 
 export default function Remarcar({ id, date, time, cId }) {
     const [formData, setFormData] = useState({ psicologo: id, update: true, prevTime: time, prevDate: new Date(date), id: cId })
     const today = new Date();
     const [alert, setAlert] = useRecoilState(AlertState)
     const { horaDisponivel, getAvailabeDays } = Verify({ formData })
-    const { FetchData, load } = GeneralFetch()
     const [open, setOpen] = useRecoilState(ModalState)
     let days = getAvailabeDays()
     const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
+    const maxWidth = useMediaQuery('(max-width: 520px)')
 
+    const style = {
+        position: 'absolute',
+        display: 'flex',
+        flexDirection: 'column',
+        top: '45%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: maxWidth ? '96vw' : 500,
+        maxHeight: '61vh',
+        borderRadius: '10px',
+        bgcolor: '#fff',
+        boxShadow: 24,
+        p: 2,
+    };
+
+    const width = maxWidth ? '42vw' : 200
 
     function Reschedule() {
         let newDate = new Date(formData?.data)
@@ -92,7 +92,7 @@ export default function Remarcar({ id, date, time, cId }) {
                             value={formData?.data || null}
                             onChange={(newValue) => onChange('data', newValue.$d)}
                             minDate={today}
-                            renderInput={(params) => <TextField {...params} style={{ width: "200px" }} />}
+                            renderInput={(params) => <TextField {...params} style={{ width: width }} />}
                         />
                     </LocalizationProvider>
                 </div>
@@ -105,7 +105,7 @@ export default function Remarcar({ id, date, time, cId }) {
                         variant="outlined"
                         onChange={(newValue) => onChange('hora', newValue.target.value)}
                         placeholder="age"
-                        style={{ width: "200px", height: "32px", borderRadius: "9px", marginTop: "12px" }}
+                        style={{ width: width, height: "32px", borderRadius: "9px", marginTop: "12px" }}
                     >
                         {
                             horaDisponivel?.map((val) =>
@@ -116,14 +116,11 @@ export default function Remarcar({ id, date, time, cId }) {
                 </div>
             </div>
             <div className={styles.btnCont} >
-                <button disabled={load} onClick={() => { setOpen({ open: false }) }} className={styles.button} style={!load ? { background: '#7389AE', textTransform: "capitalize" } : {}} >
-                    {
-                        load ? <Spin size="small" /> :
-                            <span style={{ color: 'white' }} >Voltar</span>
-                    }
+                <button onClick={() => { setOpen({ open: false }) }} className={styles.button} style={{ background: '#7389AE', textTransform: "capitalize" }} >
+                    <span style={{ color: 'white' }} >Voltar</span>
                 </button>
 
-                <button disabled={load} onClick={() => { Reschedule() }} className={styles.button} style={{ background: '#DF3B57', textTransform: "capitalize" }} >
+                <button onClick={() => { Reschedule() }} className={styles.button} style={{ background: '#DF3B57', textTransform: "capitalize" }} >
                     <span style={{ color: 'white' }} >Remarcar</span>
                 </button>
             </div>

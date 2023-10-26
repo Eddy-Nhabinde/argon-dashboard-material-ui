@@ -41,7 +41,7 @@ import { Details } from "store";
 function Table({ setPage, columns, rows, data, page }) {
   const { size, fontWeightBold } = typography;
   const { borderWidth } = borders;
-  const maxWidth = useMediaQuery('(max-width: 480px)')
+  const maxWidth = useMediaQuery('(max-width: 614px)')
   const [, setDetails] = useRecoilState(Details)
 
   const onRowClick = (id) => {

@@ -7,13 +7,19 @@ import Table from 'argonComponents/Tables/Table';
 import CloseIcon from '@mui/icons-material/Close';
 import { CircularProgress, IconButton } from '@mui/material';
 import { Button, Space } from "antd"
+import { useRecoilState } from "recoil"
+import { Confirmation } from "store"
+import { ModalState } from "store"
 
 export default function AppDetails({ details, onClose }) {
     const [page, setPage] = useState(1)
     const { historico, loadHistory } = GetHistory({ details, page })
     const { psicologo, loadPsycho } = GetPsychoDetails({ details })
     const { columns, rows } = TableRowsGenerator({ data: historico?.history, object: "history" })
+    const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
+    const [open, setOpen] = useRecoilState(ModalState)
 
+    console.log(details)
     return (
         <>
             {
@@ -79,10 +85,30 @@ export default function AppDetails({ details, onClose }) {
                         <Space class='options'>
                             {details?.data?.estado == 'Pendente' &&
                                 <>
-                                    <Button type="primary" danger>
-                                        Cancelar
+                                    <Button type="primary" danger onClick={() => setOpenConfirm({
+                                        ...openConfirm,
+                                        body: null,
+                                        open: true,
+                                        msg: "Tem certeza que quer cancelar a consulta?",
+                                        operation: "cancel",
+                                        endpoint: 'cancelAppointment/' + details?.data?.id,
+                                        id: details?.data?.id,
+                                        method: 'PUT'
+                                    })}>
+                                        {openConfirm?.load && openConfirm?.operation == "cancel" ?
+                                            <CircularProgress size="25px" style={{ color: "#fff" }} />
+                                            : " Cancelar"
+                                        }
                                     </Button>
-                                    <Button type="primary">Remarcar</Button>
+                                    <Button type="primary"
+                                        onClick={() => {
+                                            setOpen(open => ({ ...open, open: true, component: 'Remarcar', data: details?.data.data, hora: details?.data.hora, id: details?.data.id, psiId: details?.data.psicologo_id, }))
+                                        }}
+                                    >
+                                        {openConfirm?.load && openConfirm?.operation == "reschedule" ?
+                                            <CircularProgress size="25px" style={{ color: "#fff" }} />
+                                            : "Remarcar"}
+                                    </Button>
                                 </>
                             }
                         </Space>

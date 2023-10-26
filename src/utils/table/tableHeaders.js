@@ -1,7 +1,7 @@
 import { useMediaQuery } from "usehooks-ts"
 
 export function GetTableHeaders(object) {
-    const maxWidth = useMediaQuery('(max-width: 480px)')
+    const maxWidth = useMediaQuery('(max-width: 614px)')
 
     switch (object) {
         case 'appointments':
