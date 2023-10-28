@@ -26,15 +26,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
   const { xxl } = boxShadows;
   const { pxToRem } = functions;
 
-  let bgColor;
-
-  if ((darkSidenav && layout === "landing") || (!darkSidenav && layout === "landing")) {
-    bgColor = transparent.main;
-  } else if (darkSidenav) {
-    bgColor = background.dark;
-  } else {
-    bgColor = white.main;
-  }
+  let bgColor ='#114338';
 
   // styles for the sidenav when miniSidenav={false}
   const drawerOpenStyles = () => ({

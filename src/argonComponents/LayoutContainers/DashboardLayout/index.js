@@ -52,16 +52,17 @@ function DashboardLayout({ bgColor, children, ...rest }) {
       })}
     >
       <ArgonBox
-        bgColor={background || "info"}
+        bgColor={'#009a00'}
         height="300px"
         width="100vw"
-        position="absolute"
+        position="fixed"
         top={0}
         left={0}
-        sx={darkMode && { bgColor: ({ palette: { background } }) => background.default }}
         {...rest}
       />
-      {children}
+      <div >
+        {children}
+      </div>
     </ArgonBox>
   );
 }

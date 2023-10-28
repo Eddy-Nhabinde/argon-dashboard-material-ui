@@ -11,7 +11,7 @@ const routes = [
     key: "inicio",
     route: "/inicio",
     access: 'psi and admin',
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-tv-2" />,
+    icon: <ArgonBox component="i" color="#009a00" fontSize="14px" className="ni ni-tv-2" />,
     component: <Dashboard />,
   },
   {
@@ -19,7 +19,7 @@ const routes = [
     key: "agenda",
     route: "/agenda",
     access: 'psi',
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="fa-solid fa-calendar-day" />,
+    icon: <ArgonBox component="i" color="#009a00" fontSize="14px" className="fa-solid fa-calendar-day" />,
     component: <Schedule />,
   },
   {
@@ -27,7 +27,7 @@ const routes = [
     key: "consultas",
     route: "/consultas",
     access: 'all',
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="fa-solid fa-list-ul" />,
+    icon: <ArgonBox component="i" color="#009a00" fontSize="14px" className="fa-solid fa-list-ul" />,
     component: <Consultas />,
   },
   {
@@ -35,15 +35,15 @@ const routes = [
     key: "nova-consulta",
     route: "/nova-consulta",
     access: 'admin and normal',
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="fa-regular fa-calendar-plus" />,
+    icon: <ArgonBox component="i" color="#009a00" fontSize="14px" className="fa-regular fa-calendar-plus" />,
     component: <NovaConsulta />,
   },
   {
-    name: "Psicologos",
+    name: "Psicólogos",
     key: "psicologos",
     route: '/psicologos',
     access: 'admin',
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="fa-solid fa-stethoscope" />,
+    icon: <ArgonBox component="i" color="#009a00" fontSize="14px" className="fa-solid fa-stethoscope" />,
     component: <Psicologos />,
   },
 ];

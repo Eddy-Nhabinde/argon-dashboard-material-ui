@@ -3,7 +3,6 @@ import { useLocation, NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
-import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
 import ArgonBox from "argonComponents/ArgonBox";
 import ArgonTypography from "argonComponents/ArgonTypography";

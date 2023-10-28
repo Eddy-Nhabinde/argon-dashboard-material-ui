@@ -45,8 +45,10 @@ function Table({ setPage, columns, rows, data, page }) {
   const [, setDetails] = useRecoilState(Details)
 
   const onRowClick = (id) => {
-    let dados = data?.filter((val) => val.id == id)
-    if (maxWidth && dados?.length > 0) setDetails({ open: true, data: dados[0], object: 'appointments' })
+    if (data?.length > 0) {
+      let dados = data?.filter((val) => val.id == id)
+      if (maxWidth && dados?.length > 0) setDetails({ open: true, data: dados[0], object: 'appointments' })
+    }
   }
 
   const renderColumns = columns.map(({ name, align, width }, key) => {

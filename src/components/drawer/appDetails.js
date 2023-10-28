@@ -19,7 +19,6 @@ export default function AppDetails({ details, onClose }) {
     const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
     const [open, setOpen] = useRecoilState(ModalState)
 
-    console.log(details)
     return (
         <>
             {
