@@ -49,7 +49,10 @@ export default function Psicologos() {
         if (speciality) setOptions({ especialidade: speciality })
     }, [speciality])
 
-    const onCancel = () => { setAdd({ add: !add?.add }) }
+    const onCancel = () => {
+        setAdd({ add: !add?.add })
+        setFormData({ acesso: 'psicologo' })
+    }
 
     const onConfirm = () => {
         let response = Validate(formData, 'psychologist')

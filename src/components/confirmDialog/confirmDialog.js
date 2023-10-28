@@ -7,6 +7,7 @@ import { GeneralFetch } from 'Api/generalFetch/generalFetch';
 import { List } from 'store';
 import { AlertState } from 'store';
 import moment from 'moment';
+import { ModalState } from 'store';
 
 export default function ConfimDialog() {
     const [modal, ConfirmContextHoldert] = Modal.useModal();
@@ -14,8 +15,9 @@ export default function ConfimDialog() {
     const { FetchData, load } = GeneralFetch()
     const [allData, setAllData] = useRecoilState(List)
     const [alert,] = useRecoilState(AlertState)
+    const [open, setOpen] = useRecoilState(ModalState)
 
-    const onConfirm = () => {
+    function SaveConfirmation() {
         setOpenConfirm(openConfirm => ({ ...openConfirm, open: false }));
         (async () => {
             await FetchData({ ...openConfirm?.body }, openConfirm?.endpoint, openConfirm?.method, 'user')
@@ -23,8 +25,20 @@ export default function ConfimDialog() {
         setOpenConfirm(openConfirm => ({ ...openConfirm, done: true }));
     }
 
+    const onConfirm = () => {
+        if (openConfirm?.operation == "close1") {
+            setOpen(open => ({ ...open, open: true, segmento: true, component: 'Remarcar', data: openConfirm?.data?.data, hora: openConfirm?.data?.hora, id: openConfirm?.data?.id, psiId: openConfirm?.data?.psicologo_id, }))
+        } else {
+            SaveConfirmation()
+        }
+    }
+
     const onCancel = () => {
-        setOpenConfirm(openConfirm => ({ ...openConfirm, done: true, open: false }));
+        if (openConfirm?.operation == "close1") {
+            SaveConfirmation()
+        } else {
+            setOpenConfirm(openConfirm => ({ ...openConfirm, done: true, open: false }));
+        }
     }
 
     useEffect(() => {

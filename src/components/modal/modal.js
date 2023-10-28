@@ -11,7 +11,7 @@ export default function BasicModal() {
         <Modal
             open={open?.open}
         >
-            <Remarcar psicologo={open.psicologo} id={open.psiId} date={open.data} time={open.hora} cId={open.id} />
+            <Remarcar segmento={open?.segmento} psicologo={open.psicologo} id={open.psiId} date={open.data} time={open.hora} cId={open.id} />
         </Modal>
     );
 }

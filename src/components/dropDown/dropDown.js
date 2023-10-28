@@ -24,21 +24,22 @@ function DropDownOptions({ data, object }) {
     }
 
     const items = [
-        object == 'appointments' &&
+        (object == 'appointments' && sessionStorage.getItem('acesso') != 'paciente') &&
         {
             label: <div onClick={() => setOpenConfirm({
                 ...openConfirm,
                 body: null,
                 open: true,
-                msg: "Tem certeza que quer fechar a consulta?",
-                operation: "close",
+                msg: "O paciente deve voltar num outro dia?",
+                operation: "close1",
                 id: data?.id,
+                data: data,
                 endpoint: 'closeAppointment/' + data?.id,
                 method: 'PUT',
             })} >
                 <DoneOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Fechar</span>
             </div >,
-            key: '0',
+            key: '0'
         },
         object == 'appointments' &&
         {

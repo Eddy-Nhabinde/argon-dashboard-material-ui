@@ -6,10 +6,10 @@
 .formTitle h1 {
     position: relative;
     z-index: 1;
-    border-left: 4px solid #36558F;
+    border-left: 4px solid #114338;
     margin: 30px 0 30px -10px;
     padding: 5px 0 4px 73px;
-    color: #36558F;
+    color: #114338;
     font-size: 27px;
     font-weight: 500;
     text-transform: capitalize;
@@ -18,7 +18,7 @@
 
 @media screen and (max-width: 420px) {
     .formTitle h1 {
-        border-left: 4px solid #36558F;
+        border-left: 4px solid #114338;
         margin: 5px 0 30px -10px;
         padding: 5px 0 4px 35px;
         font-size: 21px;
@@ -28,7 +28,7 @@
 
 @media screen and (max-width:677px) {
     .formTitle h1 {
-        border-left: 4px solid #36558F;
+        border-left: 4px solid #114338;
         margin: 10px 0 30px -10px;
         padding: 5px 0 4px 35px;
         font-size: 21px;

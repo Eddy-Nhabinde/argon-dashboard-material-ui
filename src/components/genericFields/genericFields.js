@@ -95,6 +95,7 @@ function GenericFields(props) {
 
             return (
                 <DatePicker
+                    minDate={today}
                     shouldDisableDate={(dateParam) => {
                         let data = new Date(dateParam)
                         if (keyy != 'dataNasc')

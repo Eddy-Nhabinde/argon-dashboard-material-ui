@@ -13,9 +13,8 @@ import { Verify } from "utils/appointments/verify";
 import { Confirmation } from "store";
 import moment from "moment";
 
-
-export default function Remarcar({ id, date, time, cId }) {
-    const [formData, setFormData] = useState({ psicologo: id, update: true, prevTime: time, prevDate: new Date(date), id: cId })
+export default function Remarcar({ segmento, id, date, time, cId }) {
+    const [formData, setFormData] = useState({ psicologo: id, segmento: segmento, update: true, prevTime: time, prevDate: new Date(date), id: cId })
     const today = new Date();
     const [alert, setAlert] = useRecoilState(AlertState)
     const { horaDisponivel, getAvailabeDays } = Verify({ formData })
@@ -46,15 +45,19 @@ export default function Remarcar({ id, date, time, cId }) {
         let prevDate = new Date(formData?.prevDate)
 
         if (formData.data && formData.hora) {
-            if (newDate.getDate() == prevDate.getDate() && formData.prevTime == formData?.hora) {
+            if (newDate.getDate() == prevDate.getDate()) {
                 setOpen({ open: false })
-                setAlert(alert => ({ ...alert, type: 'warning', msg: 'Escolha data e/ou data diferente' }))
+                if (segmento) {
+                    setAlert(alert => ({ ...alert, type: 'warning', msg: 'Escolha uma data diferente' }))
+                } else if (formData.prevTime == formData?.hora) {
+                    setAlert(alert => ({ ...alert, type: 'warning', msg: 'Escolha uma data e/ou hora diferente' }))
+                }
             } else {
                 setOpen({ open: false })
                 setOpenConfirm({
                     ...openConfirm,
                     open: true,
-                    msg: "Tem certeza que quer remarcar a consulta para dia " + moment(formData.data).format('L') + " as " + formData.hora + " ?",
+                    msg: "Tem certeza que deseja marcar a consulta para dia " + moment(formData.data).format('L') + " as " + formData.hora + " ?",
                     operation: "close",
                     endpoint: 'Reschedule',
                     method: 'POST',
@@ -75,11 +78,18 @@ export default function Remarcar({ id, date, time, cId }) {
 
     return (
         <Box sx={style}>
-            <span className={styles.span} >Remarcar consulta</span>
+            <span className={styles.span} >
+                {segmento ? "Consulta de Segmento"
+                    : 'Remarcar consulta'
+                }
+            </span>
             <hr></hr>
             <div className={styles.form} >
                 <div>
-                    <InputLabel id="demo-simple-select-label" style={{ marginBottom: "7px" }}>Novo Dia</InputLabel>
+                    <InputLabel id="demo-simple-select-label" style={{ marginBottom: "7px" }}>
+                        {segmento ? "Data" :
+                            'Novo Data'}
+                    </InputLabel>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             shouldDisableDate={(dateParam) => {
@@ -97,7 +107,10 @@ export default function Remarcar({ id, date, time, cId }) {
                     </LocalizationProvider>
                 </div>
                 <div>
-                    <InputLabel id="demo-simple-select-label">Nova hora</InputLabel>
+                    <InputLabel id="demo-simple-select-label">
+                        {segmento ? "Hora" :
+                            'Nova hora'}
+                    </InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -117,11 +130,14 @@ export default function Remarcar({ id, date, time, cId }) {
             </div>
             <div className={styles.btnCont} >
                 <button onClick={() => { setOpen({ open: false }) }} className={styles.button} style={{ background: '#7389AE', textTransform: "capitalize" }} >
-                    <span style={{ color: 'white' }} >Voltar</span>
+                    <span style={{ color: 'white' }} >Cancelar</span>
                 </button>
 
                 <button onClick={() => { Reschedule() }} className={styles.button} style={{ background: '#DF3B57', textTransform: "capitalize" }} >
-                    <span style={{ color: 'white' }} >Remarcar</span>
+                    <span style={{ color: 'white' }} >
+                        {segmento ? "Marcar" :
+                            'Remarcar'}
+                    </span>
                 </button>
             </div>
         </Box >

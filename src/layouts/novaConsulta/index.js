@@ -8,6 +8,7 @@ import { Verify } from 'utils/appointments/verify';
 import { useRecoilState } from 'recoil';
 import { AlertState } from 'store';
 import { Validate } from 'utils/validation/validate';
+import { AddNewAppointment } from 'hooks/appointments/newAppointment';
 
 export default function NovaConsulta() {
     const [formData, setFormData] = useState({})
@@ -15,6 +16,7 @@ export default function NovaConsulta() {
     const { psicologos, horaDisponivel } = Verify({ formData })
     const { problemsData, loadProblems } = GetProblems()
     const [alert, setAlert] = useRecoilState(AlertState)
+    const { NewAppointment, loadAdd } = AddNewAppointment({ formData })
 
     useEffect(() => {
         if (problemsData) setOptions(options => ({ ...options, problema: problemsData }))
@@ -28,11 +30,12 @@ export default function NovaConsulta() {
         if (horaDisponivel) setOptions(options => ({ ...options, hora: horaDisponivel }))
     }, [horaDisponivel])
 
-    const onCancel = () => { }
+    const onCancel = () => { setFormData({}) }
 
     const onConfirm = () => {
         let response = Validate(formData, 'appointment')
-        if (response == true) console.log(formData)
+
+        if (response == true) NewAppointment()
         else setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))
     }
 
@@ -41,7 +44,7 @@ export default function NovaConsulta() {
             <div className={styles.formTitle}>
                 <h1>Nova Consulta</h1>
             </div>
-            <FormGen options={options} setFormData={setFormData} formData={formData} onConfirm={onConfirm} onCancel={onCancel} fields={appointmentFields} />
+            <FormGen load={loadAdd} options={options} setFormData={setFormData} formData={formData} onConfirm={onConfirm} onCancel={onCancel} fields={appointmentFields} />
         </Layout>
     )
 }

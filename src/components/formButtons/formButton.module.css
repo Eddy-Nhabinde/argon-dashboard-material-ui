@@ -5,18 +5,18 @@
     justify-content: center;
     margin-top: 45px;
     padding-bottom: 5vh;
-    padding-left: 80px;
+    padding-left: 13px;
 }
 
 .button {
     outline: 0;
     cursor: pointer;
     position: relative;
-    width: 150px;
+    width: 105px;
     border: 0;
     border-radius: 5px;
-    padding: 12px 0;
-    font-size: 1.2vw;
+    padding: 9px 0;
+    font-size: 1.1vw;
     font-weight: 500;
     line-height: 1;
     text-transform: capitalize;

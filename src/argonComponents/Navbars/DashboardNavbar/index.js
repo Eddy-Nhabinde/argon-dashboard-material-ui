@@ -47,7 +47,9 @@ function DashboardNavbar({ absolute, light, isMini, showTitle }) {
   const route = useLocation().pathname.split("/").slice(1);
   const maxWidth = useMediaQuery('(max-width: 480px)')
   const maxWidth2 = useMediaQuery('(max-width: 370px)')
+  const maxWidth3 = useMediaQuery('(max-width: 764px)')
   const [filter, setFilter] = useRecoilState(NameFilter)
+
 
   useEffect(() => {
     // Setting the navbar type
@@ -89,13 +91,13 @@ function DashboardNavbar({ absolute, light, isMini, showTitle }) {
           mb={{ xs: 1, md: 0 }}
           sx={(theme) => navbarRow(theme, { isMini })}
         >
-          {!maxWidth && <Breadcrumbs
+          <Breadcrumbs
             icon="home"
             title={route[route.length - 1]}
             route={route}
             light={transparentNavbar ? light : false}
             showTitle={showTitle}
-          />}
+          />
           <Icon fontSize="medium" sx={navbarDesktopMenu} onClick={handleMiniSidenav}>
             {miniSidenav ? "menu_open" : "menu"}
           </Icon>
@@ -104,7 +106,7 @@ function DashboardNavbar({ absolute, light, isMini, showTitle }) {
         <ArgonBox sx={(theme) => navbarRow(theme, { isMini })}>
           <ArgonBox pr={1}>
             {
-              (route[0] == 'psicologos' || route[0] == 'consultas') &&
+              !!((route[0] == 'psicologos' || route[0] == 'consultas') & sessionStorage.getItem("acesso") != "paciente") &&
               <TextField
                 style={!maxWidth ? { width: '300px' } : maxWidth2 ? { width: '90%' } : { width: '100%' }}
                 placeholder={route[0] == 'psicologos' ? 'Pesquise pelo psicologo' : 'Pesquise pelo paciente'}
@@ -121,18 +123,20 @@ function DashboardNavbar({ absolute, light, isMini, showTitle }) {
           </ArgonBox>
 
           <ArgonBox color={light ? "white" : "inherit"}>
-            <IconButton
-              size="small"
-              color={light && transparentNavbar ? "white" : "dark"}
-              sx={navbarMobileMenu}
-              onClick={handleMiniSidenav}
-            >
-              <Icon>{miniSidenav ? "menu_open" : "menu"}</Icon>
-            </IconButton>
+            <div style={maxWidth3 ? { marginTop: "-42px" } : {}} >
+              <IconButton
+                size="small"
+                color={light && transparentNavbar ? "white" : "dark"}
+                sx={navbarMobileMenu}
+                onClick={handleMiniSidenav}
+              >
+                <Icon>{miniSidenav ? "menu_open" : "menu"}</Icon>
+              </IconButton>
 
-            <IconButton sx={navbarIconButton} size="small">
-              <PerfilSection />
-            </IconButton>
+              <IconButton sx={navbarIconButton} size="small">
+                <PerfilSection />
+              </IconButton>
+            </div>
           </ArgonBox>
         </ArgonBox>
       </Toolbar>
