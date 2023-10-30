@@ -2,11 +2,12 @@ import { useState } from "react"
 import ReturnParams from "./returnParams"
 import { AlertState } from "store"
 import { useRecoilState } from "recoil"
-import { json } from "react-router-dom"
 import { HttpStatus } from "store"
+import { useNavigate } from "react-router-dom"
 
 export function GeneralFetch() {
     const baseURL = 'http://127.0.0.1:8000/api/'
+    const navigate = new useNavigate()
 
     const [alert, setAlert] = useRecoilState(AlertState)
     const [, setStatus] = useRecoilState(HttpStatus)
@@ -22,7 +23,9 @@ export function GeneralFetch() {
                 return response.json()
             })
             .then((data) => {
-                if (data.error || data.warning || data.success) {
+                if (data?.message?.toLowerCase()?.includes("token") && data?.message?.toLowerCase()?.includes("expired"))
+                    navigate("/login")
+                else if (data.error || data.warning || data.success) {
                     if (data?.validation == true)
                         setAlert(alert => ({ ...alert, type: Object.keys(data)[1], msg: data?.[Object.keys(data)[1]]?.[Object.keys(data[Object.keys(data)[1]])[0]]?.[0] }))
                     else
