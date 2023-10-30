@@ -41,5 +41,11 @@ export const NameFilter = atom({
 })
 
 
+export const HttpStatus = atom({
+    key: "HttpStatus",
+    default: 200
+})
+
+
 
 

@@ -17,6 +17,7 @@ import { CheckRole } from "utils/common/roleChecker";
 import DetailsView from "components/drawer/DetailsView";
 import BasicModal from "components/modal/modal";
 import ConfimDialog from "components/confirmDialog/confirmDialog";
+import Http404 from "layouts/error/404";
 
 export default function App() {
   const [controller, dispatch] = useArgonController();
@@ -83,6 +84,7 @@ export default function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/criar_conta" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Http404 />} />
       </Routes>
     </ThemeProvider>
   );

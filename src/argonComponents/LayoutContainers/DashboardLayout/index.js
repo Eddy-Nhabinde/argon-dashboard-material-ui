@@ -29,14 +29,12 @@ import { useArgonController, setLayout } from "context";
 
 function DashboardLayout({ bgColor, children, ...rest }) {
   const [controller, dispatch] = useArgonController();
-  const { miniSidenav, darkMode } = controller;
+  const { miniSidenav } = controller;
   const { pathname } = useLocation();
 
   useEffect(() => {
     setLayout(dispatch, "dashboard");
   }, [pathname]);
-
-  const background = darkMode && !bgColor ? "transparent" : bgColor;
 
   return (
     <ArgonBox
