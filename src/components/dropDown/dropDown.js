@@ -12,12 +12,16 @@ import { useRecoilState } from 'recoil';
 import { ModalState } from 'store';
 import { Confirmation } from 'store';
 import { AddOrEdit } from 'store';
+import DoNotDisturbOnOutlinedIcon from '@mui/icons-material/DoNotDisturbOnOutlined';
+import DoNotDisturbOffOutlinedIcon from '@mui/icons-material/DoNotDisturbOffOutlined';
 
 function DropDownOptions({ data, object }) {
     const [, setDetails] = useRecoilState(Details)
     const [open, setOpen] = useRecoilState(ModalState)
     const [openConfirm, setOpenConfirm] = useRecoilState(Confirmation)
     const [add, setAdd] = useRecoilState(AddOrEdit)
+
+    console.log(data)
 
     function Remarcar() {
         setOpen(open => ({ ...open, open: true, component: 'Remarcar', data: data.data, hora: data.hora, id: data.id, psiId: data.psicologo_id, }))
@@ -46,7 +50,7 @@ function DropDownOptions({ data, object }) {
             label: <div onClick={() => Remarcar()} ><UpdateOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Remarcar</span></div>,
             key: '1',
         },
-        object == 'psychologist' &&
+        !!(object == 'psychologist' & data?.estadoId == 1) &&
         {
             label: <div onClick={() => setAdd({ add: true, update: true, oldData: data })} ><EditOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Editar</span></div>,
             key: '1',
@@ -80,13 +84,18 @@ function DropDownOptions({ data, object }) {
                 ...openConfirm,
                 body: null,
                 open: true,
-                msg: "Tem certeza que quer desactivar Dr. " + data?.nome + " ?",
+                msg: data?.estadoId == 1 ? 'Tem certeza que quer desactivar Dr. ' + data?.nome : 'Tem certeza que quer activar Dr. ' + data?.nome + " ?",
                 operation: "deactivate",
-                endpoint: 'deactivate/' + data?.id,
+                endpoint: 'deactivate/' + data?.id + '/' + data?.estadoId,
                 id: data?.id,
                 method: 'PUT'
             })}>
-                <CloseOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0", color: "#EE6055" }} /> <span style={{ color: "#EE6055" }} >Desactivar</span>
+                {
+                    data?.estadoId == 1 ?
+                        <DoNotDisturbOnOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0", color: "#EE6055" }} />
+                        :
+                        <DoNotDisturbOffOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0", color: "#EE6055" }} />
+                } <span style={{ color: "#EE6055" }} >{data?.estadoId == 1 ? 'Desactivar' : "Activar"}</span>
             </div>,
             key: '3',
         },

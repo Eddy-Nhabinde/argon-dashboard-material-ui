@@ -20,13 +20,15 @@ import { AddNewPsycho } from 'hooks/psicologo/newPsychologist';
 import useDebounce from 'hooks/search/useDebounce';
 import { Nothing2Show } from 'components/nothing2show/nothing2show';
 import { NameFilter } from 'store';
+import TableTabs from 'components/tabs/tabs';
 
 export default function Psicologos() {
     const debouncedValue = useDebounce()
+    const [tab, setTab] = useState(1)
     const [add, setAdd] = useRecoilState(AddOrEdit)
     const [formData, setFormData] = useState({ acesso: 'psicologo' })
     const [page, setPage] = useState(1)
-    const { data, load } = GetPsychoList({ page, debouncedValue })
+    const { data, load } = GetPsychoList({ page, paging: true, debouncedValue, tab })
     const { columns, rows } = TableRowsGenerator({ object: "psychologist" });
     const [allData, setAllData] = useRecoilState(List)
     const [options, setOptions] = useState({})
@@ -69,11 +71,13 @@ export default function Psicologos() {
                 <>
                     <div className={styles.pageTitle}>
                         <h1>Psicólogos</h1>
-
                         {!add?.add ?
-                            <Button onClick={() => setAdd({ add: !add?.add })} type="default" className={styles.button} shape="round" icon={<UserAddOutlined />} size="large">
-                                Novo Psicólogo
-                            </Button>
+                            <div style={{ width: "37%", display: "flex", justifyContent: "space-between" }} >
+                                <TableTabs psychologist={true} setTab={setTab} tab={tab} />
+                                <Button onClick={() => setAdd({ add: !add?.add })} type="default" className={styles.button} shape="round" icon={<UserAddOutlined />} size="large">
+                                    Novo Psicólogo
+                                </Button>
+                            </div>
                             :
                             <Button style={{ paddingTop: "0px" }} type="default" onClick={() => setAdd({ add: !add?.add })} className={styles.button} shape="circle" icon={<CloseOutlined />} size="large" />
                         }
@@ -85,7 +89,7 @@ export default function Psicologos() {
                                 :
                                 <>
                                     {
-                                        data?.data?.length > 0 ?
+                                        data?.data?.length > 0 && allData?.length > 0 ?
                                             <Table setPage={setPage} columns={columns} rows={rows} data={data} /> :
                                             <Nothing2Show />
                                     }
