@@ -2,7 +2,6 @@ import moment from "moment/moment"
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Button } from 'antd';
 import * as React from 'react'
-import { GeneralFetch } from "../../Api/generalFetch/generalFetch";
 import styles from '../../layouts/schedule/Schedule.module.css'
 import { ModalState } from "store";
 import { useRecoilState } from "recoil";

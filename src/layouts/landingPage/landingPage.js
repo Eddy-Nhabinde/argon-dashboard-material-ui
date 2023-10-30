@@ -44,7 +44,7 @@ export default function LandingPage() {
                             <div class="carousel-item active">
                                 <img class="w-100" src={im} alt="Image" />
                                 <div class="carousel-caption">
-                                    <h1>Faça agendamento a partir de casa.</h1>
+                                    <h1>Faça agendamento a partir de casa</h1>
                                     <button>
                                         <span>
                                             <span>
@@ -65,7 +65,7 @@ export default function LandingPage() {
                         <div class="row g-4 align-items-end mb-4">
                             <div class="startText" data-wow-delay="0.3s">
                                 <p class="sismaco"> <span></span> Sismaco</p>
-                                <h1 class="display-5 mb-4">Uma solução prática para marcação de consultas.</h1>
+                                <h1 class="display-5 mb-4">Uma solução prática para marcação de consultas</h1>
                             </div>
                         </div>
                         <div class="border rounded p-4 wow fadeInUp" data-wow-delay="0.1s">
@@ -216,7 +216,6 @@ export default function LandingPage() {
                             <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+258 (21) 430239</p>
                             <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+258 (21) 304405</p>
                             <p class="mb-2"><i class="fa fa-envelope me-3"></i>ceap.uem@gmail.com</p>
-                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>cecoma@uem.ac.mz</p>
                             <div class="d-flex pt-2">
                                 <a class="btn btn-square btn-outline-light rounded-circle me-2" href="https://twitter.com/uemmoz"><i
                                     class="fab fa-twitter"></i>
@@ -228,11 +227,10 @@ export default function LandingPage() {
                         </div>
                         <div id="servicos" class="col-lg-6 col-md-6">
                             <h4 class="text-white mb-4">Servicos</h4>
-                            <p class="btn btn-link" href="">Psicologia Clínica e Psicoterapia de Apoio</p>
+                            <p class="btn btn-link" href="">Psicologia Clínica</p>
                             <p class="btn btn-link" href="">Aconselhamento Psicológico</p>
-                            <p class="btn btn-link" href="">Consulta de Necessidades Educativas Especiais e Dificuldades de Aprendizagem;</p>
-                            <p class="btn btn-link" href="">Orientação Escolar, Vocacional e Profissiona</p>
-                            <p class="btn btn-link" href="">Consultas de Terapia Familiar e Comunitária.</p>
+                            <p class="btn btn-link" href="">Orientação Escolar, Vocacional e Profissional</p>
+                            <p class="btn btn-link" href="">Consultas de Terapia Familiar</p>
                         </div>
                     </div>
                 </div>

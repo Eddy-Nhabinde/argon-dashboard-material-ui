@@ -44,7 +44,7 @@ function Dashboard() {
               </Grid>
               <Grid item xs={12} md={6} lg={3}>
                 <DetailedStatisticsCard
-                  title="Total"
+                  title="Marcadas"
                   count={data?.allAppointments?.[0]?.total + data?.allAppointments?.[1]?.total + data?.allAppointments?.[2]?.total || 0}
                   icon={{ color: "info", component: <i class="fa-solid fa-chart-simple"></i> }}
                 />

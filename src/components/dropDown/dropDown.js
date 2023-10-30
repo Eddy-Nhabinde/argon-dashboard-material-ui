@@ -55,7 +55,6 @@ function DropDownOptions({ data, object }) {
             label: <div onClick={() => setDetails({ open: true, data: data, object: object })} ><InfoOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0" }} /> <span>Detalhes</span></div>,
             key: '2',
         },
-        object == 'appointments' &&
         {
             type: 'divider',
         },
@@ -72,6 +71,22 @@ function DropDownOptions({ data, object }) {
                 method: 'PUT'
             })}>
                 <CloseOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0", color: "#EE6055" }} /> <span style={{ color: "#EE6055" }} >Cancelar</span>
+            </div>,
+            key: '3',
+        },
+        object == 'psychologist' &&
+        {
+            label: <div onClick={() => setOpenConfirm({
+                ...openConfirm,
+                body: null,
+                open: true,
+                msg: "Tem certeza que quer desactivar Dr. " + data?.nome + " ?",
+                operation: "deactivate",
+                endpoint: 'deactivate/' + data?.id,
+                id: data?.id,
+                method: 'PUT'
+            })}>
+                <CloseOutlinedIcon fontSize='small' style={{ margin: "-5px 7px 0 0", color: "#EE6055" }} /> <span style={{ color: "#EE6055" }} >Desactivar</span>
             </div>,
             key: '3',
         },
