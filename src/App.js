@@ -18,6 +18,7 @@ import DetailsView from "components/drawer/DetailsView";
 import BasicModal from "components/modal/modal";
 import ConfimDialog from "components/confirmDialog/confirmDialog";
 import Http404 from "layouts/error/404";
+import Http403 from "layouts/error/403";
 
 export default function App() {
   const [controller, dispatch] = useArgonController();
@@ -49,13 +50,16 @@ export default function App() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
-  const getRoutes = (allRoutes) =>
-    allRoutes.map((route) => {
+  const getRoutes = (allRoutes) => {
+    let routes = []
+    allRoutes?.map((route) => {
       if (CheckRole(route.access)) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        routes.push(<Route exact path={route.route} element={route.component} key={route.key} />);
       }
-      return null;
     });
+
+    return routes
+  }
 
 
   return (
@@ -84,7 +88,7 @@ export default function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/criar_conta" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Http404 />} />
+        <Route path="*" element={getRoutes(routes)?.length > 0 ? <Http404 /> : <Http403 />} />
       </Routes>
     </ThemeProvider>
   );

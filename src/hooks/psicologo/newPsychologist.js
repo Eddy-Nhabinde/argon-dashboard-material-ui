@@ -5,7 +5,6 @@ export function AddNewPsycho() {
 
     function NewPsycho(body, update = false) {
 
-        console.log(update);
         (async () => {
             await FetchData(body, update ? 'updatePsycho' : 'newPsychologist', update ? "PUT" : 'POST', 'psycho')
         })()

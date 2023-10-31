@@ -87,6 +87,12 @@ export function Verify({ formData }) {
                 }
             }
         }
+
+        if (availableTime.length == 0)
+            availableTime.push({
+                "label": "Psicólogo não disponivel",
+            })
+
         return getBusySchedules(availableTime)
     }
 

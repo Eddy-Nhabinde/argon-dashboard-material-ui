@@ -9,14 +9,36 @@ import { useRecoilState } from 'recoil';
 import { AlertState } from 'store';
 import { Validate } from 'utils/validation/validate';
 import { AddNewAppointment } from 'hooks/appointments/newAppointment';
+import { GetContacts } from 'hooks/paciente/getContacts';
 
 export default function NovaConsulta() {
     const [formData, setFormData] = useState({})
     const [options, setOptions] = useState({})
     const { psicologos, horaDisponivel } = Verify({ formData })
-    const { problemsData, loadProblems } = GetProblems()
+    const { problemsData } = GetProblems()
     const [alert, setAlert] = useRecoilState(AlertState)
     const { NewAppointment, loadAdd } = AddNewAppointment({ formData })
+    const { getContacts, contacts } = GetContacts()
+
+    useEffect(() => {
+        if (sessionStorage.getItem('acesso') == "paciente") {
+            getContacts()
+            setFormData({
+                nome: sessionStorage.getItem('nome'),
+                apelido: sessionStorage.getItem('apelido'),
+                email: sessionStorage.getItem('email')
+            })
+        }
+    }, [])
+
+    useEffect(() => {
+        contacts?.map((val) => {
+            if (val?.principal == 1)
+                setFormData(formData => ({ ...formData, contacto1: val?.contacto }))
+            else if (val?.principal == 0)
+                setFormData(formData => ({ ...formData, contacto2: val?.contacto }))
+        })
+    }, [contacts])
 
     useEffect(() => {
         if (problemsData) setOptions(options => ({ ...options, problema: problemsData }))
