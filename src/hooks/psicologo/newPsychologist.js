@@ -1,11 +1,13 @@
 import { GeneralFetch } from "Api/generalFetch/generalFetch"
 
-export function AddNewPsycho({ formData }) {
+export function AddNewPsycho() {
     const { FetchData, load } = GeneralFetch()
 
-    function NewPsycho() {
+    function NewPsycho(body, update = false) {
+
+        console.log(update);
         (async () => {
-            await FetchData(formData, 'newPsychologist', 'POST', 'psycho')
+            await FetchData(body, update ? 'updatePsycho' : 'newPsychologist', update ? "PUT" : 'POST', 'psycho')
         })()
     }
 

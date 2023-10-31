@@ -57,9 +57,18 @@ export default function Psicologos() {
     }
 
     const onConfirm = () => {
-        let response = Validate(formData, 'psychologist')
+        let copy = { ...formData }
+        if (add?.update == true) {
+            let espe = options?.especialidade?.filter((val) =>
+                val.label == formData?.especialidade
+            )
+            copy['especialidade'] = espe[0]?.value
+            copy['update'] = true
+        }
 
-        if (response == true) NewPsycho()
+        let response = Validate(copy, 'psychologist')
+
+        if (response == true) NewPsycho(copy, add?.update)
         else setAlert(alert => ({ ...alert, type: 'warning', msg: `O campo ${response} é obrigatório!` }))
     }
 

@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 export default function FormGen({ load, setFormData, formData, fields, addPsy = false, onCancel, onConfirm, options = [] }) {
     const [add,] = useRecoilState(AddOrEdit)
     const { arrayTime, Time, Changing, onTimeSelected } = DisponibilidadeFunctions({ formData, setFormData })
-
+    
     const onChangeInput = (key, value) => {
         setFormData(formData => ({ ...formData, [key]: value }))
     }
