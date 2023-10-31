@@ -2,7 +2,7 @@ import { GeneralFetch } from "Api/generalFetch/generalFetch"
 import { useEffect } from "react"
 
 export function GetContacts() {
-    const { FetchData, data } = GeneralFetch()
+    const { FetchData, data, load } = GeneralFetch()
 
     function getContacts() {
         (async () => {
@@ -11,5 +11,5 @@ export function GetContacts() {
     }
 
 
-    return { getContacts, contacts: data }
+    return { getContacts, contacts: data, loadContacts: load }
 }

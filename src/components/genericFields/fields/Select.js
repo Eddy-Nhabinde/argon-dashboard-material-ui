@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select } from 'antd';
-import { useMediaQuery } from '@mui/material';
+import { FormControl, FormHelperText, useMediaQuery } from '@mui/material';
 
 export default function Selects({ size = "large", keyy, style, data, label, onChange, formData, day = null, value }) {
     const mobile = useMediaQuery('(max-width: 420px)')
@@ -15,18 +15,25 @@ export default function Selects({ size = "large", keyy, style, data, label, onCh
     if (tablet && keyy == 'hora') estilo = { ...estilo, marginTop: "21px" }
 
     return (
-        <Select
-            showSearch
-            placeholder={label}
-            optionFilterProp="children"
-            onChange={(value) => onChange(keyy, value, day)}
-            style={{ ...style, ...estilo }}
-            value={value || formData?.[keyy] || null}
-            size={size}
-            filterOption={(input, option) =>
-                (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-            }
-            options={data}
-        />
+        <>
+            <FormControl>
+                <Select
+                    showSearch
+                    placeholder={label}
+                    optionFilterProp="children"
+                    onChange={(value) => onChange(keyy, value, day)}
+                    style={{ ...style, ...estilo }}
+                    value={value || formData?.[keyy] || null}
+                    size={size}
+                    filterOption={(input, option) =>
+                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                    }
+                    options={data}
+                />
+                <FormHelperText>{formData?.[keyy] && label}</FormHelperText>
+            </FormControl>
+
+        </>
+
     )
 }

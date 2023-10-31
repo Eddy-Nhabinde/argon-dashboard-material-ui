@@ -10,6 +10,7 @@ import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { DatePicker } from 'antd';
 import MaskPassword from './fields/Password.js';
 import { useMediaQuery } from '@mui/material';
+import { FormControl, FormHelperText } from '@material-ui/core';
 
 
 function GenericFields(props) {
@@ -94,18 +95,21 @@ function GenericFields(props) {
             if (maxWidth) style = { height: "40px", marginTop: "10px" }
 
             return (
-                <DatePicker
-                    minDate={today}
-                    shouldDisableDate={(dateParam) => {
-                        let data = new Date(dateParam)
-                        if (keyy != 'dataNasc')
-                            return data?.getDay() === 0 || data?.getDay() === 6;
-                        else return false
-                    }}
-                    style={style}
-                    onChange={(e) => { onChange(keyy, e?.$d) }}
-                    placeholder={placeholder}
-                />
+                <FormControl>
+                    <DatePicker
+                        minDate={today}
+                        shouldDisableDate={(dateParam) => {
+                            let data = new Date(dateParam)
+                            if (keyy != 'dataNasc')
+                                return data?.getDay() === 0 || data?.getDay() === 6;
+                            else return false
+                        }}
+                        style={style}
+                        onChange={(e) => { onChange(keyy, e?.$d) }}
+                        placeholder={placeholder}
+                    />
+                    <FormHelperText style={{ marginLeft: "17px" }} >{formData?.[keyy] && label}</FormHelperText>
+                </FormControl>
             )
 
         case 'dateTime':

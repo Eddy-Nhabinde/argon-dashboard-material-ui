@@ -5,7 +5,7 @@ export function AddNewAppointment({ formData }) {
 
     function NewAppointment() {
         (async () => {
-            await FetchData(formData, 'newAppointmessnt', 'POST', 'appointment')
+            await FetchData(formData, 'newAppointment', 'POST', 'appointment')
         })()
     }
 

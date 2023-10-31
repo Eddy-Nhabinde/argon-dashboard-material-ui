@@ -10,6 +10,7 @@ import { AlertState } from 'store';
 import { Validate } from 'utils/validation/validate';
 import { AddNewAppointment } from 'hooks/appointments/newAppointment';
 import { GetContacts } from 'hooks/paciente/getContacts';
+import { CircularProgress } from '@mui/material';
 
 export default function NovaConsulta() {
     const [formData, setFormData] = useState({})
@@ -18,7 +19,7 @@ export default function NovaConsulta() {
     const { problemsData } = GetProblems()
     const [alert, setAlert] = useRecoilState(AlertState)
     const { NewAppointment, loadAdd } = AddNewAppointment({ formData })
-    const { getContacts, contacts } = GetContacts()
+    const { getContacts, contacts,loadContacts } = GetContacts()
 
     useEffect(() => {
         if (sessionStorage.getItem('acesso') == "paciente") {
@@ -63,10 +64,17 @@ export default function NovaConsulta() {
 
     return (
         <Layout>
-            <div className={styles.formTitle}>
-                <h1>Nova Consulta</h1>
-            </div>
-            <FormGen load={loadAdd} options={options} setFormData={setFormData} formData={formData} onConfirm={onConfirm} onCancel={onCancel} fields={appointmentFields} />
+            {loadContacts ? <div style={{ height: "65vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <CircularProgress />
+            </div> :
+                <>
+                    <div className={styles.formTitle}>
+                        <h1>Nova Consulta</h1>
+                    </div>
+                    <FormGen load={loadAdd} options={options} setFormData={setFormData} formData={formData} onConfirm={onConfirm} onCancel={onCancel} fields={appointmentFields} />
+
+                </>
+            }
         </Layout>
     )
 }
